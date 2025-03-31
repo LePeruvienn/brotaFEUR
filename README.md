@@ -1,7 +1,16 @@
-# CMake SFML Project Template
+# 🐥 BrotaFEUR
 
-This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
-Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
+
+Brotato like game, made using SFML and CMake to improve my C++ skills.
+
+🔨 In construction ...
+
+
+---
+
+# 📄 CMake SFML Project Template
+
+Used SFML project template from [SFML CMake projeet template repository](https://github.com/SFML/cmake-sfml-project).
 
 The template starts out very basic, but might receive additional features over time:
 
