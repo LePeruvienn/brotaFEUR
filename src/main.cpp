@@ -1,7 +1,13 @@
 #include "core/Game.h"
 
 int main() {
-	Game game;  // Création de l'objet Game
-	game.run();  // Lancement de la boucle principale
+
+	Game game;
+
+	Entity entity(300.f, 300.f, 100.f, sf::Color::Red);
+	game.add(entity);
+
+	game.run();
+
 	return 0;
 }

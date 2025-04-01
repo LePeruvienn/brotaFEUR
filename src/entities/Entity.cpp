@@ -8,7 +8,7 @@ Entity::Entity(float x, float y, float radius, sf::Color color) {
 	shape.setFillColor(color);
 }
 
-void Entity::update(float delta) {
+void Entity::update(sf::Time deltaTime) {
 
 }
 

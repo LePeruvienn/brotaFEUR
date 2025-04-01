@@ -20,6 +20,10 @@ void Game::run() {
     }
 }
 
+void Game::add(Entity entity) {
+    entities.push_back(entity);
+}
+
 void Game::processInput() {
 
 	while (const std::optional event = window.pollEvent())
@@ -32,11 +36,16 @@ void Game::processInput() {
 }
 
 void Game::update(sf::Time deltaTime) {
-    // Ajoute ici la logique de mise à jour (déplacement, etc.)
+	for (auto& entity : entities) {
+		entity.update(deltaTime);
+	}
 }
 
 void Game::render() {
 
     window.clear(sf::Color::Black);
+	for (auto& entity : entities) {
+		entity.render(window);
+	}
     window.display();
 }
