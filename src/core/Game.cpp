@@ -35,6 +35,7 @@ void Game::run() {
 
 	// Game Loop
 	while (window.isOpen()) {
+
 		sf::Time deltaTime = clock.restart();
 		processInput();
 		update(deltaTime);
@@ -86,8 +87,11 @@ void Game::processInput() {
  * @param deltaTime - Time eleapsed between each frame
  */
 void Game::update(sf::Time deltaTime) {
+	// Convert dt in ms
+	float dt = deltaTime.asMicroseconds() / 1000.0f; // Convert to seconds with more precision
+	// Update all entities logic
 	for (auto& entity : entities) {
-		entity->update(deltaTime);
+		entity->update(dt);
 	}
 }
 

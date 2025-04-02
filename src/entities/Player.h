@@ -22,15 +22,15 @@ public:
 
 	/**
 	 * Updates the player's logic.
-	 * @param deltaTime - The time elapsed since the last frame
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
-	void update(sf::Time deltaTime) override;
+	void update(float deltaTime) override;
 
 	/**
 	 * Renders the player to the specified window.
 	 * @param window - Instance of the game window
 	 */
-	// void render(sf::RenderWindow& window) override;
+	void render(sf::RenderWindow& window) override;
 };
 
 #endif // PLAYER_H

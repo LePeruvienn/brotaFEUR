@@ -29,9 +29,9 @@ public:
 
 	/**
 	 * Updates the entity's logic.
-	 * @param deltaTime - The time elapsed since the last frame
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
-	virtual void update(sf::Time deltaTime);
+	virtual void update(float deltaTime);
 
 	/**
 	 * Renders the entity to the specified window.
@@ -41,6 +41,7 @@ public:
 
 	int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
 	sf::Vector2f pos; ///< Current position of the entity.
+	sf::Vector2f velocity; ///< Current velocity of the entity.
 
 protected:
 	sf::CircleShape shape; ///< Shape representing the entity.

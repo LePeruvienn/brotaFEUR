@@ -9,8 +9,9 @@
  */
 Entity::Entity(float x, float y, float radius, sf::Color color) {
 
-	// Set the shape & pos properties
+	// Set the shape velocity pos properties
 	pos = sf::Vector2f(x, y);
+	velocity = sf::Vector2f(x, y);
 	shape = sf::CircleShape(radius);
 	// Update shape position & color
 	shape.setPosition(pos);
@@ -19,9 +20,9 @@ Entity::Entity(float x, float y, float radius, sf::Color color) {
 
 /**
  * Updates the entity's logic.
- * @param deltaTime - The time elapsed since the last frame
+ * @param deltaTime - The time elapsed since the last frame (in ms)
  */
-void Entity::update(sf::Time deltaTime) {
+void Entity::update(float deltaTime) {
 	// No logic to update by default
 }
 

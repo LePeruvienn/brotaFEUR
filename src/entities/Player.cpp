@@ -11,14 +11,28 @@ Player::Player(float x, float y, float radius, sf::Color color)
 	// Use parent's base contructor
 	: Entity(x, y, radius, color) {
 	
-	// Nothing to do yet
+	// Update velocity
+	velocity.x = 0.2f;
+	velocity.y = 0.2f;
 }
 
 /**
  * Updates the player's logic.
  * @param deltaTime - The time elapsed since the last frame
  */
-void Player::update(sf::Time deltaTime) {
+void Player::update(float deltaTime) {
 
-	// Noting to do yet
+	pos.x += deltaTime * velocity.x;
+	pos.y += deltaTime * velocity.y;
+}
+
+/**
+ * Renders the entity to the specified window.
+ * @param window - Instance of the game window
+ */
+void Player::render(sf::RenderWindow& window) {
+
+	shape.setPosition(pos);
+
+	Entity::render(window);
 }
