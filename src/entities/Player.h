@@ -2,7 +2,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
 #include "Entity.h"
+#include "../input/PlayerInput.h"
 
 /**
  * Player entity who will be controlled by a player
@@ -22,15 +24,23 @@ public:
 
 	/**
 	 * Updates the player's logic.
-	 * @param deltaTime - The time elapsed since the last frame
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
-	void update(sf::Time deltaTime) override;
+	void update(float deltaTime) override;
 
 	/**
 	 * Renders the player to the specified window.
 	 * @param window - Instance of the game window
 	 */
-	// void render(sf::RenderWindow& window) override;
+	void render(sf::RenderWindow& window) override;
+
+	/**
+	 * Adds user control to the player
+	 */
+	void addInput();
+
+private:
+	std::unique_ptr<PlayerInput> input; //< Each Player has one unique PlayerInput
 };
 
 #endif // PLAYER_H
