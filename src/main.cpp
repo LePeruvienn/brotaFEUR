@@ -1,32 +1,14 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include "core/Game.h"
+#include "entities/Player.h"
 
-int main()
-{
-	auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
-	window.setFramerateLimit(144);
+int main() {
 
-	sf::CircleShape circle(100.f);
-	circle.setFillColor(sf::Color::Green);
+	Game& game = Game::getInstance ();
 
-	while (window.isOpen())
-	{
-		while (const std::optional event = window.pollEvent())
-		{
-			if (event->is<sf::Event::Closed>())
-			{
-				window.close();
-			}
-		}
+    Player player(200.f, 200.f);
+	game.add (&player);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-		{
-			// left key is pressed: move our character
-			circle.move({-1.f, 0.f});
-		}
+	game.run();
 
-		window.clear();
-		window.draw(circle);
-		window.display();
-	}
+	return 0;
 }
