@@ -1,11 +1,12 @@
 #include "core/Game.h"
+#include "entities/Player.h"
 
 int main() {
 
 	Game game;
 
-	Entity entity(300.f, 300.f, 100.f, sf::Color::Red);
-	game.add(entity);
+    Player player(200.f, 200.f);
+	game.add (player);
 
 	game.run();
 
