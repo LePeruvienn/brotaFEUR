@@ -3,10 +3,10 @@
 
 int main() {
 
-	Game game;
+	Game& game = Game::getInstance ();
 
     Player player(200.f, 200.f);
-	game.add (player);
+	game.add (&player);
 
 	game.run();
 
