@@ -42,6 +42,7 @@ public:
 	int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
 	sf::Vector2f pos; ///< Current position of the entity.
 	sf::Vector2f velocity; ///< Current velocity of the entity.
+	float speed;
 
 protected:
 	sf::CircleShape shape; ///< Shape representing the entity.

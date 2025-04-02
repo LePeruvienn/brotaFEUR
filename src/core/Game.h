@@ -68,11 +68,6 @@ private:
 	~Game();
 
 	/**
-	 * Handle users inputs !
-	 */
-	void processInput();
-
-	/**
 	 * Update game logic and entities each frame
 	 * @param deltaTime - Time eleapsed between each frame
 	 */

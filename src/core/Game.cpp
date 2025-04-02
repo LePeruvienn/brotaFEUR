@@ -37,7 +37,6 @@ void Game::run() {
 	while (window.isOpen()) {
 
 		sf::Time deltaTime = clock.restart();
-		processInput();
 		update(deltaTime);
 		render();
 	}
@@ -66,20 +65,6 @@ void Game::add(Entity* entity) {
 void Game::setPlayer1 (Player* player) {
 	
 	player1 = player;
-}
-
-/**
- * Handle users inputs !
- */
-void Game::processInput() {
-
-	while (const std::optional event = window.pollEvent())
-	{
-		if (event->is<sf::Event::Closed>())
-		{
-			window.close();
-		}
-	}
 }
 
 /**

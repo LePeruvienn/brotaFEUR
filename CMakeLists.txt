@@ -12,7 +12,11 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp src/core/Game.cpp src/entities/Entity.cpp src/entities/Player.cpp)
+# Find all .cpp files in src/ recursively and store them in SRCS
+file(GLOB_RECURSE SRCS src/*.cpp)
+
+# Add the executable with all found .cpp files
+add_executable(main ${SRCS})
 
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics SFML::Window SFML::System)

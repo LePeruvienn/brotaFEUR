@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "../input/PlayerInputStates.h"
+#include "../utils/Utils.h"
 
 /**
  * constructs a new entity object with specified parameters.
@@ -10,10 +12,8 @@
 Player::Player(float x, float y, float radius, sf::Color color) 
 	// Use parent's base contructor
 	: Entity(x, y, radius, color) {
-	
-	// Update velocity
-	velocity.x = 0.2f;
-	velocity.y = 0.2f;
+
+	// Nothing to do more !
 }
 
 /**
@@ -22,8 +22,38 @@ Player::Player(float x, float y, float radius, sf::Color color)
  */
 void Player::update(float deltaTime) {
 
-	pos.x += deltaTime * velocity.x;
-	pos.y += deltaTime * velocity.y;
+	// If user have inputs, we updateThem
+	if (input) {
+
+		// Update input
+		input->update();
+
+		// Get current inputs state
+		int state = input->getState();
+
+		// Get the current direction we are moving
+		int directionX = 0;
+		int directionY = 0;
+
+		if (state & RIGHT)
+			directionX++;
+
+		if (state & LEFT)
+			directionX--;
+
+		if (state & UP)
+			directionY--;
+
+		if (state & DOWN)
+			directionY++;
+
+		// Add velocity toward the direction we are going
+		velocity.x = Utils::lerp (velocity.x, speed * directionX, 0.005f);
+		velocity.y = Utils::lerp (velocity.y, speed * directionY, 0.005f);
+	}
+
+	// Use Entity update
+	Entity::update (deltaTime);
 }
 
 /**
@@ -31,8 +61,16 @@ void Player::update(float deltaTime) {
  * @param window - Instance of the game window
  */
 void Player::render(sf::RenderWindow& window) {
-
-	shape.setPosition(pos);
-
+	
+	// Use Entity render
 	Entity::render(window);
+}
+
+/**
+ * Adds user control to the player
+ */
+void Player::addInput () {
+
+	// Set a new unique PlayerInput
+    input = std::make_unique<PlayerInput>();
 }

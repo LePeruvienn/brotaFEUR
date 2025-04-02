@@ -2,7 +2,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
 #include "Entity.h"
+#include "../input/PlayerInput.h"
 
 /**
  * Player entity who will be controlled by a player
@@ -31,6 +33,14 @@ public:
 	 * @param window - Instance of the game window
 	 */
 	void render(sf::RenderWindow& window) override;
+
+	/**
+	 * Adds user control to the player
+	 */
+	void addInput();
+
+private:
+	std::unique_ptr<PlayerInput> input; //< Each Player has one unique PlayerInput
 };
 
 #endif // PLAYER_H
