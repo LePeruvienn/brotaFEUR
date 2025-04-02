@@ -39,8 +39,10 @@ public:
 	 */
 	virtual void render(sf::RenderWindow& window);
 
-protected:
+	int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
 	sf::Vector2f pos; ///< Current position of the entity.
+
+protected:
 	sf::CircleShape shape; ///< Shape representing the entity.
 };
 
