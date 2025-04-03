@@ -20,7 +20,13 @@ public:
 	 * @param radius - entity body radius
 	 * @param color - entity body color
 	 */
-	Player(float x, float y, float radius = 30.f, sf::Color color = sf::Color::Blue);
+	Player(
+		float x,
+		float y,
+		float radius = 30.f,
+		sf::Color color = sf::Color::Blue,
+		Stats stats = Stats()
+	);
 
 	/**
 	 * Updates the player's logic.

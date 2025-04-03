@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "Stats.h"
 
 /**
  * Abstract class representing a generic entity in the game
@@ -12,14 +13,27 @@
  */
 class Entity {
 public:
+
+	int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
+	sf::Vector2f pos; ///< Current position of the entity.
+	sf::Vector2f velocity; ///< Current velocity of the entity.
+	Stats stats; /// < Stats class to handle all entiteis stats
+
 	/**
 	 * constructs a new entity object with specified parameters.
 	 * @param x - x axis position
 	 * @param y - y axis position
 	 * @param radius - entity body radius
 	 * @param color - entity body color
+	 * @param stats - entities stats
 	 */
-	Entity(float x = 50.f, float y = 50.f, float radius = 30.f, sf::Color color = sf::Color::Green);
+	Entity(
+		float x = 50.f,
+		float y = 50.f,
+		float radius = 30.f,
+		sf::Color color = sf::Color::Green,
+		Stats stats = Stats ()
+	);
 
 	/**
 	 * Virtual destructor for the Entity class.
@@ -38,11 +52,6 @@ public:
 	 * @param window - Instance of the game window
 	 */
 	virtual void render(sf::RenderWindow& window);
-
-	int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
-	sf::Vector2f pos; ///< Current position of the entity.
-	sf::Vector2f velocity; ///< Current velocity of the entity.
-	float speed;
 
 protected:
 	sf::CircleShape shape; ///< Shape representing the entity.

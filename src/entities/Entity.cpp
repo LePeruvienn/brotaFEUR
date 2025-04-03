@@ -7,23 +7,11 @@
  * @param radius - entity body radius
  * @param color - entity body color
  */
-Entity::Entity(float x, float y, float radius, sf::Color color) {
+Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
+	// Intialize class values
+	: pos{x, y}, velocity{0.f, 0.f}, shape(radius), stats(stats) {
 
-	// Set entity position
-	pos.x = x;
-	pos.y = y;
-
-	// Set velocity to 0 by default
-	velocity.x = 0.f;
-	velocity.y = 0.f;
-
-	// Set speed to 0.2f by default
-	speed = 0.2f;
-
-	// Create Shape
-	shape = sf::CircleShape(radius);
-	
-	// Update shape position & color
+	// Set shape position & color
 	shape.setPosition(pos);
 	shape.setFillColor(color);
 }

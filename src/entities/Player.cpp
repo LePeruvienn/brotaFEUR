@@ -9,9 +9,9 @@
  * @param radius - entity body radius
  * @param color - entity body color
  */
-Player::Player(float x, float y, float radius, sf::Color color) 
+Player::Player(float x, float y, float radius, sf::Color color, Stats stats) 
 	// Use parent's base contructor
-	: Entity(x, y, radius, color) {
+	: Entity(x, y, radius, color, stats) {
 
 	// Nothing to do more !
 }
@@ -47,9 +47,12 @@ void Player::update(float deltaTime) {
 		if (state & DOWN)
 			directionY++;
 
+		// Defining lerp value for velocity
+		float lerp = 0.005f;
+
 		// Add velocity toward the direction we are going
-		velocity.x = Utils::lerp (velocity.x, speed * directionX, 0.005f);
-		velocity.y = Utils::lerp (velocity.y, speed * directionY, 0.005f);
+		velocity.x = Utils::lerp (velocity.x, stats.speed * directionX, lerp);
+		velocity.y = Utils::lerp (velocity.y, stats.speed * directionY, lerp);
 	}
 
 	// Use Entity update
@@ -71,6 +74,8 @@ void Player::render(sf::RenderWindow& window) {
  */
 void Player::addInput () {
 
-	// Set a new unique PlayerInput
+	// Set a new unique PlayerInput 
+	// (make that if there is already have a Player input it delete the old and set a new one )
+	// => NO MEMORY LEAK
     input = std::make_unique<PlayerInput>();
 }
