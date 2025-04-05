@@ -87,4 +87,4 @@ private:
 	Player* player1 = nullptr; ///< Main player entitiy pointer
 };
 
-#endif
+#endif // GAME_H
