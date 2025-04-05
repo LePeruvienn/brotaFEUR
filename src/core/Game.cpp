@@ -20,7 +20,11 @@ Game::Game() {
  * Used to delete reference of all the entities and player1
  */
 Game::~Game() {
+
+	// Delete player1
 	delete player1;
+
+	// Delete each game entity
 	for (Entity* entity : entities) {
 		delete entity;
 	}
@@ -31,12 +35,15 @@ Game::~Game() {
  */
 void Game::run() {
 
+	// Get sfml clock
 	sf::Clock clock;
 
 	// Game Loop
 	while (window.isOpen()) {
 
+		// Get  current deltaTime
 		sf::Time deltaTime = clock.restart();
+
 		update(deltaTime);
 		render();
 	}
@@ -52,8 +59,10 @@ void Game::add(Entity* entity) {
 
 	// Set entity ID
 	entity->id = nextId;
+
 	// Increment next ID
 	nextId++;
+
 	// Add entity to game entities list
 	entities.push_back(entity);
 }
@@ -64,6 +73,7 @@ void Game::add(Entity* entity) {
  */
 void Game::setPlayer1 (Player* player) {
 	
+	// Set player1 instance
 	player1 = player;
 }
 
@@ -72,8 +82,10 @@ void Game::setPlayer1 (Player* player) {
  * @param deltaTime - Time eleapsed between each frame
  */
 void Game::update(sf::Time deltaTime) {
-	// Convert dt in ms
-	float dt = deltaTime.asMicroseconds() / 1000.0f; // Convert to seconds with more precision
+	
+	// Convert dt in ms (we convert um so ms to have more precision)
+	float dt = deltaTime.asMicroseconds() / 1000.0f;
+	
 	// Update all entities logic
 	for (auto& entity : entities) {
 		entity->update(dt);
@@ -85,9 +97,14 @@ void Game::update(sf::Time deltaTime) {
  */
 void Game::render() {
 
+	// Draw background
 	window.clear(sf::Color::Black);
+
+	// Render each entity
 	for (auto& entity : entities) {
 		entity->render(window);
 	}
+
+	// Update display
 	window.display();
 }

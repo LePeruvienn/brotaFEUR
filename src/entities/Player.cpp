@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <cmath>
 #include "../input/PlayerInputStates.h"
 #include "../utils/Utils.h"
 
@@ -46,6 +47,17 @@ void Player::update(float deltaTime) {
 
 		if (state & DOWN)
 			directionY++;
+
+		// If we are moving in diagonal
+		if (directionX != 0 && directionY != 0) {
+
+			// Compute diagonalFactor
+			float diagonalFactor = 1 / std::sqrt(2.f);
+
+			// Fix direction
+			directionX /= diagonalFactor;
+			directionY /= diagonalFactor;
+		}
 
 		// Defining lerp value for velocity
 		float lerp = 0.005f;
