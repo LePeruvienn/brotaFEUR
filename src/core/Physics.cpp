@@ -3,22 +3,27 @@
 /**
  * Physics Namespace to handle all game's Physics
  */
-namespace Physics{
+namespace Physics {
 
-	RigidShape::RigidShape (float x, float y, float mass) : 
-		mass (mass) {
-		
-		pos = sf::Vector2f(x, y);
-		velocity = sf::Vector2f(0.f, 0.f);
-		acceleration = sf::Vector2f(0.f, 0.f);
-	};
-
-	void RigidShape::update (float deltaTime) {
-
+	/**
+	* Update current game's Physics
+	* @param deltaTime
+	*/
+	void update (float deltaTime) {
+	
+		// Update all rigidShape logic
+		for (auto& rigidShape : objects) {
+			rigidShape->update(deltaTime);
+		}
 	}
 
-	bool RigidShape::isColliding (RigidShape& rigidShape) {
-
-		return false;
+	/**
+	* Add an object to Physics objects list
+	* @param rigidShape
+	*/
+	void addObject (RigidShape* rigidShape) {
+		
+		// Add object  to Physics objects list
+		objects.push_back(rigidShape);
 	}
 }
