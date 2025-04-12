@@ -1,6 +1,8 @@
 #include <cmath>
+#include <iostream>
 #include "CircleRigidShape.h"
 #include "RectangleRigidShape.h"
+#include "../Physics.h"
 
 namespace Physics {
 
@@ -23,6 +25,23 @@ namespace Physics {
 	 * @param deltaTime
 	 */
 	void CircleRigidShape::update (float deltaTime) {
+
+		// Reset collisions list
+		collisions.clear();
+
+		// Check if current rigidShape is colliding with an other
+		for (auto& rigidShape : Physics::objects) {
+			
+			// If we are not comparing ourselve go to next rigidShape
+			if (rigidShape->id == id) continue;
+			
+			// Check if current rigidShape is colliding with us, add it to the collisions list
+			if (isColliding (*rigidShape))
+				collisions.push_back (rigidShape);
+		}
+
+		// DEBUG ! Check how many collisions they are for circle shapes
+		// std::cout << collisions.size() << "\n";
 		
 		// Update rigidShape with parent's function
 		RigidShape::update (deltaTime);

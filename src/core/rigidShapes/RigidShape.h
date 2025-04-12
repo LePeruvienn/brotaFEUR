@@ -14,7 +14,8 @@ namespace Physics {
 	 */
 	class RigidShape {
 	public:
-
+		
+		int id = -1; //< rigidShape's unique id, if he inst added to the physics is equal to -1
 		RigidShapeType type; //< What is the type of the current rigidShape (circle, rectangle, ect ...)
 		sf::Vector2f pos; //< Current rigidShape position
 		sf::Vector2f velocity; ///< Current rigidShape velocity

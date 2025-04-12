@@ -7,10 +7,10 @@ BUILD_DIR="build"
 cd "$BUILD_DIR"
 
 # Run CMake to generate the build files
-cmake ..
+cmake .. &&
 
 # Compile the project
-make
+make &&
 
 # Run main
 ./bin/main

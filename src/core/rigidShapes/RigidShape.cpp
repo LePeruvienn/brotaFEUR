@@ -1,5 +1,7 @@
 #include "RigidShape.h"
 
+#define MAX_COLLISONS 100
+
 namespace Physics {
 
 	/**
@@ -14,6 +16,9 @@ namespace Physics {
 		pos = sf::Vector2f(x, y);
 		velocity = sf::Vector2f(0.f, 0.f);
 		acceleration = sf::Vector2f(0.f, 0.f);
+
+		// Set collisions max allocations to prevents memory to go crazy
+		collisions.reserve(MAX_COLLISONS);
 	};
 
 	void RigidShape::update (float deltaTime) {
