@@ -20,7 +20,6 @@ namespace Physics {
 		sf::Vector2f velocity; ///< Current rigidShape velocity
 		sf::Vector2f acceleration; ///< Current rigidShape acceleration
 		float mass = 1.f; ///< Current rigidShape mass
-		float angle = 0.f; ///< Current rigidShape angle (in radian)
 		bool sensor = false; ///< Set current rigidShapes mode
 		std::vector<RigidShape*> collisions; ///< Current rigidShapes in collisions with the instance
 
@@ -30,7 +29,7 @@ namespace Physics {
 		 * @param y - rigidShape start Y coordinate
 		 * @param mass - rigidShape mass
 		 */
-		RigidShape(float x, float y, float mass, float angle);
+		RigidShape(float x, float y, float mass);
 
 		/**
 		 * RigidShape destructor
@@ -38,12 +37,10 @@ namespace Physics {
 		virtual ~RigidShape() = default;
 
 
-		/* TO KNOW => in CPP there is two types of virtual function :
+		/* TO KNOW => in CPP there is two types of virtual functio :
 		 * - classic virtual (without = 0) = this means that the function have a default value
 		 *   that in declared in the parent cpp file
-		 * - pure virtual (with = 0 !!) = that means that the function does NOT HAVE A DEFAULT VALUE !
-		 *   so the functioin is not declared in in the parent's cpp file
-		 */
+		 * - Clas
 
 		/**
 		 * Updating current rigidShape

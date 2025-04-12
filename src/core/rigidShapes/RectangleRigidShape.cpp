@@ -1,26 +1,26 @@
-#include "CircleRigidShape.h"
+#include "RectangleRigidShape.h"
 
 namespace Physics {
 
 	/**
-	 * CircleRigidShape Constructor
+	 * RectangleRigidShape Constructor
 	 * @param x - rigidShape start X coordinate
 	 * @param y - rigidShape start Y coordinate
 	 * @param mass - rigidShape mass
-	 * @param radius - rigidShape circle's radius
+	 * @param radius - rigidShape rectangle's radius
 	 */
-	CircleRigidShape::CircleRigidShape (float x, float y, float mass, float radius)
+	RectangleRigidShape::RectangleRigidShape (float x, float y, float mass, float width, float height, float angle)
 		// Use parent's constructor, and set radius
-		: RigidShape(x, y, mass, 0.f), radius(radius) {
+		: RigidShape(x, y, mass, angle), width(width), height(height) {
 
-		type = CIRCLE;
+		type = RECTANGLE;
 	};
 
 	/**
 	 * Updating current rigidShape
 	 * @param deltaTime
 	 */
-	void CircleRigidShape::update (float deltaTime) {
+	void RectangleRigidShape::update (float deltaTime) {
 		
 		// Nothing to add yet
 	}
@@ -30,7 +30,7 @@ namespace Physics {
 	 * Check if RigidShape is colliding with an other
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isColliding (RigidShape& other) {
+	bool RectangleRigidShape::isColliding (RigidShape& other) {
 
 		return false;
 	}
@@ -39,7 +39,7 @@ namespace Physics {
 	 * Check if RigidShape is colliding with an Rectangle
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isCollidingWithRectangle(RigidShape& rectangle) {
+	bool RectangleRigidShape::isCollidingWithRectangle(RigidShape& rectangle) {
 
 		return false;
 	}
@@ -48,7 +48,7 @@ namespace Physics {
 	 * Check if RigidShape is colliding with a circle
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isCollidingWithCircle(RigidShape& circle) {
+	bool RectangleRigidShape::isCollidingWithCircle(RigidShape& circle) {
 
 		return false;
 	}
