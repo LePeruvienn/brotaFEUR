@@ -3,17 +3,18 @@
 #include "entities/mob/Mob.h"
 
 int main() {
+	
 
-	Game& game = Game::getInstance ();
+	Game::init ();
 
-    Player player(200.f, 200.f);
-    Mob mob(200.f, 200.f);
+	Player::Player player(200.f, 200.f);
+	Mob::Mob mob(200.f, 200.f);
 
 	player.addInput ();
-	game.add (&player);
-	game.add (&mob);
+	Game::add (&player);
+	Game::add (&mob);
 
-	game.run();
+	Game::run();
 
 	return 0;
 }

@@ -1,41 +1,44 @@
-#ifndef MOB_H
-#define MOB_H
+#pragma once ///< Fore the compiler to include this once
 
 #include "../Entity.h"
 
-/**
- * Mob entity who will be controlled by a mob
- * Chlid class from the Entity class
- */
-class Mob : public Entity {
-public:
+using namespace Entity;
+
+namespace Mob {
 
 	/**
-	 * constructs a new entity object with specified parameters.
-	 * @param x - x axis position
-	 * @param y - y axis position
-	 * @param radius - entity body radius
-	 * @param color - entity body color
+	 * Mob entity who will be controlled by a mob
+	 * Chlid class from the Entity class
 	 */
-	Mob(
-		float x,
-		float y,
-		float radius = 30.f,
-		sf::Color color = sf::Color::Red,
-		Stats stats = Stats()
-	);
+	class Mob : public Entity {
+	public:
 
-	/**
-	 * Updates the mob's logic.
-	 * @param deltaTime - The time elapsed since the last frame (in ms)
-	 */
-	void update(float deltaTime) override;
+		/**
+		 * constructs a new entity object with specified parameters.
+		 * @param x - x axis position
+		 * @param y - y axis position
+		 * @param radius - entity body radius
+		 * @param color - entity body color
+		 */
+		Mob(
+			float x,
+			float y,
+			float radius = 30.f,
+			sf::Color color = sf::Color::Red,
+			Stats stats = Stats()
+		);
 
-	/**
-	 * Renders the mob to the specified window.
-	 * @param window - Instance of the game window
-	 */
-	void render(sf::RenderWindow& window) override;
-};
+		/**
+		 * Updates the mob's logic.
+		 * @param deltaTime - The time elapsed since the last frame (in ms)
+		 */
+		void update(float deltaTime) override;
 
-#endif // MOB_H
+		/**
+		 * Renders the mob to the specified window.
+		 * @param window - Instance of the game window
+		 */
+		void render(sf::RenderWindow& window) override;
+	};
+}
+

@@ -1,43 +1,43 @@
-#ifndef STATS_H
-#define STATS_H
+#pragma once ///< Fore the compiler to include this once
 
-/**
- * Class used to represent entities statistics in the game.
- * Only used with entities instances.
- * IS nice to store all stats linked functions.
- */
-class Stats {
-
-public:
-
-	int health; ///< Health
-	int damage; ///< Damage
-	float speed; ///< Speed
+namespace Entity {
 
 	/**
-	 * Stats constructor class, initialize all stats start values
-	 * @param health
-	 * @param damage
-	 * @param speed
+	 * Class used to represent entities statistics in the game.
+	 * Only used with entities instances.
+	 * IS nice to store all stats linked functions.
 	 */
-	Stats (
-		int health = 100,
-		int damage = 100,
-		float speed = 0.2f
-	);
+	class Stats {
 
-	/**
-	 * Used to make an entity take damage from an ather entity
-	 * @param amount - Damage amount we are taking
-	 * @return isDead - return true if entity is dead, false either
-	 */
-	bool takeDamage (int amount);
+	public:
 
-	/**
-	 * Used to heal an entity
-	 * @param amount - Heal amount
-	 */
-	void heal (int amount);
-};
+		int health; ///< Health
+		int damage; ///< Damage
+		float speed; ///< Speed
 
-#endif // STATS_H
+		/**
+		 * Stats constructor class, initialize all stats start values
+		 * @param health
+		 * @param damage
+		 * @param speed
+		 */
+		Stats (
+			int health = 100,
+			int damage = 100,
+			float speed = 0.2f
+		);
+
+		/**
+		 * Used to make an entity take damage from an ather entity
+		 * @param amount - Damage amount we are taking
+		 * @return isDead - return true if entity is dead, false either
+		 */
+		bool takeDamage (int amount);
+
+		/**
+		 * Used to heal an entity
+		 * @param amount - Heal amount
+		 */
+		void heal (int amount);
+	};
+}

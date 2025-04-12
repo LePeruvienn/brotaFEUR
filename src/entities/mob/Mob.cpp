@@ -1,35 +1,40 @@
 #include "Mob.h"
 
-/**
- * constructs a new entity object with specified parameters.
- * @param x - x axis position
- * @param y - y axis position
- * @param radius - entity body radius
- * @param color - entity body color
- */
-Mob::Mob(float x, float y, float radius, sf::Color color, Stats stats) 
-	// Use parent's base contructor
-	: Entity(x, y, radius, color, stats) {
+using namespace Entity;
 
-	// Nothing to do more !
-}
+namespace Mob {
 
-/**
- * Updates the player's logic.
- * @param deltaTime - The time elapsed since the last frame
- */
-void Mob::update(float deltaTime) {
+	/**
+	 * constructs a new entity object with specified parameters.
+	 * @param x - x axis position
+	 * @param y - y axis position
+	 * @param radius - entity body radius
+	 * @param color - entity body color
+	 */
+	Mob::Mob(float x, float y, float radius, sf::Color color, Stats stats) 
+		// Use parent's base contructor
+		: Entity(x, y, radius, color, stats) {
 
-	// Use Entity update
-	Entity::update (deltaTime);
-}
+		// Nothing to do more !
+	}
 
-/**
- * Renders the entity to the specified window.
- * @param window - Instance of the game window
- */
-void Mob::render(sf::RenderWindow& window) {
-	
-	// Use Entity render
-	Entity::render(window);
+	/**
+	 * Updates the player's logic.
+	 * @param deltaTime - The time elapsed since the last frame
+	 */
+	void Mob::update(float deltaTime) {
+
+		// Use Entity update
+		Entity::update (deltaTime);
+	}
+
+	/**
+	 * Renders the entity to the specified window.
+	 * @param window - Instance of the game window
+	 */
+	void Mob::render(sf::RenderWindow& window) {
+		
+		// Use Entity render
+		Entity::render(window);
+	}
 }
