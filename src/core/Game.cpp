@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Physics.h"
 #include <iostream>
 
 /**
@@ -84,6 +85,9 @@ void Game::update(sf::Time deltaTime) {
 	
 	// Convert dt in ms (we convert um so ms to have more precision)
 	float dt = deltaTime.asMicroseconds() / 1000.0f;
+
+	// Update game's physic
+	Physics::update (dt);
 	
 	// Update all entities logic
 	for (auto& entity : entities) {

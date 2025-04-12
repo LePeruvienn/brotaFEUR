@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "../core/Physics.h"
 
 /**
  * constructs a new entity object with specified parameters.
@@ -17,6 +18,9 @@ Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
 
 	// Create entity rigidShape
 	rigidShape = new Physics::CircleRigidShape (x, y, 1.f, radius);
+
+	// Add the rigidShape to the Physics
+	Physics::addObject (rigidShape);
 }
 
 /**
@@ -25,8 +29,6 @@ Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
  */
 void Entity::update(float deltaTime) {
 
-	// Update entity rigidShape
-	rigidShape->update (deltaTime);
 }
 
 /**

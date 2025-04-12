@@ -5,6 +5,8 @@
  */
 namespace Physics {
 
+	std::vector<RigidShape*> objects; ///< Physics RigidShape list
+
 	/**
 	* Update current game's Physics
 	* @param deltaTime

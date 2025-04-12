@@ -13,7 +13,8 @@ namespace Physics {
 
 	const float __GRAVITIY__ = 9.81f; ///< Gravity constant
 
-	std::vector<RigidShape*> objects; ///< Physics RigidShape list
+	// Extern veut dire qu'on ne pas pas définir la liste ici mais dans un autre fichier (Physics.cpp)
+	extern std::vector<RigidShape*> objects; ///< Physics RigidShape list
 
 	void update (float deltaTime);
 
