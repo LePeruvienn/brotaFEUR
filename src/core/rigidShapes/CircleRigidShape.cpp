@@ -24,16 +24,6 @@ namespace Physics {
 		
 		// Nothing to add yet
 	}
-	
-
-	/**
-	 * Check if RigidShape is colliding with an other
-	 * @param rigidShape
-	 */
-	bool CircleRigidShape::isColliding (RigidShape& other) {
-
-		return false;
-	}
 
 	/**
 	 * Check if RigidShape is colliding with an Rectangle

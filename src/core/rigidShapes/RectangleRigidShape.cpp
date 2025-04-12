@@ -24,7 +24,6 @@ namespace Physics {
 		
 		// Nothing to add yet
 	}
-	
 
 	/**
 	 * Check if RigidShape is colliding with an other
@@ -32,6 +31,21 @@ namespace Physics {
 	 */
 	bool RectangleRigidShape::isColliding (RigidShape& other) {
 
+		// Used the function linked to the shape
+		switch (other.type) {
+
+			case CIRCLE:
+				return RectangleRigidShape::isCollidingWithCircle(other);
+
+			case RECTANGLE:
+				return RectangleRigidShape::isCollidingWithRectangle(other);
+
+			// CAPSULE are not handled yet
+			case CAPSULE:
+				return false;
+		}
+		
+		// Return false by default
 		return false;
 	}
 
