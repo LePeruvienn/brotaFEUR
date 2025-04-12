@@ -20,7 +20,9 @@ namespace Physics {
 		sf::Vector2f velocity; ///< Current rigidShape velocity
 		sf::Vector2f acceleration; ///< Current rigidShape acceleration
 		float mass = 1.f; ///< Current rigidShape mass
+		bool sensor = false; ///< Set current rigidShapes mode
 		std::vector<RigidShape*> collisions; ///< Current rigidShapes in collisions with the instance
+
 		/**
 		 * RigidShape Constructor
 		 * @param x - rigidShape start X coordinate
@@ -35,16 +37,28 @@ namespace Physics {
 		virtual ~RigidShape() = default;
 
 		/**
-		 * Updating
+		 * Updating current rigidShape
 		 * @param deltaTime
 		 */
-		virtual void update(float deltaTime);
+		virtual void update(float deltaTime) = 0;
 
 		/**
-		 * Updating
-		 * @param deltaTime
+		 * Check if RigidShape is colliding with an other
+		 * @param rigidShape
 		 */
-		virtual bool isColliding(RigidShape& rigidShape);
+		virtual bool isColliding(RigidShape& other) = 0;
+
+		/**
+		 * Check if RigidShape is colliding with an Rectangle
+		 * @param rigidShape
+		 */
+		virtual bool isCollidingWithRectangle(RigidShape& rectangle) = 0;
+
+		/**
+		 * Check if RigidShape is colliding with a circle
+		 * @param rigidShape
+		 */
+		virtual bool isCollidingWithCircle(RigidShape& circle) = 0;
 	};
 }
 

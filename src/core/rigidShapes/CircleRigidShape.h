@@ -5,10 +5,23 @@
 
 namespace Physics {
 
-	class CircleRigidShape : RigidShape {
+	
+	/**
+	 * Represent an shape in the game which interacts with the game physics
+	 * This is the class for a circle shape
+	 */
+	class CircleRigidShape : public RigidShape {
+	public:
 
 		float radius; ///< Circle radius
 
+		/**
+		 * CircleRigidShape Constructor
+		 * @param x - rigidShape start X coordinate
+		 * @param y - rigidShape start Y coordinate
+		 * @param mass - rigidShape mass
+		 * @param radius - rigidShape circle's radius
+		 */
 		CircleRigidShape (
 			float x,
 			float y,
@@ -16,7 +29,29 @@ namespace Physics {
 			float radius
 		);
 
+		/**
+		 * Updating current rigidShape
+		 * @param deltaTime
+		 */
 		void update(float deltaTime) override;
+
+		/**
+		 * Check if RigidShape is colliding with an other
+		 * @param rigidShape
+		 */
+		bool isColliding(RigidShape& other) override;
+
+		/**
+		 * Check if RigidShape is colliding with an Rectangle
+		 * @param rigidShape
+		 */
+		bool isCollidingWithRectangle(RigidShape& rectangle) override;
+
+		/**
+		 * Check if RigidShape is colliding with a circle
+		 * @param rigidShape
+		 */
+		bool isCollidingWithCircle(RigidShape& circle) override;
 	};
 }
 
