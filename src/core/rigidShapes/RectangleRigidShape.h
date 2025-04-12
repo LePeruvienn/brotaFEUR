@@ -50,13 +50,13 @@ namespace Physics {
 		 * Check if RigidShape is colliding with an Rectangle
 		 * @param rigidShape
 		 */
-		bool isCollidingWithRectangle(RigidShape& rectangle) override;
+		bool isCollidingWithRectangle(RigidShape& other) override;
 
 		/**
 		 * Check if RigidShape is colliding with a circle
 		 * @param rigidShape
 		 */
-		bool isCollidingWithCircle(RigidShape& circle) override;
+		bool isCollidingWithCircle(RigidShape& other) override;
 	};
 }
 

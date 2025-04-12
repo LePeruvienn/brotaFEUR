@@ -1,4 +1,6 @@
+#include <math.h>
 #include "RectangleRigidShape.h"
+#include "CircleRigidShape.h"
 
 namespace Physics {
 
@@ -53,17 +55,36 @@ namespace Physics {
 	 * Check if RigidShape is colliding with an Rectangle
 	 * @param rigidShape
 	 */
-	bool RectangleRigidShape::isCollidingWithRectangle(RigidShape& rectangle) {
+	bool RectangleRigidShape::isCollidingWithRectangle(RigidShape& other) {
 
-		return false;
+		// Cast other rigidShape has RectangleRigidShape
+		RectangleRigidShape* rectangle = dynamic_cast<RectangleRigidShape*>(&other);
+
+		return (pos.x < rectangle->pos.x + rectangle->width &&
+				pos.x + width > rectangle->pos.x &&
+				pos.y < rectangle->pos.y + rectangle->height &&
+				pos.y + height > rectangle->pos.y);
 	}
 
 	/**
 	 * Check if RigidShape is colliding with a circle
 	 * @param rigidShape
 	 */
-	bool RectangleRigidShape::isCollidingWithCircle(RigidShape& circle) {
+	bool RectangleRigidShape::isCollidingWithCircle(RigidShape& other) {
 
-		return false;
+		// Cast other rigidShape has CircleRigidShape
+		CircleRigidShape* circle = dynamic_cast<CircleRigidShape*>(&other);
+
+		// Get the closest point of the rectangle to the circle
+		float closestX = fmax(pos.x, fmin(circle->pos.x, pos.x + width));
+		float closestY = fmax(pos.y, fmin(circle->pos.y, pos.y + height));
+
+		// Get distance
+		float dx = closestX - circle->pos.x;
+		float dy = closestY - circle->pos.y;
+
+		float distance = dx * dx + dy * dy;
+		
+		return distance <= circle->radius * circle->radius;
 	}
 }

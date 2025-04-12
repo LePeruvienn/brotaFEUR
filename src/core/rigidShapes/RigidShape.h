@@ -61,13 +61,13 @@ namespace Physics {
 		 * Check if RigidShape is colliding with an Rectangle
 		 * @param rigidShape
 		 */
-		virtual bool isCollidingWithRectangle(RigidShape& rectangle) = 0;
+		virtual bool isCollidingWithRectangle(RigidShape& other) = 0;
 
 		/**
 		 * Check if RigidShape is colliding with a circle
 		 * @param rigidShape
 		 */
-		virtual bool isCollidingWithCircle(RigidShape& circle) = 0;
+		virtual bool isCollidingWithCircle(RigidShape& other) = 0;
 	};
 }
 
