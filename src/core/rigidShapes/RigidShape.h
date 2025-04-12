@@ -49,13 +49,13 @@ namespace Physics {
 		 * Updating current rigidShape
 		 * @param deltaTime
 		 */
-		virtual void update(float deltaTime) = 0;
+		virtual void update(float deltaTime); // NOT PURE VIRTUAL (is declared in RigidShape.cpp)
 
 		/**
 		 * Check if RigidShape is colliding with an other
 		 * @param rigidShape
 		 */
-		virtual bool isColliding(RigidShape& other) = 0;
+		virtual bool isColliding(RigidShape& other) = 0; // PURE VIRUTAL (is not declared in RigidShape.cpp)
 
 		/**
 		 * Check if RigidShape is colliding with an Rectangle

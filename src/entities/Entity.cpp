@@ -9,11 +9,14 @@
  */
 Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
 	// Intialize class values
-	: pos{x, y}, velocity{0.f, 0.f}, shape(radius), stats(stats) {
+	: shape(radius), stats(stats) {
 
 	// Set shape position & color
-	shape.setPosition(pos);
+	shape.setPosition({x, y});
 	shape.setFillColor(color);
+
+	// Create entity rigidShape
+	rigidShape = new Physics::CircleRigidShape (x, y, 1.f, radius);
 }
 
 /**
@@ -22,9 +25,8 @@ Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
  */
 void Entity::update(float deltaTime) {
 
-	// Update pos depending on player's velocity
-	pos.x += deltaTime * velocity.x;
-	pos.y += deltaTime * velocity.y;
+	// Update entity rigidShape
+	rigidShape->update (deltaTime);
 }
 
 /**
@@ -33,8 +35,8 @@ void Entity::update(float deltaTime) {
  */
 void Entity::render(sf::RenderWindow& window) {
 
-	// Set shape to player current position
-	shape.setPosition(pos);
+	// Set shape to player rigidShape current position
+	shape.setPosition(rigidShape->pos);
 
 	// Draw shape into the screen
 	window.draw(shape);

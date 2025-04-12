@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <cmath>
-#include "../input/PlayerInputStates.h"
-#include "../utils/Utils.h"
+#include "../../input/PlayerInputStates.h"
+#include "../../utils/Utils.h"
 
 /**
  * constructs a new entity object with specified parameters.
@@ -63,8 +63,8 @@ void Player::update(float deltaTime) {
 		float lerp = 0.005f;
 
 		// Add velocity toward the direction we are going
-		velocity.x = Utils::lerp (velocity.x, stats.speed * directionX, lerp);
-		velocity.y = Utils::lerp (velocity.y, stats.speed * directionY, lerp);
+		rigidShape->velocity.x = Utils::lerp (rigidShape->velocity.x, stats.speed * directionX, lerp);
+		rigidShape->velocity.y = Utils::lerp (rigidShape->velocity.y, stats.speed * directionY, lerp);
 	}
 
 	// Use Entity update

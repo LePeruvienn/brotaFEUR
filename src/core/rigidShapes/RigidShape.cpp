@@ -15,4 +15,11 @@ namespace Physics {
 		velocity = sf::Vector2f(0.f, 0.f);
 		acceleration = sf::Vector2f(0.f, 0.f);
 	};
+
+	void RigidShape::update (float deltaTime) {
+	
+		// Update pos depending on rigidShape's velocity
+		pos.x += deltaTime * velocity.x;
+		pos.y += deltaTime * velocity.y;
+	}
 }

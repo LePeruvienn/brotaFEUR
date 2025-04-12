@@ -5,7 +5,7 @@
 #include <SFML/Window.hpp>
 #include <vector>
 #include "../entities/Entity.h"
-#include "../entities/Player.h"
+#include "../entities/player/Player.h"
 
 /**
  * Singleton game instance,

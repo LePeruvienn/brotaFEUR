@@ -24,7 +24,8 @@ namespace Physics {
 	 */
 	void RectangleRigidShape::update (float deltaTime) {
 		
-		// Nothing to add yet
+		// Update rigidShape with parent's function
+		RigidShape::update (deltaTime);
 	}
 
 	/**

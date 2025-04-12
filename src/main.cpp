@@ -1,6 +1,6 @@
 #include "core/Game.h"
-#include "entities/Player.h"
-#include "entities/Mob.h"
+#include "entities/player/Player.h"
+#include "entities/mob/Mob.h"
 
 int main() {
 
