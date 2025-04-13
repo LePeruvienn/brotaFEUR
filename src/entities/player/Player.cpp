@@ -1,13 +1,11 @@
 #include <cmath>
 #include "Player.h"
-#include "../../input/PlayerInputStates.h"
+#include "InputStates.h"
 #include "../../utils/Utils.h"
 
 using namespace Entity;
 
 namespace Player {
-
-	
 
 	/**
 	 * constructs a new entity object with specified parameters.
@@ -95,6 +93,6 @@ namespace Player {
 		// Set a new unique PlayerInput 
 		// (make that if there is already have a Player input it delete the old and set a new one )
 		// => NO MEMORY LEAK
-		input = std::make_unique<PlayerInput>();
+		input = std::make_unique<Input>();
 	}
 }

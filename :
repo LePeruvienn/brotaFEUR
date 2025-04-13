@@ -1,5 +1,4 @@
-#ifndef PLAYERINPUT_H
-#define PLAYERINPUT_H
+#pragma once // Force compiler to include this once
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>

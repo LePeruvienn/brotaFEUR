@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "../Entity.h"
-#include "../../input/PlayerInput.h"
+#include "Input.h"
 
 using namespace Entity;
 
@@ -48,7 +48,7 @@ namespace Player {
 		void addInput();
 
 	private:
-		std::unique_ptr<PlayerInput> input; //< Each Player has one unique PlayerInput
+		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
 	};
 
 }
