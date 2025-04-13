@@ -1,11 +1,13 @@
-#include "Player.h"
 #include <cmath>
+#include "Player.h"
 #include "../../input/PlayerInputStates.h"
 #include "../../utils/Utils.h"
 
 using namespace Entity;
 
 namespace Player {
+
+	
 
 	/**
 	 * constructs a new entity object with specified parameters.

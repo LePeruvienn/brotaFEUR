@@ -3,6 +3,27 @@
 
 namespace Entity {
 
+	unsigned int nextId = 0; ///< Next entity added ID when added to game entities
+	std::vector<Entity*> entities; ///< Game entities list
+
+	/**
+	 * Adds an new entity to the game !
+	 * It adds the entity to the entities list of the game instance
+	 * So the game loop will now update this entity
+	 * @param entity - entity instance reference
+	 */
+	void add(Entity* entity) {
+
+		// Set entity ID
+		entity->id = nextId;
+
+		// Increment next ID
+		nextId++;
+
+		// Add entity to game entities list
+		entities.push_back(entity);
+	}
+
 	/**
 	 * constructs a new entity object with specified parameters.
 	 * @param x - x axis position

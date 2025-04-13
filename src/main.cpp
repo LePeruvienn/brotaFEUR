@@ -11,8 +11,8 @@ int main() {
 	Mob::Mob mob(200.f, 200.f);
 
 	player.addInput ();
-	Game::add (&player);
-	Game::add (&mob);
+	Entity::add(&player);
+	Entity::add(&mob);
 
 	Game::run();
 

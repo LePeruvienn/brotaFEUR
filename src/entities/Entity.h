@@ -58,4 +58,9 @@ namespace Entity {
 		sf::CircleShape shape; ///< Shape representing the entity.
 		Physics::RigidShape* rigidShape = nullptr; //< RigidShape linked to the entity
 	};
+
+	extern unsigned int nextId; ///< Next entity added ID when added to game entities
+	extern std::vector<Entity*> entities; ///< Game entities list
+
+	void add(Entity* entity);
 }

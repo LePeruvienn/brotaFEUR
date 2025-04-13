@@ -5,10 +5,6 @@
 namespace Game {
 
 	sf::RenderWindow window; ///< Program main window
-	
-	unsigned int nextId = 0; ///< Next entity added ID when added to game entities
-
-	std::vector<Entity::Entity*> entities; ///< Game entities list
 
 	Player::Player* player1 = nullptr; ///< Main player entitiy pointer
 		
@@ -46,24 +42,6 @@ namespace Game {
 	}
 
 	/**
-	 * Adds an new entity to the game !
-	 * It adds the entity to the entities list of the game instance
-	 * So the game loop will now update this entity
-	 * @param entity - entity instance reference
-	 */
-	void add(Entity::Entity* entity) {
-
-		// Set entity ID
-		entity->id = nextId;
-
-		// Increment next ID
-		nextId++;
-
-		// Add entity to game entities list
-		entities.push_back(entity);
-	}
-
-	/**
 	 * Set the player1 pointer to the target player
 	 * @param player - player instance reference
 	 */
@@ -86,7 +64,7 @@ namespace Game {
 		Physics::update (dt);
 		
 		// Update all entities logic
-		for (auto& entity : entities) {
+		for (auto& entity : Entity::entities) {
 			entity->update(dt);
 		}
 	}
@@ -100,7 +78,7 @@ namespace Game {
 		window.clear(sf::Color::Black);
 
 		// Render each entity
-		for (auto& entity : entities) {
+		for (auto& entity : Entity::entities) {
 			entity->render(window);
 		}
 
@@ -117,7 +95,7 @@ namespace Game {
 		delete player1;
 
 		// Delete each game entity
-		for (Entity::Entity* entity : entities) {
+		for (Entity::Entity* entity : Entity::entities) {
 			delete entity;
 		}
 	}
