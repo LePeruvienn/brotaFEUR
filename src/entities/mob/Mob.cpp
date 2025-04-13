@@ -1,8 +1,38 @@
 #include "Mob.h"
 
-using namespace Entity;
-
 namespace Mob {
+
+	std::vector<Mob*> entities; ///< Mob entities instance list
+
+	/**
+	 * Create a new Mob entity instance, and add it to the game logic
+	 * @param player - Mob instance to add to Mob entities list
+	 */
+	void add(Mob* mob) {
+
+	}
+
+	/**
+	 * Create a Mob instance and add it to the game logic
+	 * @param x - x axis position
+	 * @param y - y axis position
+	 * @param radius - entity body radius
+	 * @param color - entity body color
+	 */
+	Mob* create(float x, float y, float radius, sf::Color color, Stats stats) {
+		
+		// Create entity instance
+		Mob* mob = new Mob(x, y, radius, color, stats);
+		
+		// Add Mob to entity logic
+		Entity::add(mob);
+
+		// Add mob's instance to Mob entities list
+		add(mob);
+
+		// Return Mob instance
+		return mob;
+	}
 
 	/**
 	 * constructs a new entity object with specified parameters.
@@ -13,7 +43,7 @@ namespace Mob {
 	 */
 	Mob::Mob(float x, float y, float radius, sf::Color color, Stats stats) 
 		// Use parent's base contructor
-		: Entity(x, y, radius, color, stats) {
+		: Entity::Entity(x, y, radius, color, stats) {
 
 		// Nothing to do more !
 	}
@@ -25,7 +55,7 @@ namespace Mob {
 	void Mob::update(float deltaTime) {
 
 		// Use Entity update
-		Entity::update (deltaTime);
+		Entity::Entity::update (deltaTime);
 	}
 
 	/**
@@ -35,6 +65,6 @@ namespace Mob {
 	void Mob::render(sf::RenderWindow& window) {
 		
 		// Use Entity render
-		Entity::render(window);
+		Entity::Entity::render(window);
 	}
 }

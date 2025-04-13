@@ -7,13 +7,13 @@ int main() {
 
 	Game::init ();
 
-	Player::Player player(200.f, 200.f);
-	Mob::Mob mob(200.f, 200.f);
+	Player::Player* player = Player::create(200.f, 200.f);
+	Mob::Mob* mob = Mob::create(200.f, 200.f);
 
-	player.addInput ();
-	Entity::add(&player);
-	Entity::add(&mob);
+	// Add input to main player
+	player->addInput ();
 
+	// Run game
 	Game::run();
 
 	return 0;

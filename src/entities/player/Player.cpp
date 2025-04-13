@@ -1,11 +1,45 @@
 #include <cmath>
+#include <new>
 #include "Player.h"
 #include "InputStates.h"
 #include "../../utils/Utils.h"
 
-using namespace Entity;
-
 namespace Player {
+
+	std::vector<Player*> entities; ///< Player entities list
+
+	/*
+	 * Create a new Player entity instance, and add it to the game logic
+	 * @param player - Player instance to add to Player entities list
+	 */
+	void add (Player* player) {
+
+		// Add entity to game entities list
+		entities.push_back(player);
+	}
+
+	/**
+	 * Create a new Player entity instance, and add it to the game logic
+	 * @param x - x axis position
+	 * @param y - y axis position
+	 * @param radius - entity body radius
+	 * @param color - entity body color
+	 * @return Player* - return the pointer of the player instance
+	 */
+	Player* create(float x, float y, float radius, sf::Color color, Stats stats) {
+
+		// create Player instance
+		Player* player = new Player(x, y, radius, color, stats);
+
+		// Add Instance to entities list
+		Entity::add(player);
+		
+		// Add instance to Player entities list
+		add(player);
+
+		// Return player instance
+		return player;
+	}
 
 	/**
 	 * constructs a new entity object with specified parameters.
@@ -16,7 +50,7 @@ namespace Player {
 	 */
 	Player::Player(float x, float y, float radius, sf::Color color, Stats stats) 
 		// Use parent's base contructor
-		: Entity(x, y, radius, color, stats) {
+		: Entity::Entity(x, y, radius, color, stats) {
 
 		// Nothing to do more !
 	}
@@ -72,7 +106,7 @@ namespace Player {
 		}
 
 		// Use Entity update
-		Entity::update (deltaTime);
+		Entity::Entity::update (deltaTime);
 	}
 
 	/**
@@ -82,7 +116,7 @@ namespace Player {
 	void Player::render(sf::RenderWindow& window) {
 		
 		// Use Entity render
-		Entity::render(window);
+		Entity::Entity::render(window);
 	}
 
 	/**
