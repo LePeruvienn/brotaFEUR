@@ -10,11 +10,11 @@ namespace Mob {
 	 */
 	void add(Mob* mob) {
 
+		// Add mob instance Mob entities list
+		entities.push_back(mob);
 	}
 
 	/**
-	 * Create a Mob instance and add it to the game logic
-	 * @param x - x axis position
 	 * @param y - y axis position
 	 * @param radius - entity body radius
 	 * @param color - entity body color
