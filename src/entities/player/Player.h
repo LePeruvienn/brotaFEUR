@@ -53,11 +53,19 @@ namespace Player {
 
 	extern std::vector<Player*> entities; ///< Player entities list
 
+	extern Player* player1; ///< Player 1 instance
+
 	/**
 	 * Create a new Player entity instance, and add it to the game logic
 	 * @param player - Player instance to add to Player entities list
 	 */
-	void add (Player* player);
+	void add(Player* player);
+
+	/**
+	 * Set player instance in param to player1
+	 * @param player - Player1 instance
+	 */
+	void setPlayer1 (Player* player);
 
 	/**
 	 * Create a new Player entity instance, and add it to the game logic

@@ -8,6 +8,18 @@ namespace Player {
 
 	std::vector<Player*> entities; ///< Player entities list
 
+	Player* player1 = nullptr; ///< Player 1 instance
+
+	/**
+	 * Set player instance in param to player1
+	 * @param player - Player1 instance
+	 */
+	void setPlayer1(Player* player) {
+
+		// Set player1 instance to player
+		player1 = player;
+	}
+
 	/*
 	 * Create a new Player entity instance, and add it to the game logic
 	 * @param player - Player instance to add to Player entities list

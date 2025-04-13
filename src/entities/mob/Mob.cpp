@@ -1,4 +1,6 @@
+#include <cmath>
 #include "Mob.h"
+#include "../player/Player.h"
 
 namespace Mob {
 
@@ -13,8 +15,9 @@ namespace Mob {
 		// Add mob instance Mob entities list
 		entities.push_back(mob);
 	}
-
 	/**
+	 * Create a Mob instance and add it to the game logic
+	 * @param x - x axis position
 	 * @param y - y axis position
 	 * @param radius - entity body radius
 	 * @param color - entity body color
@@ -53,6 +56,25 @@ namespace Mob {
 	 * @param deltaTime - The time elapsed since the last frame
 	 */
 	void Mob::update(float deltaTime) {
+
+		// If Player player1 is defined we move toward him
+		if (Player::player1 != nullptr) {
+			
+			// Get Player1 pos
+			float playerX = Player::player1->rigidShape->pos.x;
+			float playerY = Player::player1->rigidShape->pos.y;
+		
+			// Get current Mob's pos
+			float x = rigidShape->pos.x;
+			float y = rigidShape->pos.y;
+
+			// Compute angle
+			float angle = std::atan2(playerY - y, playerX - x);
+
+			// Update rigidShape velocity
+			rigidShape->velocity.x = std::cos(angle) * stats.speed * 0.5f;
+			rigidShape->velocity.y = std::sin(angle) * stats.speed * 0.5f;
+		}
 
 		// Use Entity update
 		Entity::Entity::update (deltaTime);

@@ -19,6 +19,8 @@ namespace Entity {
 
 		int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
 		Stats stats; /// < Stats class to handle all entiteis stats
+		sf::CircleShape shape; ///< Shape representing the entity.
+		Physics::RigidShape* rigidShape = nullptr; //< RigidShape linked to the entity
 
 		/**
 		 * constructs a new entity object with specified parameters.
@@ -53,10 +55,6 @@ namespace Entity {
 		 * @param window - Instance of the game window
 		 */
 		virtual void render(sf::RenderWindow& window);
-
-	protected:
-		sf::CircleShape shape; ///< Shape representing the entity.
-		Physics::RigidShape* rigidShape = nullptr; //< RigidShape linked to the entity
 	};
 
 	extern unsigned int nextId; ///< Next entity added ID when added to game entities
