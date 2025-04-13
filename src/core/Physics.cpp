@@ -5,6 +5,9 @@
  */
 namespace Physics {
 
+	int nextId = 0;
+	std::vector<RigidShape*> objects; ///< Physics RigidShape list
+
 	/**
 	* Update current game's Physics
 	* @param deltaTime
@@ -12,7 +15,7 @@ namespace Physics {
 	void update (float deltaTime) {
 	
 		// Update all rigidShape logic
-		for (auto& rigidShape : objects) {
+		for (auto& rigidShape : objects) { // Here we use auto cause rigidShape can be Circle, Rectangle ...
 			rigidShape->update(deltaTime);
 		}
 	}
@@ -22,6 +25,12 @@ namespace Physics {
 	* @param rigidShape
 	*/
 	void addObject (RigidShape* rigidShape) {
+
+		// Set rigidShape's unique id
+		rigidShape->id = nextId;
+
+		// Increment nextId
+		nextId++;
 		
 		// Add object  to Physics objects list
 		objects.push_back(rigidShape);

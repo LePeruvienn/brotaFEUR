@@ -6,7 +6,7 @@ namespace Physics {
 	enum RigidShapeType {
 		CIRCLE,
 		RECTANGLE,
-		CAPSULE
+		CAPSULE // NOT HANDLED YET
 	};
 }
 

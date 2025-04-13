@@ -1,19 +1,21 @@
 #include "core/Game.h"
-#include "entities/Player.h"
-#include "entities/Mob.h"
+#include "entities/player/Player.h"
+#include "entities/mob/Mob.h"
 
 int main() {
+	
 
-	Game& game = Game::getInstance ();
+	Game::init ();
 
-    Player player(200.f, 200.f);
-    Mob mob(200.f, 200.f);
+	Player::Player* player = Player::create(200.f, 200.f);
+	Mob::Mob* mob = Mob::create(200.f, 200.f);
 
-	player.addInput ();
-	game.add (&player);
-	game.add (&mob);
+	// Add input to main player
+	player->addInput ();
+	Player::setPlayer1(player);
 
-	game.run();
+	// Run game
+	Game::run();
 
 	return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef CIRCLE_RIGIDSHAPE_H
-#define CIRCLE_RIGIDSHAPE_H
+#ifndef RECTANGLE_RIGIDSHAPE_H
+#define RECTANGLE_RIGIDSHAPE_H
 
 #include "RigidShape.h"
 
@@ -8,25 +8,30 @@ namespace Physics {
 	
 	/**
 	 * Represent an shape in the game which interacts with the game physics
-	 * This is the class for a circle shape
+	 * This is the class for a rectangle shape
 	 */
-	class CircleRigidShape : public RigidShape {
+	class RectangleRigidShape : public RigidShape {
 	public:
 
-		float radius; ///< Circle radius
+		float width; ///< Rectangle width
+		float height; ///< Rectangle height
 
 		/**
-		 * CircleRigidShape Constructor
-		 * @param x - rigidShape start X coordinate
-		 * @param y - rigidShape start Y coordinate
-		 * @param mass - rigidShape mass
-		 * @param radius - rigidShape circle's radius
+		 * RectangleRigidShape Constructor
+		 * @param x      - rigidShape start X coordinate
+		 * @param y      - rigidShape start Y coordinate
+		 * @param mass   - rigidShape mass
+		 * @param width  - rigidShape rectangle's width
+		 * @param height - rigidShape rectangle's height
+		 * @param angle  - rigidShape angle
 		 */
-		CircleRigidShape (
+		RectangleRigidShape (
 			float x,
 			float y,
 			float mass,
-			float radius
+			float width,
+			float height,
+			float angle
 		);
 
 		/**
@@ -55,4 +60,4 @@ namespace Physics {
 	};
 }
 
-#endif // CIRCLE_RIGIDSHAPE_H
+#endif // RECTANGLE_RIGIDSHAPE_H

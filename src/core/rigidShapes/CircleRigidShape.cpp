@@ -1,4 +1,8 @@
+#include <cmath>
+#include <iostream>
 #include "CircleRigidShape.h"
+#include "RectangleRigidShape.h"
+#include "../Physics.h"
 
 namespace Physics {
 
@@ -11,7 +15,7 @@ namespace Physics {
 	 */
 	CircleRigidShape::CircleRigidShape (float x, float y, float mass, float radius)
 		// Use parent's constructor, and set radius
-		: RigidShape(x, y, mass), radius(radius) {
+		: RigidShape(x, y, mass, 0.f), radius(radius) {
 
 		type = CIRCLE;
 	};
@@ -21,17 +25,49 @@ namespace Physics {
 	 * @param deltaTime
 	 */
 	void CircleRigidShape::update (float deltaTime) {
+
+		// Reset collisions list
+		collisions.clear();
+
+		// Check if current rigidShape is colliding with an other
+		for (auto& rigidShape : Physics::objects) {
+			
+			// If we are not comparing ourselve go to next rigidShape
+			if (rigidShape->id == id) continue;
+			
+			// Check if current rigidShape is colliding with us, add it to the collisions list
+			if (isColliding (*rigidShape))
+				collisions.push_back (rigidShape);
+		}
+
+		// DEBUG ! Check how many collisions they are for circle shapes
+		// std::cout << collisions.size() << "\n";
 		
-		// Nothing to add yet
+		// Update rigidShape with parent's function
+		RigidShape::update (deltaTime);
 	}
-	
 
 	/**
-	 * Check if RigidShape is colliding with an other
+	 * Check if RigidShape is colliding with an Rectangle
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isColliding (RigidShape& other) {
+	bool CircleRigidShape::isColliding(RigidShape& other) {
 
+		// Used the function linked to the shape
+		switch (other.type) {
+
+			case CIRCLE:
+				return CircleRigidShape::isCollidingWithCircle(other);
+
+			case RECTANGLE:
+				return CircleRigidShape::isCollidingWithRectangle(other);
+
+			// CAPSULE are not handled yet
+			case CAPSULE:
+				return false;
+		}
+		
+		// Return false by default
 		return false;
 	}
 
@@ -39,17 +75,43 @@ namespace Physics {
 	 * Check if RigidShape is colliding with an Rectangle
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isCollidingWithRectangle(RigidShape& rectangle) {
+	bool CircleRigidShape::isCollidingWithRectangle(RigidShape& other) {
 
-		return false;
+		// Cast other rigidShape has RectangleRigidShape
+		RectangleRigidShape* rectangle = dynamic_cast<RectangleRigidShape*>(&other);
+
+		// Get the closest point of the rectangle to the circle
+		float closestX = fmax(rectangle->pos.x, fmin(pos.x, rectangle->pos.x + rectangle->width));
+		float closestY = fmax(rectangle->pos.y, fmin(pos.y, rectangle->pos.y + rectangle->height));
+
+		// Get distance
+		float dx = closestX - pos.x;
+		float dy = closestY - pos.y;
+
+		float distance = dx * dx + dy * dy;
+		
+		return distance <= radius * radius;
 	}
 
 	/**
 	 * Check if RigidShape is colliding with a circle
 	 * @param rigidShape
 	 */
-	bool CircleRigidShape::isCollidingWithCircle(RigidShape& circle) {
+	bool CircleRigidShape::isCollidingWithCircle(RigidShape& other) {
 
-		return false;
+		// Cast other rigidShape has CircleRigidShape
+		CircleRigidShape* circle = dynamic_cast<CircleRigidShape*>(&other);
+
+		// Compute distance
+		float dx = circle->pos.x - pos.x;
+		float dy = circle->pos.y - pos.y;
+
+		float distance = dx * dx + dy * dy;
+
+		// Get total radius
+		float radiusTotal = circle->radius + radius;
+		
+		// If there distance if <= of there total radius there are colliding
+		return distance <= (radiusTotal * radiusTotal);
 	}
 }
