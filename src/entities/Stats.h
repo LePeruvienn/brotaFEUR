@@ -1,4 +1,6 @@
-#pragma once ///< Fore the compiler to include this once
+// Fore the compiler to include this once
+#ifndef STATS_H
+#define STATS_H
 
 namespace Entity {
 
@@ -41,3 +43,5 @@ namespace Entity {
 		void heal (int amount);
 	};
 }
+
+#endif // STATS_H

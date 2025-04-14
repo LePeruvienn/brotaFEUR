@@ -1,3 +1,4 @@
+// Force the compiler to include this once
 #ifndef INPUTSTATES_H
 #define INPUTSTATES_H
 

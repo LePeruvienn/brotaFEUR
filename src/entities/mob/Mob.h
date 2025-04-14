@@ -1,4 +1,6 @@
-#pragma once ///< Fore the compiler to include this once
+// Fore the compiler to include this once
+#ifndef MOB_H
+#define MOB_H
 
 #include "../Entity.h"
 
@@ -64,3 +66,4 @@ namespace Mob {
 	);
 }
 
+#endif // MOB_H

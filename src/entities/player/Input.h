@@ -1,4 +1,6 @@
-#pragma once // Force compiler to include this once
+// Force compiler to include this once
+#ifndef INPUT_H
+#define INPUT_H
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -35,3 +37,5 @@ namespace Player {
 		int state; //< Current input state
 	};
 }
+
+#endif // INPUT_H

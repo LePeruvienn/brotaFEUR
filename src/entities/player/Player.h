@@ -1,4 +1,6 @@
-#pragma once ///< Fore the compiler to include this once
+// Fore the compiler to include this once
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <memory>
 #include "../Entity.h"
@@ -84,3 +86,5 @@ namespace Player {
 	);
 
 }
+
+#endif // PLAYER_H

@@ -1,4 +1,6 @@
-#pragma once ///< Fore the compiler to include this once
+// Fore the compiler to include this once
+#ifndef GAME_H
+#define GAME_H
 
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -48,3 +50,5 @@ namespace Game {
 	 */
 	void flush();
 }
+
+#endif // GAME_H

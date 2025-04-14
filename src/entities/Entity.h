@@ -1,4 +1,6 @@
-#pragma once ///< Fore the compiler to include this once
+// Fore the compiler to include this once
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -62,3 +64,5 @@ namespace Entity {
 
 	void add(Entity* entity);
 }
+
+#endif // ENTITY_H
