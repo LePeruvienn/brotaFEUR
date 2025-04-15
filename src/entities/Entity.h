@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "Stats.h"
+#include "../core/Object.h"
 #include "../core/rigidShapes/RigidShape.h"
 #include "../core/rigidShapes/CircleRigidShape.h"
 
@@ -16,13 +17,10 @@ namespace Entity {
 	 * This class serves as a base for all entities that can be rendered and updated
 	 * in the game. It provides basic functionality for position and shape
 	 */
-	class Entity {
+	class Entity : public Game::Object {
 	public:
 
-		int id = -1; ///< Entity game unique ID. Is set when the entity is added to the game, is equel to -1 if not set
 		Stats stats; /// < Stats class to handle all entiteis stats
-		sf::CircleShape shape; ///< Shape representing the entity.
-		Physics::RigidShape* rigidShape = nullptr; //< RigidShape linked to the entity
 
 		/**
 		 * constructs a new entity object with specified parameters.
@@ -45,23 +43,14 @@ namespace Entity {
 		 * This ensures that derived classes' destructors are called properly
 		 */
 		virtual ~Entity() = default;
-
-		/**
-		 * Updates the entity's logic.
-		 * @param deltaTime - The time elapsed since the last frame (in ms)
-		 */
-		virtual void update(float deltaTime);
-
-		/**
-		 * Renders the entity to the specified window.
-		 * @param window - Instance of the game window
-		 */
-		virtual void render(sf::RenderWindow& window);
 	};
 
-	extern unsigned int nextId; ///< Next entity added ID when added to game entities
 	extern std::vector<Entity*> entities; ///< Game entities list
 
+	/**
+	 * Add an entity to the entities list
+	 * @param Entity*
+	 */
 	void add(Entity* entity);
 }
 

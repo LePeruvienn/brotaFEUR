@@ -3,7 +3,6 @@
 
 namespace Entity {
 
-	unsigned int nextId = 0; ///< Next entity added ID when added to game entities
 	std::vector<Entity*> entities; ///< Game entities list
 
 	/**
@@ -13,12 +12,6 @@ namespace Entity {
 	 * @param entity - entity instance reference
 	 */
 	void add(Entity* entity) {
-
-		// Set entity ID
-		entity->id = nextId;
-
-		// Increment next ID
-		nextId++;
 
 		// Add entity to game entities list
 		entities.push_back(entity);
@@ -33,7 +26,7 @@ namespace Entity {
 	 */
 	Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
 		// Intialize class values
-		: shape(radius), stats(stats) {
+		: Game::Object(x, y, radius, color), stats(stats) {
 
 		// Set shape position & color
 		shape.setPosition({x, y});
@@ -44,26 +37,5 @@ namespace Entity {
 
 		// Add the rigidShape to the Physics
 		Physics::addObject (rigidShape);
-	}
-
-	/**
-	 * Updates the entity's logic.
-	 * @param deltaTime - The time elapsed since the last frame (in ms)
-	 */
-	void Entity::update(float deltaTime) {
-
-	}
-
-	/**
-	 * Renders the entity to the specified window.
-	 * @param window - Instance of the game window
-	 */
-	void Entity::render(sf::RenderWindow& window) {
-
-		// Set shape to player rigidShape current position
-		shape.setPosition(rigidShape->pos);
-
-		// Draw shape into the screen
-		window.draw(shape);
 	}
 }

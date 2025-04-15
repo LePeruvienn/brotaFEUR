@@ -1,5 +1,6 @@
 #include <cmath>
 #include "Mob.h"
+#include "../../core/Game.h"
 #include "../player/Player.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
@@ -28,6 +29,9 @@ namespace Mob {
 		
 		// Create entity instance
 		Mob* mob = new Mob(x, y, radius, color, stats);
+
+		// Add instance to game object list
+		Game::add(mob);
 		
 		// Add Mob to entity logic
 		Entity::add(mob);

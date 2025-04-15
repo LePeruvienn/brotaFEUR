@@ -8,6 +8,8 @@ namespace Game {
 
 	Player::Player* player1 = nullptr; ///< Main player entitiy pointer
 		
+	unsigned int nextId = 0; ///< Next object added ID when added to game objects
+	std::vector<Object*> objects; ///< Game objects list
 
 	/**
 	 * Declare Game private constructors
@@ -39,6 +41,22 @@ namespace Game {
 			update(deltaTime);
 			render();
 		}
+	}
+
+	/**
+	 * Add a game object to the objects list
+	 * @param Object*
+	 */
+	void add (Object* gameObject) {
+
+		// Set game object ID
+		gameObject->id = nextId;
+
+		// Increment nextId
+		nextId++;
+
+		// Addd gameObject to objects list
+		objects.push_back (gameObject);
 	}
 
 	/**

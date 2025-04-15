@@ -2,6 +2,7 @@
 #include <new>
 #include "Player.h"
 #include "InputStates.h"
+#include "../../core/Game.h"
 #include "../../utils/Utils.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
@@ -44,6 +45,9 @@ namespace Player {
 
 		// create Player instance
 		Player* player = new Player(x, y, radius, color, stats);
+
+		// Add instance to game object list
+		Game::add(player);
 
 		// Add Instance to entities list
 		Entity::add(player);
