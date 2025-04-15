@@ -4,14 +4,13 @@
 
 #include "../Entity.h"
 
-using namespace Entity;
 namespace Mob {
 
 	/**
 	 * Mob entity who will be controlled by a mob
 	 * Chlid class from the Entity class
 	 */
-	class Mob : public Entity {
+	class Mob : public ::Entity::Entity {
 	public:
 
 		/**
@@ -26,8 +25,8 @@ namespace Mob {
 			float y,
 			float radius = 30.f,
 			sf::Color color = sf::Color::Red,
-			Stats stats = Stats()
-		);
+			::Entity::Stats stats = ::Entity::Stats() // We must add :: that specifiy the compiler to just start on top of everything 
+		);	                                          // and dont search this Into the Entity namespace already
 
 		/**
 		 * Updates the mob's logic.
@@ -62,8 +61,8 @@ namespace Mob {
 		float y,
 		float radius = 30.f,
 		sf::Color color = sf::Color::Red,
-		Stats stats = Stats()
-	);
+		::Entity::Stats stats = ::Entity::Stats() // We must add :: that specifiy the compiler to just start on top of everything 
+	);	                                          // and dont search this Into the Entity namespace already
 }
 
 #endif // MOB_H

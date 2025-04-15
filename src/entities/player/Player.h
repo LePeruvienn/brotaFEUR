@@ -4,9 +4,8 @@
 
 #include <memory>
 #include "../Entity.h"
+#include "../Stats.h"
 #include "Input.h"
-
-using namespace Entity;
 
 namespace Player {
 
@@ -14,7 +13,7 @@ namespace Player {
 	 * Player entity who will be controlled by a player
 	 * Chlid class from the Entity class
 	 */
-	class Player : public Entity {
+	class Player : public ::Entity::Entity {
 	public:
 
 		/**
@@ -29,8 +28,8 @@ namespace Player {
 			float y,
 			float radius = 30.f,
 			sf::Color color = sf::Color::Blue,
-			Stats stats = Stats()
-		);
+			::Entity::Stats stats = ::Entity::Stats() // We must add :: that specifiy the compiler to just start on top of everything 
+		);	                                          // and dont search this Into the Entity namespace already
 
 		/**
 		 * Updates the player's logic.
@@ -82,8 +81,8 @@ namespace Player {
 		float y,
 		float radius = 30.f,
 		sf::Color color = sf::Color::Blue,
-		Stats stats = Stats()
-	);
+		::Entity::Stats stats = ::Entity::Stats() // We must add :: that specifiy the compiler to just start on top of everything 
+	);	                                          // and dont search this Into the Entity namespace already
 
 }
 

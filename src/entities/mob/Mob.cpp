@@ -2,6 +2,8 @@
 #include "Mob.h"
 #include "../player/Player.h"
 
+using Entity::Stats; // So we can declare Stats like this : Stats();
+
 namespace Mob {
 
 	std::vector<Mob*> entities; ///< Mob entities instance list

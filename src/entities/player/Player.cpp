@@ -4,6 +4,8 @@
 #include "InputStates.h"
 #include "../../utils/Utils.h"
 
+using Entity::Stats; // So we can declare Stats like this : Stats();
+
 namespace Player {
 
 	std::vector<Player*> entities; ///< Player entities list
