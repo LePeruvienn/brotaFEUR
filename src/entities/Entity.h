@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "Stats.h"
+#include "../stats/Stats.h"
 #include "../core/Object.h"
 #include "../core/rigidShapes/RigidShape.h"
 #include "../core/rigidShapes/CircleRigidShape.h"

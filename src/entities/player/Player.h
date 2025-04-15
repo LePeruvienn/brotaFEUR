@@ -4,7 +4,6 @@
 
 #include <memory>
 #include "../Entity.h"
-#include "../Stats.h"
 #include "Input.h"
 
 namespace Player {
