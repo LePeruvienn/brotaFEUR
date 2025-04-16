@@ -82,8 +82,8 @@ namespace Game {
 		Physics::update (dt);
 		
 		// Update all entities logic
-		for (auto& entity : Entity::entities) {
-			entity->update(dt);
+		for (auto& object : Game::objects) {
+			object->update(dt);
 		}
 	}
 
@@ -96,8 +96,8 @@ namespace Game {
 		window.clear(sf::Color::Black);
 
 		// Render each entity
-		for (auto& entity : Entity::entities) {
-			entity->render(window);
+		for (auto& object : Game::objects) {
+			object->render(window);
 		}
 
 		// Update display

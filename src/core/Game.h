@@ -36,7 +36,7 @@ namespace Game {
 	 * Add a game object to the objects list
 	 * @param Object*
 	 */
-	void add (Object* gameObject);
+	void add(Object* gameObject);
 
 	/**
 	 * Set the player1 pointer to the target player

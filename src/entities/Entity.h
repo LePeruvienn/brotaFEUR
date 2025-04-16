@@ -20,7 +20,10 @@ namespace Entity {
 	class Entity : public Game::Object {
 	public:
 
-		Stats stats; /// < Stats class to handle all entiteis stats
+		Stats stats; ///< Stats class to handle all entiteis stats
+		float radius; ///< Current entity radius
+		sf::CircleShape shape; ///< Shape representing the entity.
+		Physics::RigidShape* rigidShape = nullptr; //< RigidShape linked to the entity
 
 		/**
 		 * constructs a new entity object with specified parameters.
@@ -43,6 +46,12 @@ namespace Entity {
 		 * This ensures that derived classes' destructors are called properly
 		 */
 		virtual ~Entity() = default;
+
+		/**
+		 * Renders the entity to the specified window.
+		 * @param window - Instance of the game window
+		 */
+		virtual void render(sf::RenderWindow& window) override;
 	};
 
 	extern std::vector<Entity*> entities; ///< Game entities list

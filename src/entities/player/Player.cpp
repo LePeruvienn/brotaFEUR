@@ -122,9 +122,6 @@ namespace Player {
 			rigidShape->velocity.x = Utils::lerp (rigidShape->velocity.x, stats.speed * directionX, lerp);
 			rigidShape->velocity.y = Utils::lerp (rigidShape->velocity.y, stats.speed * directionY, lerp);
 		}
-
-		// Use Entity update
-		Entity::Entity::update (deltaTime);
 	}
 
 	/**

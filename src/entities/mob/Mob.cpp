@@ -81,9 +81,6 @@ namespace Mob {
 			rigidShape->velocity.x = std::cos(angle) * stats.speed * 0.5f;
 			rigidShape->velocity.y = std::sin(angle) * stats.speed * 0.5f;
 		}
-
-		// Use Entity update
-		Entity::Entity::update (deltaTime);
 	}
 
 	/**

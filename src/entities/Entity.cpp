@@ -26,7 +26,7 @@ namespace Entity {
 	 */
 	Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
 		// Intialize class values
-		: Game::Object(x, y, radius, color), stats(stats) {
+		: Game::Object(x, y), shape(radius), stats(stats) {
 
 		// Set shape position & color
 		shape.setPosition({x, y});
@@ -35,7 +35,23 @@ namespace Entity {
 		// Create entity rigidShape
 		rigidShape = new Physics::CircleRigidShape (x, y, 1.f, radius);
 
+		// Set current entity as rigidShape parent's
+		rigidShape->setParent(this);
+
 		// Add the rigidShape to the Physics
 		Physics::addObject (rigidShape);
+	}
+
+	/**
+	 * Renders the object to the specified window.
+	 * @param window - Instance of the game window
+	 */
+	void Entity::render(sf::RenderWindow& window) {
+
+		// Set shape to player rigidShape current position
+		shape.setPosition(rigidShape->pos);
+
+		// Draw shape into the screen
+		window.draw(shape);
 	}
 }
