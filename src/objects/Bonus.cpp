@@ -80,8 +80,8 @@ namespace Bonus {
 			// If cast dosnt work go to next collisions
 			if (entity == nullptr) continue;
 
-			// If it's an entity
-			// TODO: CONTINUE THIS !!!
+			// apply the effect to the entity
+			effect.apply(entity);
 
 			break;
 		}
