@@ -42,6 +42,34 @@ namespace Entity {
 		Physics::addObject (rigidShape);
 	}
 
+	/*
+	 * Callback function called before the entity is deleted
+	 */
+	void Entity::onDestroy() {
+
+		/*
+		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
+		 * Maybe each frame we could loop once for each entites ? IDK 🤓
+		 */
+
+		// Search for current entity as remove it from the array
+		for (int i = 0; i < entities.size(); i++) {
+			
+			// If we found current entity
+			if (entities[i]->id == id) {
+				
+				// Erase it from entities array
+				entities.erase(entities.begin() + i);
+
+				// Go out the for loop
+				break;
+			}
+		}
+
+		// Use parent's function
+		Game::Object::onDestroy();
+	}
+
 	/**
 	 * Renders the object to the specified window.
 	 * @param window - Instance of the game window

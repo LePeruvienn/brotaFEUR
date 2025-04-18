@@ -52,6 +52,11 @@ namespace Entity {
 		 * @param window - Instance of the game window
 		 */
 		virtual void render(sf::RenderWindow& window) override;
+
+		/**
+		 * Callback function called before the entity is deleted
+		 */
+		virtual void onDestroy() override;
 	};
 
 	extern std::vector<Entity*> entities; ///< Game entities list

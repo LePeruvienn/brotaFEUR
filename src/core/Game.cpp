@@ -79,11 +79,29 @@ namespace Game {
 		float dt = deltaTime.asMicroseconds() / 1000.0f;
 
 		// Update game's physic
-		Physics::update (dt);
+		Physics::update(dt);
 		
 		// Update all entities logic
-		for (auto& object : Game::objects) {
-			object->update(dt);
+		for (int i = 0; i < Game::objects.size ();) {
+
+			// If object has to be deleted, we dont update it
+			if (Game::objects[i]->getToBeDeleted() == true) {
+
+				// Remove current object from the list
+				Game::objects.erase(Game::objects.begin() + i);
+
+				// Delete object from the game logic & memory
+				Game::objects[i]->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
+
+				// Go to next object
+				continue;
+			}
+
+			// Update current object
+			Game::objects[i]->update(dt);
+
+			// Increment i before going to the next object
+			i++;
 		}
 	}
 

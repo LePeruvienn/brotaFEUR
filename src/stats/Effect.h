@@ -31,7 +31,7 @@ namespace Entity {
 		Effect (
 			bool haveDuration = false,
 			float duration = 0.f,
-			Stats stats = Stats(0, 0, 0.002f)
+			Stats stats = Stats(0, 0, 0.2f)
 		);
 
 		/**

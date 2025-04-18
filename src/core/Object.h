@@ -30,16 +30,43 @@ namespace Game {
 		virtual ~Object() = default;
 
 		/**
+		 * Mark Function !
+		 * Mark & Sweep method: This function mark the current object to be after deleted by the game logic
+		 */
+		void destroy();
+
+		/**
+		 * Sweep Function !
+		 * Mark & Sweep method: This function sweep the objec to to game logic & memory
+		 */
+		void _destroy();
+
+		/**
+		 * toBeDeleted getter
+		 */
+		bool getToBeDeleted();
+
+		/**
+		 * Callback function called before the object is deleted
+		 */
+		virtual void onDestroy();
+
+		/**
 		 * Updates the object's logic.
 		 * @param deltaTime - The time elapsed since the last frame (in ms)
 		 */
 		virtual void update(float deltaTime) = 0;
+
 
 		/**
 		 * Renders the object to the specified window.
 		 * @param window - Instance of the game window
 		 */
 		virtual void render(sf::RenderWindow& window) = 0;
+
+	private:
+		
+		bool toBeDeleted = false; ///< When is true the game logic will delete the object instance
 	};
 }
 

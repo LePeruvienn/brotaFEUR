@@ -40,6 +40,11 @@ namespace Bonus {
 		void update(float deltaTime) override;
 
 		/**
+		 * Callback function called before the entity is deleted
+		 */
+		void onDestroy() override;
+
+		/**
 		 * Renders the object to the specified window.
 		 * @param window - Instance of the game window
 		 */

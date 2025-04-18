@@ -1,7 +1,7 @@
 #include "Bonus.h"
+#include <iostream>
 #include "../core/Game.h"
 #include "../core/Physics.h"
-#include <iostream>
 
 namespace Bonus {
 
@@ -83,9 +83,42 @@ namespace Bonus {
 			// apply the effect to the entity
 			effect.apply(entity);
 
+			// Destroy current object
+			destroy();
+
 			break;
 		}
 	};
+
+	/*
+	 * Callback function called before the entity is deleted
+	 */
+	void Bonus::onDestroy() {
+
+		std::cout << "DESTROY BONUS" << std::endl;
+
+		/*
+		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
+		 * Maybe each frame we could loop once for each entites ? IDK 🤓
+		 */
+
+		// Search for current entity as remove it from the array
+		for (int i = 0; i < objects.size(); i++) {
+			
+			// If we found current entity
+			if (objects[i]->id == id) {
+				
+				// Erase it from entities array
+				objects.erase(objects.begin() + i);
+
+				// Go out the for loop
+				break;
+			}
+		}
+
+		// Use parent's function
+		Object::onDestroy();
+	}
 
 	/**
 	 * Renders the bonus to the specified window.

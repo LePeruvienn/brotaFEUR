@@ -134,6 +134,34 @@ namespace Player {
 		Entity::Entity::render(window);
 	}
 
+	/*
+	 * Callback function called before the entity is deleted
+	 */
+	void Player::onDestroy() {
+
+		/*
+		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
+		 * Maybe each frame we could loop once for each entites ? IDK 🤓
+		 */
+
+		// Search for current entity as remove it from the array
+		for (int i = 0; i < entities.size(); i++) {
+			
+			// If we found current entity
+			if (entities[i]->id == id) {
+				
+				// Erase it from entities array
+				entities.erase(entities.begin() + i);
+
+				// Go out the for loop
+				break;
+			}
+		}
+
+		// Use parent's function
+		Entity::onDestroy();
+	}
+
 	/**
 	 * Adds user control to the player
 	 */

@@ -39,6 +39,11 @@ namespace Mob {
 		 * @param window - Instance of the game window
 		 */
 		void render(sf::RenderWindow& window) override;
+
+		/**
+		 * Callback function called before the entity is deleted
+		 */
+		void onDestroy() override;
 	};
 
 	extern std::vector<Mob*> entities; ///< Mob entities instance list

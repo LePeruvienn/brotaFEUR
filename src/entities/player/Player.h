@@ -43,6 +43,11 @@ namespace Player {
 		void render(sf::RenderWindow& window) override;
 
 		/**
+		 * Callback function called before the entity is deleted
+		 */
+		void onDestroy() override;
+
+		/**
 		 * Adds user control to the player
 		 */
 		void addInput();
