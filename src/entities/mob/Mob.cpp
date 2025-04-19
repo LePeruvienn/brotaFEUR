@@ -53,7 +53,7 @@ namespace Mob {
 
 		// Create max founded vars
 		Mob* closest = nullptr;
-		float lastDistance = MAXFLOAT;
+		float lastDistance = std::numeric_limits<float>::max(); // Set max float possible
 
 		// We search for a mob in the Mob::entities array
 		for (int i = 0; i < entities.size(); i++) {
