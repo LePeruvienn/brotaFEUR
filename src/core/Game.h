@@ -5,6 +5,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "Object.h"
 #include "../entities/Entity.h"
 #include "../entities/player/Player.h"
 
@@ -18,6 +19,9 @@ namespace Game {
 
 	extern Player::Player* player1; ///< Main player entitiy pointer
 
+	extern unsigned int nextId; ///< Next object added ID when added to game objects
+	extern std::vector<Object*> objects; ///< Game objects list
+
 	/**
 	 * Initialize the Game module
 	 */
@@ -27,6 +31,12 @@ namespace Game {
 	 * Run the game main loop
 	 */
 	void run();
+
+	/**
+	 * Add a game object to the objects list
+	 * @param Object*
+	 */
+	void add(Object* gameObject);
 
 	/**
 	 * Set the player1 pointer to the target player

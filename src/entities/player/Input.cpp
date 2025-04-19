@@ -43,4 +43,28 @@ namespace Player {
 		// Return current state
 		return state;
 	}
+
+	/**
+	 * Get current player input direction
+	 * @return Vector2i - direction x & y
+	 */
+	sf::Vector2i Input::getDirection() {
+
+		// Get the current direction we are moving
+		int directionX = 0;
+		int directionY = 0;
+
+		// Compute direction
+		if (state & RIGHT)
+			directionX++;
+		if (state & LEFT)
+			directionX--;
+		if (state & UP)
+			directionY--;
+		if (state & DOWN)
+			directionY++;
+
+		// Return current player input direction
+		return sf::Vector2i(directionX, directionY);
+	}
 }

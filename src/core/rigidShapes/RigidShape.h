@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "RigidShapeTypes.h"
+#include "../Object.h"
 
 namespace Physics {
 
@@ -24,6 +25,7 @@ namespace Physics {
 		float angle = 0.f; ///< Current rigidShape angle (in radian)
 		bool sensor = false; ///< Set current rigidShapes mode
 		std::vector<RigidShape*> collisions; ///< Current rigidShapes in collisions with the instance
+		Game::Object* parent = nullptr; ///< RigidShape's parent
 
 		/**
 		 * RigidShape Constructor
@@ -37,6 +39,12 @@ namespace Physics {
 		 * RigidShape destructor
 		 */
 		virtual ~RigidShape() = default;
+
+		/**
+		 * Set rigidShape parent !
+		 * @param Object*
+		 */
+		void setParent(Game::Object* object);
 
 
 		/* TO KNOW => in CPP there is two types of virtual function :

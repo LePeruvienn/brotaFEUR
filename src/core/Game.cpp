@@ -8,6 +8,8 @@ namespace Game {
 
 	Player::Player* player1 = nullptr; ///< Main player entitiy pointer
 		
+	unsigned int nextId = 0; ///< Next object added ID when added to game objects
+	std::vector<Object*> objects; ///< Game objects list
 
 	/**
 	 * Declare Game private constructors
@@ -42,6 +44,22 @@ namespace Game {
 	}
 
 	/**
+	 * Add a game object to the objects list
+	 * @param Object*
+	 */
+	void add (Object* gameObject) {
+
+		// Set game object ID
+		gameObject->id = nextId;
+
+		// Increment nextId
+		nextId++;
+
+		// Addd gameObject to objects list
+		objects.push_back (gameObject);
+	}
+
+	/**
 	 * Set the player1 pointer to the target player
 	 * @param player - player instance reference
 	 */
@@ -61,11 +79,32 @@ namespace Game {
 		float dt = deltaTime.asMicroseconds() / 1000.0f;
 
 		// Update game's physic
-		Physics::update (dt);
+		Physics::update(dt);
 		
 		// Update all entities logic
-		for (auto& entity : Entity::entities) {
-			entity->update(dt);
+		for (int i = 0; i < Game::objects.size ();) {
+
+			// Get current object
+			Object* currentObject = Game::objects[i]; 
+	
+			// If object has to be deleted, we dont update it
+			if (currentObject->getToBeDeleted() == true) {
+
+				// Remove current object from the list
+				Game::objects.erase(Game::objects.begin() + i);
+
+				// Delete object from the game logic & memory
+				currentObject->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
+
+				// Go to next object
+				continue;
+			}
+
+			// Update current object
+			currentObject->update(dt);
+
+			// Increment i before going to the next object
+			i++;
 		}
 	}
 
@@ -78,8 +117,8 @@ namespace Game {
 		window.clear(sf::Color::Black);
 
 		// Render each entity
-		for (auto& entity : Entity::entities) {
-			entity->render(window);
+		for (auto& object : Game::objects) {
+			object->render(window);
 		}
 
 		// Update display

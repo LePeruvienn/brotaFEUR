@@ -1,5 +1,6 @@
 #include <cmath>
 #include "Mob.h"
+#include "../../core/Game.h"
 #include "../player/Player.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
@@ -17,6 +18,7 @@ namespace Mob {
 		// Add mob instance Mob entities list
 		entities.push_back(mob);
 	}
+
 	/**
 	 * Create a Mob instance and add it to the game logic
 	 * @param x - x axis position
@@ -28,6 +30,9 @@ namespace Mob {
 		
 		// Create entity instance
 		Mob* mob = new Mob(x, y, radius, color, stats);
+
+		// Add instance to game object list
+		Game::add(mob);
 		
 		// Add Mob to entity logic
 		Entity::add(mob);
@@ -38,6 +43,37 @@ namespace Mob {
 		// Return Mob instance
 		return mob;
 	}
+
+	/**
+	 * Return the closest mob alive next to the targetPos
+	 * @param targetPos - vector x & y of the position we want a mob close
+	 * @return Mob* - the pointer of the closest mob
+	 */
+	Mob* getClosestTo(sf::Vector2f targetPos) {
+
+		// Create max founded vars
+		Mob* closest = nullptr;
+		float lastDistance = MAXFLOAT;
+
+		// We search for a mob in the Mob::entities array
+		for (int i = 0; i < entities.size(); i++) {
+
+			// Compute distance
+			float dx = entities[i]->pos.x - targetPos.x;
+			float dy = entities[i]->pos.y - targetPos.y;
+			float distance = dx * dx + dy * dy;
+
+			// If current distance is not less than last, go to next mob
+			if (distance >= lastDistance) continue;
+
+			// If current distance is less that last distance ! Update last & closest values 🥷
+			lastDistance = distance;
+			closest = entities[i];
+		}
+		
+		// Return closest mob
+		return closest;
+	};
 
 	/**
 	 * constructs a new entity object with specified parameters.
@@ -77,9 +113,34 @@ namespace Mob {
 			rigidShape->velocity.x = std::cos(angle) * stats.speed * 0.5f;
 			rigidShape->velocity.y = std::sin(angle) * stats.speed * 0.5f;
 		}
+	}
 
-		// Use Entity update
-		Entity::Entity::update (deltaTime);
+	/*
+	 * Callback function called before the entity is deleted
+	 */
+	void Mob::onDestroy() {
+
+		/*
+		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
+		 * Maybe each frame we could loop once for each entites ? IDK 🤓
+		 */
+
+		// Search for current entity as remove it from the array
+		for (int i = 0; i < entities.size(); i++) {
+			
+			// If we found current entity
+			if (entities[i]->id == id) {
+				
+				// Erase it from entities array
+				entities.erase(entities.begin() + i);
+
+				// Go out the for loop
+				break;
+			}
+		}
+
+		// Use parent's function
+		Entity::onDestroy();
 	}
 
 	/**

@@ -33,6 +33,12 @@ namespace Player {
 		 */
 		int getState ();
 
+		/**
+		 * Get current player input direction
+		 * @return Vector2i - direction x & y
+		 */
+		sf::Vector2i getDirection();
+
 	private:
 		int state; //< Current input state
 	};

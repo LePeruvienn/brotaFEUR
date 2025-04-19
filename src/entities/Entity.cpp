@@ -3,7 +3,6 @@
 
 namespace Entity {
 
-	unsigned int nextId = 0; ///< Next entity added ID when added to game entities
 	std::vector<Entity*> entities; ///< Game entities list
 
 	/**
@@ -13,12 +12,6 @@ namespace Entity {
 	 * @param entity - entity instance reference
 	 */
 	void add(Entity* entity) {
-
-		// Set entity ID
-		entity->id = nextId;
-
-		// Increment next ID
-		nextId++;
 
 		// Add entity to game entities list
 		entities.push_back(entity);
@@ -33,7 +26,7 @@ namespace Entity {
 	 */
 	Entity::Entity(float x, float y, float radius, sf::Color color, Stats stats)
 		// Intialize class values
-		: shape(radius), stats(stats) {
+		: Game::Object(x, y), shape(radius), stats(stats) {
 
 		// Set shape position & color
 		shape.setPosition({x, y});
@@ -42,20 +35,43 @@ namespace Entity {
 		// Create entity rigidShape
 		rigidShape = new Physics::CircleRigidShape (x, y, 1.f, radius);
 
+		// Set current entity as rigidShape parent's
+		rigidShape->setParent(this);
+
 		// Add the rigidShape to the Physics
 		Physics::addObject (rigidShape);
 	}
 
-	/**
-	 * Updates the entity's logic.
-	 * @param deltaTime - The time elapsed since the last frame (in ms)
+	/*
+	 * Callback function called before the entity is deleted
 	 */
-	void Entity::update(float deltaTime) {
+	void Entity::onDestroy() {
 
+		/*
+		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
+		 * Maybe each frame we could loop once for each entites ? IDK 🤓
+		 */
+
+		// Search for current entity as remove it from the array
+		for (int i = 0; i < entities.size(); i++) {
+			
+			// If we found current entity
+			if (entities[i]->id == id) {
+				
+				// Erase it from entities array
+				entities.erase(entities.begin() + i);
+
+				// Go out the for loop
+				break;
+			}
+		}
+
+		// Use parent's function
+		Game::Object::onDestroy();
 	}
 
 	/**
-	 * Renders the entity to the specified window.
+	 * Renders the object to the specified window.
 	 * @param window - Instance of the game window
 	 */
 	void Entity::render(sf::RenderWindow& window) {

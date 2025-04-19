@@ -4,7 +4,6 @@
 
 #include <memory>
 #include "../Entity.h"
-#include "../Stats.h"
 #include "Input.h"
 
 namespace Player {
@@ -44,12 +43,32 @@ namespace Player {
 		void render(sf::RenderWindow& window) override;
 
 		/**
+		 * Callback function called before the entity is deleted
+		 */
+		void onDestroy() override;
+
+		/**
 		 * Adds user control to the player
 		 */
 		void addInput();
 
 	private:
+
 		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
+
+		float shootCoolown = 500.f; ///< Time before the player shoot an other projectile
+		float shotTimer = 0.f; ///< Time elapsed after the player shot his last projectile
+	
+		/**
+		 * Handle player movement depending of his inputs
+		 */
+		void handleMovement();
+
+		/**
+		 * Handle player shooting
+		 * @parm deltaTime - used to compute firerate
+		 */
+		void handleShooting(float deltaTime);
 	};
 
 	extern std::vector<Player*> entities; ///< Player entities list

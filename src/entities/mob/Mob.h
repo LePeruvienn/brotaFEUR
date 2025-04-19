@@ -3,6 +3,7 @@
 #define MOB_H
 
 #include "../Entity.h"
+#include <cmath>
 
 namespace Mob {
 
@@ -39,6 +40,11 @@ namespace Mob {
 		 * @param window - Instance of the game window
 		 */
 		void render(sf::RenderWindow& window) override;
+
+		/**
+		 * Callback function called before the entity is deleted
+		 */
+		void onDestroy() override;
 	};
 
 	extern std::vector<Mob*> entities; ///< Mob entities instance list
@@ -62,7 +68,15 @@ namespace Mob {
 		float radius = 30.f,
 		sf::Color color = sf::Color::Red,
 		::Entity::Stats stats = ::Entity::Stats() // We must add :: that specifiy the compiler to just start on top of everything 
-	);	                                          // and dont search this Into the Entity namespace already
+	);                                            // and dont search this Into the Entity namespace already
+
+	/**
+	 * Return the closest mob alive next to the targetPos
+	 * @param targetPos - vector x & y of the position we want a mob close
+	 * @return Mob* - the pointer of the closest mob
+	 */
+	Mob* getClosestTo(sf::Vector2f targetPos);
+
 }
 
 #endif // MOB_H

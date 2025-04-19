@@ -4,6 +4,7 @@
 
 namespace Physics {
 
+
 	/**
 	 * RigidShape Constructor
 	 * @param x - rigidShape start X coordinate
@@ -20,6 +21,16 @@ namespace Physics {
 		// Set collisions max allocations to prevents memory to go crazy
 		collisions.reserve(MAX_COLLISONS);
 	};
+
+	/**
+	 * Set rigidShape parent !
+	 * @param Object*
+	 */
+	void RigidShape::setParent(Game::Object* object) {
+
+		// Set rigidShape parent
+		parent = object;
+	}
 
 	void RigidShape::update (float deltaTime) {
 	
