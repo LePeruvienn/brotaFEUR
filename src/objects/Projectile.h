@@ -11,7 +11,7 @@ namespace Projectile {
 	public:
 
 		float speed; ///< Projectile speed
-		sf::Vector2i direction; ///< Projectile direction
+		sf::Vector2f direction; ///< Projectile direction
 		float maxDuration; //< Max projectile duration before being deleted (in ms)
 		
 		sf::CircleShape shape; ///< Shape representing the projectile.
@@ -34,8 +34,8 @@ namespace Projectile {
 			float dx = 1.f,
 			float dy = 1.f,
 			float speed = 1.f,
-			float maxDuration = 5000.f,
-			float radius = 5.f,
+			float maxDuration = 3000.f,
+			float radius = 10.f,
 			sf::Color color = sf::Color::Green
 		);
 
@@ -77,8 +77,8 @@ namespace Projectile {
 		float y = 50.f,
 		float dx = 1.f,
 		float dy = 1.f,
-		float speed = 0.2f,
-		float maxDuration = 5000.f,
+		float speed = 1.f,
+		float maxDuration = 3000.f,
 		float radius = 10.f,
 		sf::Color color = sf::Color::Yellow
 	);

@@ -39,8 +39,6 @@ namespace Projectile {
 		float radius, sf::Color color
 	// Using parent's constructor
 	) : Game::Object(x, y), shape(radius), speed(speed), maxDuration(maxDuration) {
-
-		std::cout << "Projectile : radius " << radius << std::endl;
 	
 		direction.x = dx;
 		direction.y = dy;
@@ -88,7 +86,7 @@ namespace Projectile {
 	 */
 	void Projectile::onDestroy() {
 
-		std::cout << "Projectile : onDestroy()" << std::endl;
+		// std::cout << "Projectile : onDestroy()" << std::endl;
 
 		// Use parent's function
 		Object::onDestroy();

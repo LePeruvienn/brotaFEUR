@@ -1,9 +1,11 @@
 #include <cmath>
 #include <new>
+#include <iostream>
 #include "Player.h"
-#include "InputStates.h"
+#include "../mob/Mob.h"
 #include "../../core/Game.h"
 #include "../../utils/Utils.h"
+#include "../../objects/Projectile.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
@@ -79,49 +81,9 @@ namespace Player {
 	 */
 	void Player::update(float deltaTime) {
 
-		// If user have inputs, we updateThem
-		if (input) {
-
-			// Update input
-			input->update();
-
-			// Get current inputs state
-			int state = input->getState();
-
-			// Get the current direction we are moving
-			int directionX = 0;
-			int directionY = 0;
-
-			if (state & RIGHT)
-				directionX++;
-
-			if (state & LEFT)
-				directionX--;
-
-			if (state & UP)
-				directionY--;
-
-			if (state & DOWN)
-				directionY++;
-
-			// If we are moving in diagonal
-			if (directionX != 0 && directionY != 0) {
-
-				// Compute diagonalFactor
-				float diagonalFactor = 1 / std::sqrt(2.f);
-
-				// Fix direction
-				directionX /= diagonalFactor;
-				directionY /= diagonalFactor;
-			}
-
-			// Defining lerp value for velocity
-			float lerp = 0.005f;
-
-			// Add velocity toward the direction we are going
-			rigidShape->velocity.x = Utils::lerp (rigidShape->velocity.x, stats.speed * directionX, lerp);
-			rigidShape->velocity.y = Utils::lerp (rigidShape->velocity.y, stats.speed * directionY, lerp);
-		}
+		// Handle player movement & shooting
+		handleMovement();
+		handleShooting(deltaTime);
 	}
 
 	/**
@@ -171,5 +133,84 @@ namespace Player {
 		// (make that if there is already have a Player input it delete the old and set a new one )
 		// => NO MEMORY LEAK
 		input = std::make_unique<Input>();
+	}
+
+	/**
+	 * Handle player movement depending of his inputs
+	 */
+	void Player::handleMovement() {
+
+		// If user have inputs, we updateThem
+		if (input) {
+
+			// Update input
+			input->update();
+
+			// Get current inputs state
+			sf::Vector2i direction = input->getDirection();
+
+			// If we are moving in diagonal
+			if (direction.x != 0 && direction.y != 0) {
+
+				// Compute diagonalFactor
+				float diagonalFactor = 1 / std::sqrt(2.f);
+
+				// Fix direction
+				direction.x /= diagonalFactor;
+				direction.y /= diagonalFactor;
+			}
+
+			// Defining lerp value for velocity
+			float lerp = 0.005f;
+
+			// Add velocity toward the direction we are going
+			rigidShape->velocity.x = Utils::lerp (rigidShape->velocity.x, stats.speed * direction.x, lerp);
+			rigidShape->velocity.y = Utils::lerp (rigidShape->velocity.y, stats.speed * direction.y, lerp);
+		}
+	}
+
+	/**
+	 * Handle player shooting
+	 * @parm deltaTime - used to compute firerate
+	 */
+	void Player::handleShooting(float deltaTime) {
+
+		// If the shotTimer has reached his end
+		if (shotTimer >= shootCoolown) {
+
+			// Get closest Mob from current pos
+			Mob::Mob* mob = Mob::getClosestTo(pos);
+
+			// If we found a mob !
+			if (mob != nullptr) {
+
+				// Get current player postion
+				float x = rigidShape->pos.x;
+				float y = rigidShape->pos.y;
+
+				// Compute direction
+				float dx = mob->rigidShape->pos.x - x;
+				float dy = mob->rigidShape->pos.y - y;
+
+				// Normalize direction !
+				// OPTIMIZE: sqrt() is heavy maybe use Q_rsqrt() from DOOM to optimize this 👀
+				float length = sqrt(dx * dx + dy * dy);
+				// Avoid division by zero
+				if (length > 0.f) {
+					// Apply normalization
+					dx /= length;
+					dy /= length;
+				}
+
+				// Shoot a projectile toward this direction
+				Projectile::create(x, y, dx, dy);
+
+				// Reset shotTimer
+				shotTimer = 0.f;
+			}
+		}
+
+		// Increment shotTimer
+		shotTimer += deltaTime;
 	}
 }

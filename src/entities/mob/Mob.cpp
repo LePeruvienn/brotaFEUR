@@ -18,6 +18,7 @@ namespace Mob {
 		// Add mob instance Mob entities list
 		entities.push_back(mob);
 	}
+
 	/**
 	 * Create a Mob instance and add it to the game logic
 	 * @param x - x axis position
@@ -42,6 +43,37 @@ namespace Mob {
 		// Return Mob instance
 		return mob;
 	}
+
+	/**
+	 * Return the closest mob alive next to the targetPos
+	 * @param targetPos - vector x & y of the position we want a mob close
+	 * @return Mob* - the pointer of the closest mob
+	 */
+	Mob* getClosestTo(sf::Vector2f targetPos) {
+
+		// Create max founded vars
+		Mob* closest = nullptr;
+		float lastDistance = MAXFLOAT;
+
+		// We search for a mob in the Mob::entities array
+		for (int i = 0; i < entities.size(); i++) {
+
+			// Compute distance
+			float dx = entities[i]->pos.x - targetPos.x;
+			float dy = entities[i]->pos.y - targetPos.y;
+			float distance = dx * dx + dy * dy;
+
+			// If current distance is not less than last, go to next mob
+			if (distance >= lastDistance) continue;
+
+			// If current distance is less that last distance ! Update last & closest values 🥷
+			lastDistance = distance;
+			closest = entities[i];
+		}
+		
+		// Return closest mob
+		return closest;
+	};
 
 	/**
 	 * constructs a new entity object with specified parameters.
