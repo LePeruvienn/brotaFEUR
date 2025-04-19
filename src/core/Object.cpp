@@ -16,7 +16,7 @@ namespace Game {
 	 */
 	void Object::destroy () {
 
-		std::cout << "toBeDeleted" << std::endl;
+		std::cout << "Object : toBeDeleted = true" << std::endl;
 
 		// Set to be deleted to true
 		toBeDeleted = true;
@@ -28,12 +28,12 @@ namespace Game {
 	 */
 	void Object::_destroy() {
 
-		std::cout << "onDestroy" << std::endl;
+		std::cout << "Object : onDestroy()" << std::endl;
 
 		// Call on destroy callback (can be managed with override)
 		onDestroy();
 
-		delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
+		//delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
 	};
 
 	/**

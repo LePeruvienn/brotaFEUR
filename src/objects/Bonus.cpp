@@ -75,7 +75,8 @@ namespace Bonus {
 			if (rs->parent == nullptr) continue;
 
 			// Cast object as an Entity
-			Entity::Entity* entity = static_cast<Entity::Entity*>(rs->parent);
+			// ⚠️ MUST USE dynamic_cast() otherwise it will not check if the current object is of the right type !!!
+			Entity::Entity* entity = dynamic_cast<Entity::Entity*>(rs->parent);
 
 			// If cast dosnt work go to next collisions
 			if (entity == nullptr) continue;
@@ -95,7 +96,7 @@ namespace Bonus {
 	 */
 	void Bonus::onDestroy() {
 
-		std::cout << "DESTROY BONUS" << std::endl;
+		std::cout << "Bonus : onDestroy()" << std::endl;
 
 		/*
 		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
@@ -126,7 +127,7 @@ namespace Bonus {
 	 */
 	void Bonus::render(sf::RenderWindow& window) {
 
-		// Set shape to player rigidShape current position
+		// Set shape to bonus rigidShape current position
 		shape.setPosition(rigidShape->pos);
 
 		// Draw shape into the screen

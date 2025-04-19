@@ -84,21 +84,24 @@ namespace Game {
 		// Update all entities logic
 		for (int i = 0; i < Game::objects.size ();) {
 
+			// Get current object
+			Object* currentObject = Game::objects[i]; 
+	
 			// If object has to be deleted, we dont update it
-			if (Game::objects[i]->getToBeDeleted() == true) {
+			if (currentObject->getToBeDeleted() == true) {
 
 				// Remove current object from the list
 				Game::objects.erase(Game::objects.begin() + i);
 
 				// Delete object from the game logic & memory
-				Game::objects[i]->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
+				currentObject->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
 
 				// Go to next object
 				continue;
 			}
 
 			// Update current object
-			Game::objects[i]->update(dt);
+			currentObject->update(dt);
 
 			// Increment i before going to the next object
 			i++;

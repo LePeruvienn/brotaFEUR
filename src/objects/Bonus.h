@@ -2,6 +2,7 @@
 #define BONUS_H
 #include <vector>
 #include "../core/Object.h"
+#include "../core/Physics.h"
 #include "../stats/Effect.h"
 
 namespace Bonus {
@@ -22,8 +23,8 @@ namespace Bonus {
 		 * Bonus constructor
 		 * @param x - x axis position
 		 * @param y - y axis position
-		 * @param radius - entity body radius
-		 * @param color - entity body color
+		 * @param radius - bonus body radius
+		 * @param color - bonus body color
 		 */
 		Bonus(
 			float x = 50.f,
