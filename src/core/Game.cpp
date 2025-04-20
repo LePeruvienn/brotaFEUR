@@ -1,6 +1,7 @@
+#include <iostream>
 #include "Game.h"
 #include "Physics.h"
-#include <iostream>
+#include "../entities/mob/Mob.h"
 
 /** @module Game */
 namespace Game {
@@ -81,6 +82,9 @@ namespace Game {
 
 		// Update game's physic
 		Physics::update(dt);
+
+		// Updates others modules
+		Mob::update(dt);
 		
 		// Update all entities logic
 		for (int i = 0; i < Game::objects.size ();) {

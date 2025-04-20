@@ -5,7 +5,6 @@
 /** @module Physics */
 namespace Physics {
 
-
 	/**
 	 * RigidShape Constructor
 	 * @param x - rigidShape start X coordinate

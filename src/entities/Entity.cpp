@@ -67,6 +67,12 @@ namespace Entity {
 			}
 		}
 
+		// Remove rigidShape from Physics
+		Physics::removeObject(rigidShape);
+	
+		// Remove rigidShape from the memory
+		delete rigidShape;
+
 		// Use parent's function
 		Game::Object::onDestroy();
 	}

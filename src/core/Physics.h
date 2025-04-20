@@ -28,14 +28,21 @@ namespace Physics {
 	 * @param deltaTime
 	 * @memberOf Physics
 	 */
-	void update (float deltaTime);
+	void update(float deltaTime);
 
 	/**
-	 * Add a RigidShape to the physics modules
+	 * Add a RigidShape to the Physics objects array
 	 * @param rigidShape
 	 * @memberOf Physics
 	 */
-	void addObject (RigidShape* rigidShape);
+	void addObject(RigidShape* rigidShape);
+
+	/**
+	 * Remove a RigidShape from the Physics objects array
+	 * @param rigidShape
+	 * @memberOf Physics
+	 */
+	void removeObject(RigidShape* rigidShape);
 }
 
 #endif // GAME_H

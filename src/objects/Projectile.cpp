@@ -1,5 +1,6 @@
 #include "Projectile.h"
 #include "../core/Game.h"
+#include "../core/Physics.h"
 #include "../entities/mob/Mob.h"
 #include "../core/rigidShapes/CircleRigidShape.h"
 #include <iostream>
@@ -92,7 +93,13 @@ namespace Projectile {
 	void Projectile::onDestroy() {
 
 		// std::cout << "Projectile : onDestroy()" << std::endl;
-
+		
+		// Remove rigidShape from Physics
+		Physics::removeObject(rigidShape);
+	
+		// Remove rigidShape from the memory
+		delete rigidShape;
+	
 		// Use parent's function
 		Object::onDestroy();
 	}

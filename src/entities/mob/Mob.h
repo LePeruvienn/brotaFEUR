@@ -63,6 +63,12 @@ namespace Mob {
 	extern std::vector<Mob*> entities; ///< Mob entities instance list
 
 	/**
+	 * Update Mob module
+	 * @param player - mob instance to add to mob entities list
+	 */
+	void update(float deltaTime);
+
+	/**
 	 * Create a new Mob entity instance, and add it to the game logic
 	 * @param player - Mob instance to add to Mob entities list
 	 */
