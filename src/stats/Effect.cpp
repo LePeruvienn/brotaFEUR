@@ -1,5 +1,6 @@
 #include "Effect.h"
 
+/** @module Entity */
 namespace Entity {
 
 	/**

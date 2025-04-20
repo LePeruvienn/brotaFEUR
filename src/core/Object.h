@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+/** @module Game */
 namespace Game {
 
 	class Object {

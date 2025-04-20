@@ -2,6 +2,7 @@
 #ifndef STATS_H
 #define STATS_H
 
+/** @module Entity */
 namespace Entity {
 
 	/**

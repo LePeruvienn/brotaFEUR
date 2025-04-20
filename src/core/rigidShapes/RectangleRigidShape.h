@@ -3,6 +3,7 @@
 
 #include "RigidShape.h"
 
+/** @module Physics */
 namespace Physics {
 
 	

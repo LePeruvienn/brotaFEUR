@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+/** @module Utils */
 namespace Utils {
 
 	/**

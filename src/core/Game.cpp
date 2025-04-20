@@ -2,6 +2,7 @@
 #include "Physics.h"
 #include <iostream>
 
+/** @module Game */
 namespace Game {
 
 	sf::RenderWindow window; ///< Program main window

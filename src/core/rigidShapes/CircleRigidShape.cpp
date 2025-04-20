@@ -4,6 +4,7 @@
 #include "RectangleRigidShape.h"
 #include "../Physics.h"
 
+/** @module Physics */
 namespace Physics {
 
 	/**

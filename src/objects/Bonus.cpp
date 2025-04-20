@@ -3,6 +3,7 @@
 #include "../core/Game.h"
 #include "../core/Physics.h"
 
+/** @module Bonus */
 namespace Bonus {
 
 	std::vector<Bonus*> objects; ///< list of all the bonuses objects in the game

@@ -5,6 +5,7 @@
 #include "../core/Object.h"
 #include "../core/Physics.h"
 
+/** @module Projectile */
 namespace Projectile {
 
 	class Projectile : public Game::Object {

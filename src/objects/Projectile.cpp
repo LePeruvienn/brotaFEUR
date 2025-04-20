@@ -4,6 +4,7 @@
 #include "../core/rigidShapes/CircleRigidShape.h"
 #include <iostream>
 
+/** @module Projectile */
 namespace Projectile {
 
 	Projectile* create (

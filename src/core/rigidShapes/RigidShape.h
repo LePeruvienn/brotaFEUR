@@ -7,6 +7,7 @@
 #include "RigidShapeTypes.h"
 #include "../Object.h"
 
+/** @module Physics */
 namespace Physics {
 
 	/**

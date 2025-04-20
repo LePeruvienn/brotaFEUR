@@ -3,6 +3,8 @@
 /**
  * Physics Namespace to handle all game's Physics
  */
+
+/** @module Physics */
 namespace Physics {
 
 	int nextId = 0;

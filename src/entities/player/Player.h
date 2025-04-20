@@ -6,6 +6,7 @@
 #include "../Entity.h"
 #include "Input.h"
 
+/** @module Player */
 namespace Player {
 
 	/**

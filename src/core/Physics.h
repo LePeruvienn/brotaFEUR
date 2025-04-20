@@ -10,6 +10,8 @@
  * Physics Namespace to handle all game's Physics
  * Is used as a module who has for goal to handle all game's physics
  */
+
+/** @module Physics */
 namespace Physics {
 
 	extern int nextId; //< Next id to link to a rigidShape when added to the physics

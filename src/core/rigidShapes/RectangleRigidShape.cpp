@@ -2,6 +2,7 @@
 #include "RectangleRigidShape.h"
 #include "CircleRigidShape.h"
 
+/** @module Physics */
 namespace Physics {
 
 	/**

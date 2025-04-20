@@ -5,6 +5,7 @@
 #include "../Entity.h"
 #include <cmath>
 
+/** @module Mob */
 namespace Mob {
 
 	/**

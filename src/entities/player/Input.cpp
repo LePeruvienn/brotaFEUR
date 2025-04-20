@@ -1,6 +1,7 @@
 #include "Input.h"
 #include "InputStates.h"
 
+/** @module Player */
 namespace Player {
 
 	/**

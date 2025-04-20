@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "../core/Physics.h"
 
+/** @module Entity */
 namespace Entity {
 
 	std::vector<Entity*> entities; ///< Game entities list

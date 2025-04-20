@@ -5,6 +5,7 @@
 #include "Stats.h"
 #include "../entities/Entity.h"
 
+/** @module Entity */
 namespace Entity {
 
 	/**

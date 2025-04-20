@@ -1,5 +1,6 @@
 #include "Stats.h"
 
+/** @module Entity */
 namespace Entity {
 
 	/**
