@@ -1,5 +1,6 @@
 #include "Projectile.h"
 #include "../core/Game.h"
+#include "../entities/mob/Mob.h"
 #include "../core/rigidShapes/CircleRigidShape.h"
 #include <iostream>
 
@@ -63,6 +64,9 @@ namespace Projectile {
 	 */
 	void Projectile::update(float deltaTime) {
 
+		// Handel Projectile collisions
+		handleCollisions();
+
 		// If we have reached the max Duration delte current object
 		if (elapsedTime >= maxDuration) {
 
@@ -103,5 +107,33 @@ namespace Projectile {
 
 		// Draw shape into the screen
 		window.draw(shape);
+	}
+
+	/**
+	 * Handle current projectiles collisions
+	 */
+	void Projectile::handleCollisions() {
+
+		// If an entity is currently touching a the bonus
+		for (auto& rs : rigidShape->collisions) {
+			
+			// If rs parent is null go to next collisions
+			if (rs->parent == nullptr) continue;
+
+			// Cast object as an Mob
+			// ⚠️ MUST USE dynamic_cast() otherwise it will not check if the current object is of the right type !!!
+			Mob::Mob* mob = dynamic_cast<Mob::Mob*>(rs->parent);
+
+			// If cast dosnt work go to next collisions
+			if (mob == nullptr) continue;
+
+			// Apply damage to mob
+			mob->stats.takeDamage(10);
+
+			// Destroy current object
+			destroy();
+
+			break;
+		}
 	}
 }

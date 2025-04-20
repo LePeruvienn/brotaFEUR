@@ -94,6 +94,23 @@ namespace Mob {
 	 * @param deltaTime - The time elapsed since the last frame
 	 */
 	void Mob::update(float deltaTime) {
+		
+		// Check if mob is dead
+		if (stats.health <= 0) {
+			// Make mob die
+			die();
+			// Stop here
+			return;
+		}
+
+		// Move toward player 1
+		moveTowardPlayer();
+	}
+
+	/**
+	 * Make the Mob move towards player
+	 */
+	void Mob::moveTowardPlayer() {
 
 		// If Player player1 is defined we move toward him
 		if (Player::player1 != nullptr) {
@@ -141,6 +158,14 @@ namespace Mob {
 
 		// Use parent's function
 		Entity::onDestroy();
+	}
+
+	/**
+	 * Handle mob's death
+	 */
+	void Mob::die() {
+
+		destroy();
 	}
 
 	/**

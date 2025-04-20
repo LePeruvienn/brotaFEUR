@@ -23,7 +23,14 @@ namespace Entity {
 	 */
 	bool Stats::takeDamage (int amount) {
 
-		return false;
+		// If entity is already dead return true
+		if (health <= 0) return true;
+
+		// Apply damages
+		health -= amount;
+
+		// Return true if we are dead false otherwise
+		return health <= 0;
 	}
 
 	/**

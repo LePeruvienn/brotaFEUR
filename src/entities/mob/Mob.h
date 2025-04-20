@@ -45,6 +45,18 @@ namespace Mob {
 		 * Callback function called before the entity is deleted
 		 */
 		void onDestroy() override;
+
+	private:
+		
+		/**
+		 * Make the Mob move towards player
+		 */
+		void moveTowardPlayer();
+
+		/**
+		 * Handle mob's death
+		 */
+		void die();
 	};
 
 	extern std::vector<Mob*> entities; ///< Mob entities instance list

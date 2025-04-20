@@ -59,6 +59,11 @@ namespace Projectile {
 	private:
 
 		float elapsedTime = 0; ///< Time eleapsed when created
+	
+		/**
+		 * Handle current projectiles collisions
+		 */
+		void handleCollisions();
 	};
 
 	/**
