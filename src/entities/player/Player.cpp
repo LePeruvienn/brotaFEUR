@@ -9,6 +9,7 @@
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
+/** @module Player */
 namespace Player {
 
 	std::vector<Player*> entities; ///< Player entities list

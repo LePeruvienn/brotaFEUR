@@ -5,6 +5,7 @@
 #include "../core/Object.h"
 #include "../core/Physics.h"
 
+/** @module Projectile */
 namespace Projectile {
 
 	class Projectile : public Game::Object {
@@ -59,6 +60,11 @@ namespace Projectile {
 	private:
 
 		float elapsedTime = 0; ///< Time eleapsed when created
+	
+		/**
+		 * Handle current projectiles collisions
+		 */
+		void handleCollisions();
 	};
 
 	/**

@@ -5,6 +5,7 @@
 #include "../Entity.h"
 #include <cmath>
 
+/** @module Mob */
 namespace Mob {
 
 	/**
@@ -45,9 +46,27 @@ namespace Mob {
 		 * Callback function called before the entity is deleted
 		 */
 		void onDestroy() override;
+
+	private:
+		
+		/**
+		 * Make the Mob move towards player
+		 */
+		void moveTowardPlayer();
+
+		/**
+		 * Handle mob's death
+		 */
+		void die();
 	};
 
 	extern std::vector<Mob*> entities; ///< Mob entities instance list
+
+	/**
+	 * Update Mob module
+	 * @param player - mob instance to add to mob entities list
+	 */
+	void update(float deltaTime);
 
 	/**
 	 * Create a new Mob entity instance, and add it to the game logic

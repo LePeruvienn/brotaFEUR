@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "InputStates.h"
 
-
+/** @module Player */
 namespace Player {
 
 	/**

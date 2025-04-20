@@ -2,9 +2,11 @@
 #define UTILS_H
 
 /**
- * Nameplace use to add classic static function that are quiet usefull
+ * Namespace use to add classic static function that are quiet usefull
  * So it's nice to set them here
  */
+
+/** @module Utils */
 namespace Utils {
 
 	/**

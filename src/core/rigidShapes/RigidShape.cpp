@@ -2,8 +2,8 @@
 
 #define MAX_COLLISONS 100
 
+/** @module Physics */
 namespace Physics {
-
 
 	/**
 	 * RigidShape Constructor

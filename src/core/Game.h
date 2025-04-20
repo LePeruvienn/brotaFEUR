@@ -13,6 +13,8 @@
  * Game Module
  * Managing global game logic (entities, ...)
  */
+
+/** @module Game */
 namespace Game {
 
 	extern sf::RenderWindow window; ///< Program main window

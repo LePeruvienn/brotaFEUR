@@ -5,6 +5,7 @@
 #include "../core/Physics.h"
 #include "../stats/Effect.h"
 
+/** @module Bonus */
 namespace Bonus {
 
 	/**

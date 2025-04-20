@@ -1,6 +1,7 @@
 #ifndef RIGIDSHAPE_TYPES_H
 #define RIGIDSHAPE_TYPES_H
 
+/** @module Physics */
 namespace Physics {
 
 	enum RigidShapeType {

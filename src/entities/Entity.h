@@ -9,6 +9,7 @@
 #include "../core/rigidShapes/RigidShape.h"
 #include "../core/rigidShapes/CircleRigidShape.h"
 
+/** @module Entity */
 namespace Entity {
 
 	/**

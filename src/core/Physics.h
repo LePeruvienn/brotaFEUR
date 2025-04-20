@@ -10,6 +10,8 @@
  * Physics Namespace to handle all game's Physics
  * Is used as a module who has for goal to handle all game's physics
  */
+
+/** @module Physics */
 namespace Physics {
 
 	extern int nextId; //< Next id to link to a rigidShape when added to the physics
@@ -26,14 +28,21 @@ namespace Physics {
 	 * @param deltaTime
 	 * @memberOf Physics
 	 */
-	void update (float deltaTime);
+	void update(float deltaTime);
 
 	/**
-	 * Add a RigidShape to the physics modules
+	 * Add a RigidShape to the Physics objects array
 	 * @param rigidShape
 	 * @memberOf Physics
 	 */
-	void addObject (RigidShape* rigidShape);
+	void addObject(RigidShape* rigidShape);
+
+	/**
+	 * Remove a RigidShape from the Physics objects array
+	 * @param rigidShape
+	 * @memberOf Physics
+	 */
+	void removeObject(RigidShape* rigidShape);
 }
 
 #endif // GAME_H

@@ -5,13 +5,28 @@
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
+/** @module Mob */
 namespace Mob {
 
 	std::vector<Mob*> entities; ///< Mob entities instance list
 
 	/**
-	 * Create a new Mob entity instance, and add it to the game logic
-	 * @param player - Mob instance to add to Mob entities list
+	 * Update Mob module
+	 * @param player - mob instance to add to mob entities list
+	 */
+	void update(float deltaTime) {
+
+		// If there is no mob in the map
+		if (entities.size() == 0) {
+
+			// Create a new once
+			create(200.f, 200.f);
+		}
+	}
+
+	/**
+	 * create a new mob entity instance, and add it to the game logic
+	 * @param player - mob instance to add to mob entities list
 	 */
 	void add(Mob* mob) {
 
@@ -94,6 +109,23 @@ namespace Mob {
 	 * @param deltaTime - The time elapsed since the last frame
 	 */
 	void Mob::update(float deltaTime) {
+		
+		// Check if mob is dead
+		if (stats.health <= 0) {
+			// Make mob die
+			die();
+			// Stop here
+			return;
+		}
+
+		// Move toward player 1
+		moveTowardPlayer();
+	}
+
+	/**
+	 * Make the Mob move towards player
+	 */
+	void Mob::moveTowardPlayer() {
 
 		// If Player player1 is defined we move toward him
 		if (Player::player1 != nullptr) {
@@ -141,6 +173,14 @@ namespace Mob {
 
 		// Use parent's function
 		Entity::onDestroy();
+	}
+
+	/**
+	 * Handle mob's death
+	 */
+	void Mob::die() {
+
+		destroy();
 	}
 
 	/**

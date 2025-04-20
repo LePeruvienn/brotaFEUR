@@ -3,6 +3,7 @@
 #include "../core/Game.h"
 #include "../core/Physics.h"
 
+/** @module Bonus */
 namespace Bonus {
 
 	std::vector<Bonus*> objects; ///< list of all the bonuses objects in the game
@@ -116,6 +117,12 @@ namespace Bonus {
 				break;
 			}
 		}
+
+		// Remove rigidShape from Physics
+		Physics::removeObject(rigidShape);
+	
+		// Remove rigidShape from the memory
+		delete rigidShape;
 
 		// Use parent's function
 		Object::onDestroy();

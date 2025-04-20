@@ -12,7 +12,6 @@ int main() {
 	Player::Player* player = Player::create(200.f, 200.f);
 	Mob::Mob* mob = Mob::create(200.f, 200.f);
 	Bonus::Bonus* bonus = Bonus::create(500.f, 500.f, 20.f);
-	Projectile::Projectile* projectile = Projectile::create (250.f, 250.f);
 
 	// Add input to main player
 	player->addInput ();

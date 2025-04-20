@@ -2,7 +2,7 @@
 #ifndef INPUTSTATES_H
 #define INPUTSTATES_H
 
-
+/** @module Player */
 namespace Player {
 
 	/**

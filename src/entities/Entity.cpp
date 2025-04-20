@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "../core/Physics.h"
 
+/** @module Entity */
 namespace Entity {
 
 	std::vector<Entity*> entities; ///< Game entities list
@@ -65,6 +66,12 @@ namespace Entity {
 				break;
 			}
 		}
+
+		// Remove rigidShape from Physics
+		Physics::removeObject(rigidShape);
+	
+		// Remove rigidShape from the memory
+		delete rigidShape;
 
 		// Use parent's function
 		Game::Object::onDestroy();
