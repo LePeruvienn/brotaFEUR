@@ -3,6 +3,7 @@
 #include "entities/mob/Mob.h"
 #include "objects/Bonus.h"
 #include "objects/Projectile.h"
+#include "hud/Bar.h"
 
 int main() {
 	
@@ -12,6 +13,10 @@ int main() {
 	Player::Player* player = Player::create(200.f, 200.f);
 	Mob::Mob* mob = Mob::create(200.f, 200.f);
 	Bonus::Bonus* bonus = Bonus::create(500.f, 500.f, 20.f);
+
+	// Add a life Bar to the player game object
+	HUD::Bar* bar = new HUD::Bar();
+	player->add(bar);
 
 	// Add input to main player
 	player->addInput ();

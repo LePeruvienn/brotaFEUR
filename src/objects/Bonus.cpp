@@ -68,6 +68,9 @@ namespace Bonus {
 	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
 	void Bonus::update (float deltaTime) {
+
+		// Use parent's update function !
+		Game::Object::update(deltaTime);
 		
 		// If an entity is currently touching a the bonus
 		for (auto& rs : rigidShape->collisions) {
@@ -133,6 +136,9 @@ namespace Bonus {
 	 * @param window - Instance of the game window
 	 */
 	void Bonus::render(sf::RenderWindow& window) {
+
+		// Use parent's render function !
+		Game::Object::render(window);
 
 		// Set shape to bonus rigidShape current position
 		shape.setPosition(rigidShape->pos);

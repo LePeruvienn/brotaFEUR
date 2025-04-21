@@ -78,10 +78,26 @@ namespace Entity {
 	}
 
 	/**
+	 * Updates the entity's logic.
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
+	 */
+	void Entity::update(float deltaTime) {
+		
+		pos.x = rigidShape->pos.x;	
+		pos.y = rigidShape->pos.y;	
+
+		// Use parent's update function !
+		Game::Object::update(deltaTime);
+	}
+
+	/**
 	 * Renders the object to the specified window.
 	 * @param window - Instance of the game window
 	 */
 	void Entity::render(sf::RenderWindow& window) {
+
+		// Use parent's render function !
+		Game::Object::render(window);
 
 		// Set shape to player rigidShape current position
 		shape.setPosition(rigidShape->pos);

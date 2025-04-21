@@ -51,12 +51,6 @@ namespace Game {
 	 */
 	void add (Object* gameObject) {
 
-		// Set game object ID
-		gameObject->id = nextId;
-
-		// Increment nextId
-		nextId++;
-
 		// Addd gameObject to objects list
 		objects.push_back (gameObject);
 	}
