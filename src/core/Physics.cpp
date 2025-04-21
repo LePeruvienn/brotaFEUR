@@ -22,7 +22,7 @@ namespace Physics {
 			rigidShape->update(deltaTime);
 		}
 
-		std::cout << "Physics objects size : " << objects.size() << std::endl;
+		// std::cout << "Physics objects size : " << objects.size() << std::endl;
 	}
 
 	/**

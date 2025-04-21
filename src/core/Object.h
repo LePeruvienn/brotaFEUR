@@ -47,6 +47,12 @@ namespace Game {
 		 */
 		bool getToBeDeleted();
 
+		/* Set the position of the object
+		 * @param x - new x coordinates
+		 * @param y - new y coordinates
+		 */
+		virtual void setPosition(float x, float y);
+
 		/**
 		 * Callback function called before the object is deleted
 		 */

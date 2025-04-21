@@ -44,6 +44,18 @@ namespace Game {
 		return toBeDeleted ;
 	}
 
+
+	/* Set the position of the object
+	 * @param x - new x coordinates
+	 * @param y - new y coordinates
+	 */
+	void Object::setPosition(float x, float y) {
+
+		// Set object nex position
+		pos.x = x;
+		pos.y = y;
+	}
+
 	/**
 	 * Callback function called before entity is destroyed
 	 */
