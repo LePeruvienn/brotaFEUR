@@ -43,6 +43,15 @@ namespace Entity {
 		Physics::addObject (rigidShape);
 	}
 
+
+	/**
+	 * Set Entity health bar
+	 */
+	void Entity::setHealthBar(HUD::Bar* bar) {
+		// Set mob's new healthBar
+		healthBar = bar;
+	}
+
 	/*
 	 * Callback function called before the entity is deleted
 	 */
@@ -82,9 +91,14 @@ namespace Entity {
 	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
 	void Entity::update(float deltaTime) {
-		
-		pos.x = rigidShape->pos.x;	
-		pos.y = rigidShape->pos.y;	
+	
+		// Update entity pos
+		pos.x = rigidShape->pos.x;
+		pos.y = rigidShape->pos.y;
+
+		// Update entity healthbar value if exist
+		if (healthBar != nullptr)
+			healthBar->setValue(stats.health);
 
 		// Use parent's update function !
 		Game::Object::update(deltaTime);

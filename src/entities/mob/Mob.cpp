@@ -2,6 +2,7 @@
 #include "Mob.h"
 #include "../../core/Game.h"
 #include "../player/Player.h"
+#include "../../hud/Bar.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
@@ -54,6 +55,13 @@ namespace Mob {
 
 		// Add mob's instance to Mob entities list
 		add(mob);
+
+		// Add a life Bar to the Mob game object
+		HUD::Bar* bar = new HUD::Bar(-20.f, -35.f);
+		mob->add(bar);
+
+		// Set mob healthBar
+		mob->setHealthBar(bar);
 
 		// Return Mob instance
 		return mob;

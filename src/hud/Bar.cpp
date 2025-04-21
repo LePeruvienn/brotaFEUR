@@ -48,8 +48,18 @@ namespace HUD {
 	 */
 	void Bar::setValue(float newValue) {
 
+		// Return if the value is unchanged
+		if (newValue == value) return;
+
 		// Set value between minValue & maxValue
 		value = std::max(std::min(newValue, maxValue), minValue);
+
+		// If current value must be updated
+		if (value != oldValue)
+			updateVisual();
+
+		// Reset oldValue
+		oldValue = value;
 	}
 
 	/* Get the current bar value
@@ -72,6 +82,19 @@ namespace HUD {
 		
 		// Use parent's function
 		Game::Object::setPosition(x, y);
+	}
+
+
+	/**
+	 * Update bar visual
+	 */
+	void Bar::updateVisual() {
+
+		// Compute new width
+		float newWidth = value / (maxValue - minValue) * width;
+
+		// Set guage new width
+		gauge.setSize({newWidth, height});
 	}
 
 	/**
