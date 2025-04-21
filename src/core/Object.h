@@ -56,6 +56,12 @@ namespace Game {
 		 */
 		void setParent(Object* object);
 
+		/**
+		 * Get object position in the current scene,
+		 * Used to parse childrens object pos to current real world pos
+		 */
+		sf::Vector2f getRawPos();
+
 
 		/**
 		 * Add the object in param has a children of current object !

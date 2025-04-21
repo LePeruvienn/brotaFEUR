@@ -3,8 +3,9 @@
 #define PLAYER_H
 
 #include <memory>
+#include "Arm.h"
 #include "../Entity.h"
-#include "Input.h"
+#include "input/Input.h"
 
 /** @module Player */
 namespace Player {
@@ -54,6 +55,8 @@ namespace Player {
 		void addInput();
 
 	private:
+
+		std::array<Arm*, 4> arms;  ///< Player's Arms array
 
 		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
 

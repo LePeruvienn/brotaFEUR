@@ -73,7 +73,17 @@ namespace Player {
 		// Use parent's base contructor
 		: Entity::Entity(x, y, radius, color, stats) {
 
-		// Nothing to do more !
+		// Create player's Arms
+		arms[0] = new Arm(80.f, -15.f);
+		arms[1] = new Arm(80.f, 50.f);
+		arms[2] = new Arm(-30.f, -15.f);
+		arms[3] = new Arm(-30.f, 50.f);
+
+		// Add this arms to Player's childrens objects
+		add(arms[0]);
+		add(arms[1]);
+		add(arms[2]);
+		add(arms[3]);
 	}
 
 	/**

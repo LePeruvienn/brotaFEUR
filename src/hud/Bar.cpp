@@ -112,6 +112,9 @@ namespace HUD {
 	 */
 	void Bar::update(float deltaTime) {
 
+
+		// Use parent's update function !
+		Game::Object::update(deltaTime);
 	}
 
 	/**
@@ -119,6 +122,9 @@ namespace HUD {
 	 * @param window - Instance of the game window
 	 */
 	void Bar::render(sf::RenderWindow& window) {
+
+		// User parent's render function
+		Game::Object::render(window);
 	
 		// Get current pos
 		float x = pos.x;

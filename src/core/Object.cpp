@@ -120,6 +120,25 @@ namespace Game {
 	}
 
 	/**
+	 * Get object position in the current scene,
+	 * Used to parse childrens object pos to current real world pos
+	 */
+	sf::Vector2f Object::getRawPos() {
+
+		// if there is no parent return pos
+		if (parent == nullptr) return pos;
+
+		// Get parent raw pos
+		sf::Vector2f parentPos = parent->getRawPos();
+	
+		// Return computed raw pos
+		return {
+			pos.x + parentPos.x,
+			pos.y + parentPos.y
+		};
+	}
+
+	/**
 	 * Updates the object's logichis
 	 * This function must be called first before children class update !
 	 * @param deltaTime - The time elapsed since the last frame (in ms)
