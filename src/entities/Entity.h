@@ -49,6 +49,12 @@ namespace Entity {
 		virtual ~Entity() = default;
 
 		/**
+		 * Updates the entity's logic.
+		 * @param deltaTime - The time elapsed since the last frame (in ms)
+		 */
+		virtual void update(float deltaTime) override;
+
+		/**
 		 * Renders the entity to the specified window.
 		 * @param window - Instance of the game window
 		 */

@@ -66,6 +66,9 @@ namespace Projectile {
 	 */
 	void Projectile::update(float deltaTime) {
 
+		// Use parent's update function !
+		Game::Object::update(deltaTime);
+
 		// Handel Projectile collisions
 		handleCollisions();
 
@@ -109,6 +112,9 @@ namespace Projectile {
 	 * @param window - Instance of the game window
 	 */
 	void Projectile::render(sf::RenderWindow& window) {
+
+		// Use parent's render function !
+		Game::Object::render(window);
 
 		// Set shape to projectile rigidShape current position
 		shape.setPosition(rigidShape->pos);

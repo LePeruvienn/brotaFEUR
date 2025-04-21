@@ -14,9 +14,9 @@ int main() {
 	Mob::Mob* mob = Mob::create(200.f, 200.f);
 	Bonus::Bonus* bonus = Bonus::create(500.f, 500.f, 20.f);
 
-	// Test bar
-	// HUD::Bar* bar = new HUD::Bar();
-	// Game::add(bar);
+	// Add a life Bar to the player game object
+	HUD::Bar* bar = new HUD::Bar();
+	player->add(bar);
 
 	// Add input to main player
 	player->addInput ();

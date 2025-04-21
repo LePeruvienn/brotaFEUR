@@ -96,10 +96,21 @@ namespace HUD {
 	 * @param window - Instance of the game window
 	 */
 	void Bar::render(sf::RenderWindow& window) {
+	
+		// Get current pos
+		float x = pos.x;
+		float y = pos.y;
+
+		// If we have a parent we must adjust the position toward parent's pos
+		if (parent != nullptr) {
+		
+			x += parent->pos.x;
+			y += parent->pos.y;
+		}
 
 		// Set shape to bonus rigidShape current position
-		background.setPosition(pos);
-		gauge.setPosition(pos);
+		background.setPosition({x, y});
+		gauge.setPosition({x, y});
 
 		// Draw first background and then gauge to keep it in front of the background
 		window.draw(background);

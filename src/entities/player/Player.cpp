@@ -82,6 +82,9 @@ namespace Player {
 	 */
 	void Player::update(float deltaTime) {
 
+		// Use parent's update function !
+		Entity::Entity::update(deltaTime);
+
 		// Handle player movement & shooting
 		handleMovement();
 		handleShooting(deltaTime);

@@ -109,6 +109,9 @@ namespace Mob {
 	 * @param deltaTime - The time elapsed since the last frame
 	 */
 	void Mob::update(float deltaTime) {
+
+		// Use parent's update function !
+		Entity::Entity::update(deltaTime);
 		
 		// Check if mob is dead
 		if (stats.health <= 0) {
