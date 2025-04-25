@@ -16,6 +16,9 @@ namespace Player {
 
 		// Create Arm RectangleShape
 		shape = sf::RectangleShape({size, size});
+
+		// Set rendering origin to center
+		shape.setOrigin({size / 2, size / 2});
 	}
 
 	/**

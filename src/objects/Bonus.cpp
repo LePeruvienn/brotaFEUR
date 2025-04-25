@@ -49,6 +49,9 @@ namespace Bonus {
 		// Use the parent's constructor
 		: Game::Object(x, y), shape(radius), effect(effect) {
 
+		// Set circle shape draw origin to center
+		shape.setOrigin ({radius, radius});
+
 		// Set shape position & color
 		shape.setPosition({x, y});
 		shape.setFillColor(color);

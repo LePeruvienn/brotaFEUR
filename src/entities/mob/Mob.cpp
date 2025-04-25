@@ -57,7 +57,7 @@ namespace Mob {
 		add(mob);
 
 		// Add a life Bar to the Mob game object
-		HUD::Bar* bar = new HUD::Bar(-20.f, -35.f);
+		HUD::Bar* bar = new HUD::Bar(0.f, -60.f);
 		mob->add(bar);
 
 		// Set mob healthBar

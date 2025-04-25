@@ -28,10 +28,15 @@ namespace HUD {
 	) : Game::Object (x, y), 
 	    width(width), height(height), minValue(minValue), maxValue(maxValue) {
 
+
 		// Create gauge & background RectangleShape
 		gauge = sf::RectangleShape({width, height});
 		background = sf::RectangleShape({width, height});
-		
+
+		// Set draw origin for gauge & background to center
+		gauge.setOrigin({width / 2, height / 2});
+		background.setOrigin({width / 2, height / 2});
+
 		// Set rectangles colors
 		gauge.setFillColor(foregroundColor);
 		background.setFillColor(backgroundColor);

@@ -74,10 +74,10 @@ namespace Player {
 		: Entity::Entity(x, y, radius, color, stats) {
 
 		// Create player's Arms
-		arms[0] = new Arm(80.f, -15.f);
-		arms[1] = new Arm(80.f, 50.f);
-		arms[2] = new Arm(-30.f, -15.f);
-		arms[3] = new Arm(-30.f, 50.f);
+		arms[0] = new Arm(50.f, -25.f);
+		arms[1] = new Arm(50.f, 25.f);
+		arms[2] = new Arm(-50.f, -25.f);
+		arms[3] = new Arm(-50.f, 25.f);
 
 		// Add this arms to Player's childrens objects
 		add(arms[0]);

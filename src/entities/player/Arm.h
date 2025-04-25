@@ -9,6 +9,8 @@ namespace Player {
 	class Arm : public Game::Object {
 	public:
 
+		bool isEmpty = false; ///< Is the hand have an equipped weapon
+
 		/**
 		 * Arm class constructor
 		 * @param x - start X coordinates
@@ -36,7 +38,7 @@ namespace Player {
 
 	private:
 
-		sf::RectangleShape shape;
+		sf::RectangleShape shape; ///< Current weapon size
 		float size = 10.f; ///< Arm size
 	};
 }

@@ -29,6 +29,9 @@ namespace Entity {
 		// Intialize class values
 		: Game::Object(x, y), shape(radius), stats(stats) {
 
+		// Set circle shape draw origin to center
+		shape.setOrigin ({radius, radius});
+
 		// Set shape position & color
 		shape.setPosition({x, y});
 		shape.setFillColor(color);
