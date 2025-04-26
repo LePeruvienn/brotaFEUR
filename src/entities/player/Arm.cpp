@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Arm.h"
-#include "../../utils/Utils.h"
+#include "../../utils/Math.h"
 #include "../../objects/Projectile.h"
 
 namespace Player {
@@ -43,8 +43,8 @@ namespace Player {
 		float diff = targetAngle - currentAngle;
 
 		// Wrap the angle between -π and π
-		while (diff < -M_PI) diff += 2.f * M_PI;
-		while (diff >  M_PI) diff -= 2.f * M_PI;
+		while (diff < -Math::PI) diff += 2.f * Math::PI;
+		while (diff >  Math::PI) diff -= 2.f * Math::PI;
 
 		// Make the transition between the 2 angles, taking part the rotation speed
 		float rotation = currentAngle + diff * (rotationSpeed * deltaTime);
