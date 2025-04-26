@@ -24,7 +24,7 @@ namespace Player {
 		 * @param y - start Y coordinates
 		 * @param size - Arm size
 		 */
-		Arm(float x = 0.f, float y = 0.f, float size = 10.f);
+		Arm(float x = 0.f, float y = 0.f, float size = 20.f);
 
 		/**
 		 * Updates the object's logic.
