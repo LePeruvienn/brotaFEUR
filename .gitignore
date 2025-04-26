@@ -4,3 +4,8 @@ out
 .idea
 .vs
 .vscode
+
+# Krita files
+*.kra
+*.kra~
+*.krz
