@@ -48,8 +48,9 @@ namespace Game {
 		// Call on destroy callback (can be managed with override)
 		onDestroy();
 
+		// ⚠️ NOT DOING THIS ANYMORE : moved to Game::update() loop
 		// Delte object from memory
-		delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
+		//delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
 	};
 
 	/**

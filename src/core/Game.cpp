@@ -13,6 +13,9 @@ namespace Game {
 	unsigned int nextId = 0; ///< Next object added ID when added to game objects
 	std::vector<Object*> objects; ///< Game objects list
 
+
+	std::vector<Object*> cachedObjectsToDelete; ///< Cached array that store all the objects we must delete at the end of the loop
+
 	/**
 	 * Declare Game private constructors
 	 * Only used with the game singleton
@@ -70,7 +73,10 @@ namespace Game {
 	 * @param deltaTime - Time eleapsed between each frame
 	 */
 	void update(sf::Time deltaTime) {
-		
+
+		// Reset cachedObjectsToDelete to use it !
+		cachedObjectsToDelete.clear();
+
 		// Convert dt in ms (we convert um so ms to have more precision)
 		float dt = deltaTime.asMicroseconds() / 1000.0f;
 
@@ -94,6 +100,9 @@ namespace Game {
 
 				// Delete object from the game logic & memory
 				currentObject->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
+			
+				// add it to the objects to delete Array
+				cachedObjectsToDelete.push_back(currentObject);
 
 				// Go to next object
 				continue;
@@ -105,6 +114,10 @@ namespace Game {
 			// Increment i before going to the next object
 			i++;
 		}
+
+		// Delete from memory all objects to delete
+		for (int i = 0; i < cachedObjectsToDelete.size(); i++)
+			delete cachedObjectsToDelete[i];
 	}
 
 	/**

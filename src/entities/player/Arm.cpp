@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Arm.h"
-#include "../mob/Mob.h"
+#include "../../objects/Projectile.h"
 
 namespace Player {
 
@@ -22,19 +22,13 @@ namespace Player {
 	}
 
 	/**
-	 * Updates the object's logic.
-	 * @param deltaTime - The time elapsed since the last frame (in ms)
+	 * Make the arm rotate towards the mob in parameter
+	 * @param Mob* - mob target we want to rotate to
 	 */
-	void Arm::update(float deltaTime) {
+	void Arm::rotateTowardsMob(Mob::Mob* mob) {
 
 		// Get rawPos
 		sf::Vector2f rawPos = getRawPos();
-
-		// Get closest Mob to the arm
-		Mob::Mob* mob = Mob::getClosestTo(rawPos);
-
-		// If there is no mob just return
-		if (mob == nullptr) return;
 
 		// Compute position diff
 		float dx = mob->pos.x - rawPos.x;
@@ -45,7 +39,66 @@ namespace Player {
 
 		// Apply rotation to the arm's shape
 		shape.setRotation(sf::degrees(angle));
+	}
 
+	/**
+	 * Make the arm shoot a target mob
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
+	 * @param Mob* - mob target we want to rotate to
+	 */
+	void Arm::handleShoot(float deltaTime, Mob::Mob* mob) {
+
+		// If the shotTimer has reached his end
+		if (shotTimer >= shootCoolown) {
+
+			// Get rawPos
+			sf::Vector2f rawPos = getRawPos();
+
+			// Compute direction
+			float dx = mob->rigidShape->pos.x - rawPos.x;
+			float dy = mob->rigidShape->pos.y - rawPos.y;
+
+			// Normalize direction !
+			// OPTIMIZE: sqrt() is heavy maybe use Q_rsqrt() from DOOM to optimize this 👀
+			float length = sqrt(dx * dx + dy * dy);
+			// Avoid division by zero
+			if (length > 0.f) {
+				// Apply normalization
+				dx /= length;
+				dy /= length;
+			}
+
+			// Shoot a projectile toward this direction
+			Projectile::create(rawPos.x, rawPos.y, dx, dy);
+
+			// Reset shotTimer
+			shotTimer = 0.f;
+		}
+
+		// Increment shotTimer
+		shotTimer += deltaTime;
+	}
+
+	/**
+	 * Updates the object's logic.
+	 * @param deltaTime - The time elapsed since the last frame (in ms)
+	 */
+	void Arm::update(float deltaTime) {
+
+		// Get rawPos, used to get in game pos, even if we are a children
+		sf::Vector2f rawPos = getRawPos();
+
+		// Get closest Mob to the arm
+		Mob::Mob* mob = Mob::getClosestTo(rawPos);
+
+		// If there is no mob just return
+		if (mob == nullptr) return;
+
+		// Rotate towards mob
+		rotateTowardsMob (mob);
+
+		// Shoot mob
+		handleShoot (deltaTime, mob);
 
 		// Use parent's update function !
 		Game::Object::update(deltaTime);
