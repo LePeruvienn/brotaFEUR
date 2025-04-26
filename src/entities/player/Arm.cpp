@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Arm.h"
+#include "../../utils/Utils.h"
 #include "../../objects/Projectile.h"
 
 namespace Player {
@@ -25,7 +26,7 @@ namespace Player {
 	 * Make the arm rotate towards the mob in parameter
 	 * @param Mob* - mob target we want to rotate to
 	 */
-	void Arm::rotateTowardsMob(Mob::Mob* mob) {
+	void Arm::rotateTowardsMob(float deltaTime, Mob::Mob* mob) {
 
 		// Get rawPos
 		sf::Vector2f rawPos = getRawPos();
@@ -34,11 +35,22 @@ namespace Player {
 		float dx = mob->pos.x - rawPos.x;
 		float dy = mob->pos.y - rawPos.y;
 
-		// Calculate angle in degrees
-		float angle = std::atan2(dy, dx) * 180.f / M_PI;
+		// Calculate angle in radians
+		float targetAngle = std::atan2(dy, dx);
+		float currentAngle = shape.getRotation().asRadians();
+
+		// Calculate shortest angular difference
+		float diff = targetAngle - currentAngle;
+
+		// Wrap the angle between -π and π
+		while (diff < -M_PI) diff += 2.f * M_PI;
+		while (diff >  M_PI) diff -= 2.f * M_PI;
+
+		// Make the transition between the 2 angles, taking part the rotation speed
+		float rotation = currentAngle + diff * (rotationSpeed * deltaTime);
 
 		// Apply rotation to the arm's shape
-		shape.setRotation(sf::degrees(angle));
+		shape.setRotation(sf::radians(rotation));
 	}
 
 	/**
@@ -55,18 +67,9 @@ namespace Player {
 			sf::Vector2f rawPos = getRawPos();
 
 			// Compute direction
-			float dx = mob->rigidShape->pos.x - rawPos.x;
-			float dy = mob->rigidShape->pos.y - rawPos.y;
-
-			// Normalize direction !
-			// OPTIMIZE: sqrt() is heavy maybe use Q_rsqrt() from DOOM to optimize this 👀
-			float length = sqrt(dx * dx + dy * dy);
-			// Avoid division by zero
-			if (length > 0.f) {
-				// Apply normalization
-				dx /= length;
-				dy /= length;
-			}
+			float angle = shape.getRotation().asRadians();
+			float dx = std::cos(angle);
+			float dy = std::sin(angle);
 
 			// Shoot a projectile toward this direction
 			Projectile::create(rawPos.x, rawPos.y, dx, dy);
@@ -95,7 +98,7 @@ namespace Player {
 		if (mob == nullptr) return;
 
 		// Rotate towards mob
-		rotateTowardsMob (mob);
+		rotateTowardsMob (deltaTime, mob);
 
 		// Shoot mob
 		handleShoot (deltaTime, mob);

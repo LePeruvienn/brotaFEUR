@@ -12,8 +12,11 @@ namespace Player {
 	public:
 
 		bool isEmpty = true; ///< Is the hand have an equipped weapon
+
 		// Not using this yet
 		// Data::Weapon* currentWeapon; //< Pointer of the current wepaon used data
+	
+		float rotationSpeed = 0.01f; ///< How fast the arm rotate towards his target
 
 		/**
 		 * Arm class constructor
@@ -52,7 +55,7 @@ namespace Player {
 		 * Make the arm rotate towards the mob in parameter
 		 * @param Mob* - mob target we want to rotate to
 		 */
-		void rotateTowardsMob(Mob::Mob* mob);
+		void rotateTowardsMob(float deltaTime, Mob::Mob* mob);
 
 		/**
 		 * Make the arm shoot a target mob
