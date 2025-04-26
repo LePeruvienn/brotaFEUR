@@ -22,6 +22,15 @@ namespace Mob {
 
 			// Create a new once
 			create(200.f, 200.f);
+
+			// Create a new once
+			create(800.f, 200.f);
+
+			// Create a new once
+			create(200.f, 800.f);
+
+			// Create a new once
+			create(800.f, 800.f);
 		}
 	}
 

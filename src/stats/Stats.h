@@ -25,8 +25,8 @@ namespace Entity {
 		 * @param speed
 		 */
 		Stats (
-			int health = 100000,
-			int damage = 100,
+			int health = 100,
+			int damage = 5,
 			float speed = 0.2f
 		);
 
