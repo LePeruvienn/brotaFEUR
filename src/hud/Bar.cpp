@@ -28,10 +28,15 @@ namespace HUD {
 	) : Game::Object (x, y), 
 	    width(width), height(height), minValue(minValue), maxValue(maxValue) {
 
+
 		// Create gauge & background RectangleShape
 		gauge = sf::RectangleShape({width, height});
 		background = sf::RectangleShape({width, height});
-		
+
+		// Set draw origin for gauge & background to center
+		gauge.setOrigin({width / 2, height / 2});
+		background.setOrigin({width / 2, height / 2});
+
 		// Set rectangles colors
 		gauge.setFillColor(foregroundColor);
 		background.setFillColor(backgroundColor);
@@ -48,8 +53,18 @@ namespace HUD {
 	 */
 	void Bar::setValue(float newValue) {
 
+		// Return if the value is unchanged
+		if (newValue == value) return;
+
 		// Set value between minValue & maxValue
 		value = std::max(std::min(newValue, maxValue), minValue);
+
+		// If current value must be updated
+		if (value != oldValue)
+			updateVisual();
+
+		// Reset oldValue
+		oldValue = value;
 	}
 
 	/* Get the current bar value
@@ -74,6 +89,19 @@ namespace HUD {
 		Game::Object::setPosition(x, y);
 	}
 
+
+	/**
+	 * Update bar visual
+	 */
+	void Bar::updateVisual() {
+
+		// Compute new width
+		float newWidth = value / (maxValue - minValue) * width;
+
+		// Set guage new width
+		gauge.setSize({newWidth, height});
+	}
+
 	/**
 	 * Callback function called before the entity is deleted
 	 */
@@ -89,6 +117,9 @@ namespace HUD {
 	 */
 	void Bar::update(float deltaTime) {
 
+
+		// Use parent's update function !
+		Game::Object::update(deltaTime);
 	}
 
 	/**
@@ -96,6 +127,9 @@ namespace HUD {
 	 * @param window - Instance of the game window
 	 */
 	void Bar::render(sf::RenderWindow& window) {
+
+		// User parent's render function
+		Game::Object::render(window);
 	
 		// Get current pos
 		float x = pos.x;

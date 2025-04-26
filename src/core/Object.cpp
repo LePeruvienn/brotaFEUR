@@ -48,8 +48,9 @@ namespace Game {
 		// Call on destroy callback (can be managed with override)
 		onDestroy();
 
+		// ⚠️ NOT DOING THIS ANYMORE : moved to Game::update() loop
 		// Delte object from memory
-		delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
+		//delete this; // CAUTION WITH THIS IT CAN DO SOME PRETTY BAD THINGS
 	};
 
 	/**
@@ -117,6 +118,25 @@ namespace Game {
 		// Set object nex position
 		pos.x = x;
 		pos.y = y;
+	}
+
+	/**
+	 * Get object position in the current scene,
+	 * Used to parse childrens object pos to current real world pos
+	 */
+	sf::Vector2f Object::getRawPos() {
+
+		// if there is no parent return pos
+		if (parent == nullptr) return pos;
+
+		// Get parent raw pos
+		sf::Vector2f parentPos = parent->getRawPos();
+	
+		// Return computed raw pos
+		return {
+			pos.x + parentPos.x,
+			pos.y + parentPos.y
+		};
 	}
 
 	/**

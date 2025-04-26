@@ -26,7 +26,7 @@ namespace Entity {
 		 */
 		Stats (
 			int health = 100,
-			int damage = 100,
+			int damage = 5,
 			float speed = 0.2f
 		);
 

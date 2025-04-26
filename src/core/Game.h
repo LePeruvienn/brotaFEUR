@@ -24,6 +24,9 @@ namespace Game {
 	extern unsigned int nextId; ///< Next object added ID when added to game objects
 	extern std::vector<Object*> objects; ///< Game objects list
 
+
+	extern std::vector<Object*> cachedObjectsToDelete; ///< Cached array that store all the objects we must delete at the end of the loop
+
 	/**
 	 * Initialize the Game module
 	 */

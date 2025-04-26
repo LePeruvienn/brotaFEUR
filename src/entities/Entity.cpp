@@ -29,6 +29,9 @@ namespace Entity {
 		// Intialize class values
 		: Game::Object(x, y), shape(radius), stats(stats) {
 
+		// Set circle shape draw origin to center
+		shape.setOrigin ({radius, radius});
+
 		// Set shape position & color
 		shape.setPosition({x, y});
 		shape.setFillColor(color);
@@ -41,6 +44,15 @@ namespace Entity {
 
 		// Add the rigidShape to the Physics
 		Physics::addObject (rigidShape);
+	}
+
+
+	/**
+	 * Set Entity health bar
+	 */
+	void Entity::setHealthBar(HUD::Bar* bar) {
+		// Set mob's new healthBar
+		healthBar = bar;
 	}
 
 	/*
@@ -82,9 +94,14 @@ namespace Entity {
 	 * @param deltaTime - The time elapsed since the last frame (in ms)
 	 */
 	void Entity::update(float deltaTime) {
-		
-		pos.x = rigidShape->pos.x;	
-		pos.y = rigidShape->pos.y;	
+	
+		// Update entity pos
+		pos.x = rigidShape->pos.x;
+		pos.y = rigidShape->pos.y;
+
+		// Update entity healthbar value if exist
+		if (healthBar != nullptr)
+			healthBar->setValue(stats.health);
 
 		// Use parent's update function !
 		Game::Object::update(deltaTime);

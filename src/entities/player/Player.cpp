@@ -2,10 +2,8 @@
 #include <new>
 #include <iostream>
 #include "Player.h"
-#include "../mob/Mob.h"
 #include "../../core/Game.h"
 #include "../../utils/Utils.h"
-#include "../../objects/Projectile.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
@@ -73,7 +71,17 @@ namespace Player {
 		// Use parent's base contructor
 		: Entity::Entity(x, y, radius, color, stats) {
 
-		// Nothing to do more !
+		// Create player's Arms
+		arms[0] = new Arm(50.f, -25.f);
+		arms[1] = new Arm(50.f, 25.f);
+		arms[2] = new Arm(-50.f, -25.f);
+		arms[3] = new Arm(-50.f, 25.f);
+
+		// Add this arms to Player's childrens objects
+		add(arms[0]);
+		add(arms[1]);
+		add(arms[2]);
+		add(arms[3]);
 	}
 
 	/**
@@ -87,7 +95,6 @@ namespace Player {
 
 		// Handle player movement & shooting
 		handleMovement();
-		handleShooting(deltaTime);
 	}
 
 	/**
@@ -171,50 +178,5 @@ namespace Player {
 			rigidShape->velocity.x = Utils::lerp (rigidShape->velocity.x, stats.speed * direction.x, lerp);
 			rigidShape->velocity.y = Utils::lerp (rigidShape->velocity.y, stats.speed * direction.y, lerp);
 		}
-	}
-
-	/**
-	 * Handle player shooting
-	 * @parm deltaTime - used to compute firerate
-	 */
-	void Player::handleShooting(float deltaTime) {
-
-		// If the shotTimer has reached his end
-		if (shotTimer >= shootCoolown) {
-
-			// Get closest Mob from current pos
-			Mob::Mob* mob = Mob::getClosestTo(pos);
-
-			// If we found a mob !
-			if (mob != nullptr) {
-
-				// Get current player postion
-				float x = rigidShape->pos.x;
-				float y = rigidShape->pos.y;
-
-				// Compute direction
-				float dx = mob->rigidShape->pos.x - x;
-				float dy = mob->rigidShape->pos.y - y;
-
-				// Normalize direction !
-				// OPTIMIZE: sqrt() is heavy maybe use Q_rsqrt() from DOOM to optimize this 👀
-				float length = sqrt(dx * dx + dy * dy);
-				// Avoid division by zero
-				if (length > 0.f) {
-					// Apply normalization
-					dx /= length;
-					dy /= length;
-				}
-
-				// Shoot a projectile toward this direction
-				Projectile::create(x, y, dx, dy);
-
-				// Reset shotTimer
-				shotTimer = 0.f;
-			}
-		}
-
-		// Increment shotTimer
-		shotTimer += deltaTime;
 	}
 }

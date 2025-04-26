@@ -72,12 +72,18 @@ namespace HUD {
 		float height; ///< gauge height
 
 		float value; ///< Current gauge value
+		float oldValue; //< Old Gauge value
 
 		float maxValue = 100.f; ///< Max gauge value
 		float minValue = 0.f; ///< Min gauge value
 
 		sf::RectangleShape gauge; ///< Shape representing the gauge
 		sf::RectangleShape background; ///< Shape representing the gauge background
+
+		/**
+		 * Update bar visual
+		 */
+		void updateVisual();
 	};
 }
 

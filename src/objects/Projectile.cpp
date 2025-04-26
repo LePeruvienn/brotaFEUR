@@ -43,8 +43,12 @@ namespace Projectile {
 	// Using parent's constructor
 	) : Game::Object(x, y), shape(radius), speed(speed), maxDuration(maxDuration) {
 	
+		// Set direction vector
 		direction.x = dx;
 		direction.y = dy;
+
+		// Set circle shape draw origin to center
+		shape.setOrigin ({radius, radius});
 
 		// Set shape position & color
 		shape.setPosition({x, y});

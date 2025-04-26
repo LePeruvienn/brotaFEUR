@@ -3,8 +3,9 @@
 #define PLAYER_H
 
 #include <memory>
+#include "Arm.h"
 #include "../Entity.h"
-#include "Input.h"
+#include "input/Input.h"
 
 /** @module Player */
 namespace Player {
@@ -55,21 +56,14 @@ namespace Player {
 
 	private:
 
-		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
+		std::array<Arm*, 4> arms;  ///< Player's Arms array
 
-		float shootCoolown = 500.f; ///< Time before the player shoot an other projectile
-		float shotTimer = 0.f; ///< Time elapsed after the player shot his last projectile
+		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
 	
 		/**
 		 * Handle player movement depending of his inputs
 		 */
 		void handleMovement();
-
-		/**
-		 * Handle player shooting
-		 * @parm deltaTime - used to compute firerate
-		 */
-		void handleShooting(float deltaTime);
 	};
 
 	extern std::vector<Player*> entities; ///< Player entities list
