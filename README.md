@@ -1,7 +1,8 @@
 # 🐥 BrotaFEUR
 
-
 Brotato like game, made using SFML and CMake to improve my C++ skills.
+
+![alt text](art/proto1.png)
 
 🔨 In construction ...
 
