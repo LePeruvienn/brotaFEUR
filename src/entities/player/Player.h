@@ -59,6 +59,10 @@ namespace Player {
 		std::array<Arm*, 4> arms;  ///< Player's Arms array
 
 		std::unique_ptr<Input> input; //< Each Player has one unique PlayerInput
+
+		// Player Art
+		sf::Texture texture; ///< Player sprite texture
+		sf::Sprite sprite; ///< Player sprite
 	
 		/**
 		 * Handle player movement depending of his inputs

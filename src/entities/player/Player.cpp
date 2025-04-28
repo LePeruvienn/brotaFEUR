@@ -69,7 +69,22 @@ namespace Player {
 	 */
 	Player::Player(float x, float y, float radius, sf::Color color, Stats stats) 
 		// Use parent's base contructor
-		: Entity::Entity(x, y, radius, color, stats) {
+		: Entity::Entity(x, y, radius, color, stats),
+		// Create player sprite
+		  texture("../art/proto1.png"), sprite(texture)
+		{
+
+		// Set sprite draw origin to center
+		sprite.setOrigin({texture.getSize().x / 2.f, texture.getSize().y / 2.f});
+
+		// TODO: ADJUST SIZE (it's NOT * 4.f but 2.f)
+		float scaleX = (radius * 4.f) / texture.getSize().x;
+		float scaleY = (radius * 4.f) / texture.getSize().y;
+
+		std::cout << "SCALE : " << scaleX << " , " << scaleX << std::endl;
+
+	   // Adapt the scale depending of the image's size
+		sprite.setScale({scaleX, scaleY});
 
 		// Create player's Arms
 		arms[0] = new Arm(50.f, -25.f);
@@ -105,6 +120,12 @@ namespace Player {
 		
 		// Use Entity render
 		Entity::Entity::render(window);
+
+		// Set sprite pos
+		sprite.setPosition(pos);
+
+		// Draw Player Sprite
+		window.draw(sprite);
 	}
 
 	/*
