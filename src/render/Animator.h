@@ -34,14 +34,22 @@ namespace Render {
 		 */
 		void update(float deltaTime);
 
+		/**
+		 * Renders the animation to the specified window.
+		 * @param window - Instance of the game window
+		 */
+		void render(sf::RenderWindow& window);
+
 	private:
 		
-		std::vector<Animation> animations;
+		std::vector<Animation*> animations;
 
 		sf::Sprite* sprite = nullptr; ///< Sprite used for the animation
 
-		int currentAnimation = 0; /// Current animation played
-		float timer = 0.f;
+		int currentIndex = 0; ///< Current animation index played
+		Animation* currentAnimation = nullptr; ///< Current animation playing
+		int currentFrame = 0; ///< Current frame we are
+		float timer = 0.f; ///< Time eleapsed since the begin of the current frame
 	};
 }
 

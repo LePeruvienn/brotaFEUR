@@ -19,6 +19,7 @@ namespace Render {
 		int frameWidth; ///< Frame width
 		int frameHeight; ///< Frame height
 		float frameDuration; ///< Time to wait between each frame
+		std::vector<sf::IntRect> frames; ///< All frame rectangles
 		
 		/*
 		 * Structure contustructor
@@ -36,7 +37,14 @@ namespace Render {
 		  frameWidth(frameWidth),
 		  frameHeight(frameHeight),
 		  frameDuration(frameDuration)
-		{}
+		{
+			// Pre-allocate memory to avoid reallocations
+			frames.reserve(frameCount);
+			// Store the IntRect datas in the frames array
+			for (int i = 0; i < frameCount; i++)
+				// Use `emplace_back` so we dont have to create a new object !
+				frames.emplace_back(sf::IntRect({i * frameWidth, 0}, {frameWidth, frameHeight}));
+		}
 	};
 }
 

@@ -2,29 +2,46 @@
 
 namespace Render {
 
-	/**
+	/*
 	 * Animator constructor
-	 * @param sprite - Sprite whos we are gonna apply an animation
+	 * @param vector<Animation*> - all current Animator animations pointers
 	 */
-	Animator::Animator(sf::Sprite* sprite) : sprite(sprite) {
+	Animator::Animator(std::vector<Animation*> animations)
+	// Set animations array
+	: animations(animations) {
 
-		// Nothing to do here
+		// Create sprite object with currentAnimation texture (0 by default)
+		sprite = new sf::Sprite(animations[currentIndex]->texture);
+
+		// Player currentAnimation (0 by default)
+		play(currentIndex);
 	};
 
 	/**
 	 * Player animation on a sprite
-	 * @param deltaTime - time eleapsed between now and the last frame
+	 * @param index - animation index to play
 	 */
-	void Animator::play(Animation* animation) {
-	
-		// If animation is already set dont change it
-		if (currentAnimation == animation) return;
-	
-		// Set new current animation
-		currentAnimation = animation;
+	void Animator::play(int index) {
 
-		// Aply new animation texture to sprite
-		currentAnimation->applyTexture(*sprite);
+		// Set new current index & animation
+		currentIndex = index;
+		currentAnimation = animations[index];
+
+		// Reset timer & current frame
+		timer = 0.f;
+		currentFrame = 0;
+
+		// Apply new texture to the sprite
+		sprite->setTexture(currentAnimation->texture);
+
+		// Set textureRect to currentFrame (the first one)
+		sprite->setTextureRect(currentAnimation->frames[currentFrame]);
+
+		// Set draw origin to sprite to the center of the animation frame
+		sprite->setOrigin({
+			currentAnimation->frameWidth / 2.f,
+			currentAnimation->frameHeight / 2.f
+		});
 	};
 
 	/**
@@ -33,10 +50,36 @@ namespace Render {
 	 */
 	void Animator::update(float deltaTime) {
 
-		// If there is no animation or sprite to update we do nothing
-		if (currentAnimation == nullptr || sprite == nullptr) return;
+		// If frame duration has elapsed
+		if (timer >= currentAnimation->frameDuration) {
 
-		// Update animation
-		currentAnimation->update(deltaTime, *sprite);
+			// Go to nextFrame
+			currentFrame++;
+
+			// Reset to zero if needed
+			if (currentFrame == currentAnimation->frameCount)
+				currentFrame = 0;
+
+			// Set textureRect to next frame
+			sprite->setTextureRect(currentAnimation->frames[currentFrame]);
+
+			// Reset timer
+			timer = 0.f;
+
+			return;
+		}
+
+		// Add elapsed time
+		timer += deltaTime;
 	};
+
+	/**
+	 * Renders the animation to the specified window.
+	 * @param window - Instance of the game window
+	 */
+	void Animator::render(sf::RenderWindow& window) {
+
+		// Draw sprite
+		window.draw(*sprite);
+	}
 }
