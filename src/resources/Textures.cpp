@@ -16,21 +16,15 @@ namespace Resources {
 			// Check if the texture is already in the cache
 			auto it = textureCache.find(filepath);
 
-			// IF we found a texture, return the cached one
+			// If we found a texture, return the cached one
 			if (it != textureCache.end())
 				return it->second;
 
-			// If not in cache, load the texture
-			sf::Texture texture;
-
 			// If we dont attemps to load the file, we throw an error !
-			if (!texture.loadFromFile(filepath))
+			if (!textureCache[filepath].loadFromFile(filepath))
 				std::cerr << "Failed to load texture: " << filepath << std::endl;
 
-			// If we succefully load the file, we saved it in the cache
-			textureCache[filepath] = texture;
-
-			// Return the reference of the cached texture
+			// Return a safe reference of the cached texture
 			return textureCache[filepath];
 		}
 

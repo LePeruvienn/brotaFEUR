@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "../../core/Game.h"
 #include "../../utils/Utils.h"
+#include "../../resources/Textures.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
@@ -70,21 +71,17 @@ namespace Player {
 	Player::Player(float x, float y, float radius, sf::Color color, Stats stats) 
 		// Use parent's base contructor
 		: Entity::Entity(x, y, radius, color, stats),
-		// Create player sprite
-		  texture("../art/proto1.png"), sprite(texture)
-		{
+		// Create sprite
+		  sprite(Resources::Texture::get("../art/idleAnimationSheet.png")) {
 
-		// Set sprite draw origin to center
-		sprite.setOrigin({texture.getSize().x / 2.f, texture.getSize().y / 2.f});
+		// Get animation texture
+		sf::Texture texture = sprite.getTexture();
 
-		// TODO: ADJUST SIZE (it's NOT * 4.f but 2.f)
-		float scaleX = (radius * 4.f) / texture.getSize().x;
-		float scaleY = (radius * 4.f) / texture.getSize().y;
+		// Create Animation
+		Render::Animation* idle = new Render::Animation("idle", texture, 10, 512, 512, 1000);
 
-		std::cout << "SCALE : " << scaleX << " , " << scaleX << std::endl;
-
-	   // Adapt the scale depending of the image's size
-		sprite.setScale({scaleX, scaleY});
+		// Create Animator
+		animator = new Render::Animator(sprite, {idle});
 
 		// Create player's Arms
 		arms[0] = new Arm(50.f, -25.f);
@@ -110,6 +107,9 @@ namespace Player {
 
 		// Handle player movement & shooting
 		handleMovement();
+
+		// Update player animator
+		animator->update(deltaTime);
 	}
 
 	/**
@@ -117,14 +117,14 @@ namespace Player {
 	 * @param window - Instance of the game window
 	 */
 	void Player::render(sf::RenderWindow& window) {
-		
+
 		// Use Entity render
 		Entity::Entity::render(window);
 
 		// Set sprite pos
 		sprite.setPosition(pos);
 
-		// Draw Player Sprite
+		// Render animator
 		window.draw(sprite);
 	}
 

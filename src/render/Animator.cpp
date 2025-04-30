@@ -6,12 +6,9 @@ namespace Render {
 	 * Animator constructor
 	 * @param vector<Animation*> - all current Animator animations pointers
 	 */
-	Animator::Animator(std::vector<Animation*> animations)
-	// Set animations array
-	: animations(animations) {
-
-		// Create sprite object with currentAnimation texture (0 by default)
-		sprite = new sf::Sprite(animations[currentIndex]->texture);
+	Animator::Animator(sf::Sprite& sprite, std::vector<Animation*> animations)
+	// Set properties in parmeter
+	: sprite(sprite), animations(animations) {
 
 		// Player currentAnimation (0 by default)
 		play(currentIndex);
@@ -32,13 +29,13 @@ namespace Render {
 		currentFrame = 0;
 
 		// Apply new texture to the sprite
-		sprite->setTexture(currentAnimation->texture);
+		sprite.setTexture(currentAnimation->texture);
 
 		// Set textureRect to currentFrame (the first one)
-		sprite->setTextureRect(currentAnimation->frames[currentFrame]);
+		sprite.setTextureRect(currentAnimation->frames[currentFrame]);
 
 		// Set draw origin to sprite to the center of the animation frame
-		sprite->setOrigin({
+		sprite.setOrigin({
 			currentAnimation->frameWidth / 2.f,
 			currentAnimation->frameHeight / 2.f
 		});
@@ -61,7 +58,7 @@ namespace Render {
 				currentFrame = 0;
 
 			// Set textureRect to next frame
-			sprite->setTextureRect(currentAnimation->frames[currentFrame]);
+			sprite.setTextureRect(currentAnimation->frames[currentFrame]);
 
 			// Reset timer
 			timer = 0.f;
@@ -72,14 +69,4 @@ namespace Render {
 		// Add elapsed time
 		timer += deltaTime;
 	};
-
-	/**
-	 * Renders the animation to the specified window.
-	 * @param window - Instance of the game window
-	 */
-	void Animator::render(sf::RenderWindow& window) {
-
-		// Draw sprite
-		window.draw(*sprite);
-	}
 }

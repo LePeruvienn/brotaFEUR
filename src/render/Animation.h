@@ -14,7 +14,7 @@ namespace Render {
 	struct Animation {
 
 		std::string name; ///< Name of the animation
-		sf::Texture& texture; ///< Reference to texture
+		sf::Texture texture; ///< Reference to texture
 		int frameCount; ///< Number of frames in the animation
 		int frameWidth; ///< Frame width
 		int frameHeight; ///< Frame height
@@ -26,7 +26,7 @@ namespace Render {
 		 */
 		Animation(
 			std::string name,
-			sf::Texture& texture,
+			sf::Texture texture,
 			int frameCount,
 			int frameWidth,
 			int frameHeight,
