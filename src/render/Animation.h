@@ -1,40 +1,42 @@
 #ifndef ANIMATION_H // Make the compiler include this once
 #define ANIMATION_H
 
-#include <string>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include <string>
 
 /** @module Render */
 namespace Render {
 
-	/**
-	 * Class to create different animations
+	/*
+	 * Animation Structure !
+	 * Used to store animation datas an use them multiple animators
 	 */
-	class Animation {
-	public:
+	struct Animation {
 
-		/**
-		 * Animation class constructor
-		 * @param texture - Texture source of the animation
-		 * @param frameCount - Number of frame in the texture
-		 * @param frameWidth - Width of a frame
-		 * @param frameHeight - Height of a frame
-		 * @param frameDuration - Time to wait between each frames
+		std::string name; ///< Name of the animation
+		sf::Texture& texture; ///< Reference to texture
+		int frameCount; ///< Number of frames in the animation
+		int frameWidth; ///< Frame width
+		int frameHeight; ///< Frame height
+		float frameDuration; ///< Time to wait between each frame
+		
+		/*
+		 * Structure contustructor
 		 */
 		Animation(
+			std::string name,
 			sf::Texture& texture,
 			int frameCount,
-			float frameWidth,
-			float frameHeight,
-			float frameDuration
-		);
-
-		/**
-		 * Update current animation
-		 * @param deltaTime - time eleapsed between now and the last frame
-		 */
-		void update (float deltaTime);
+			int frameWidth,
+			int frameHeight,
+			float frameDuration)
+		// Set values
+		: name(name),
+		  texture(texture),
+		  frameWidth(frameWidth),
+		  frameHeight(frameHeight),
+		  frameDuration(frameDuration)
+		{}
 	};
 }
 
