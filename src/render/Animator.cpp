@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Animator.h"
 
 namespace Render {
@@ -52,6 +53,8 @@ namespace Render {
 
 			// Go to nextFrame
 			currentFrame++;
+
+			std::cout << "Animator->currentFrame : " << currentFrame << " - " << currentAnimation->frameCount << std::endl;
 
 			// Reset to zero if needed
 			if (currentFrame == currentAnimation->frameCount)

@@ -34,6 +34,7 @@ namespace Render {
 		// Set values
 		: name(name),
 		  texture(texture),
+		  frameCount(frameCount),
 		  frameWidth(frameWidth),
 		  frameHeight(frameHeight),
 		  frameDuration(frameDuration)

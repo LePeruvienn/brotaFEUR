@@ -74,14 +74,20 @@ namespace Player {
 		// Create sprite
 		  sprite(Resources::Texture::get("../art/idleAnimationSheet.png")) {
 
-		// Get animation texture
+		// Get default animation texture
 		sf::Texture texture = sprite.getTexture();
 
 		// Create Animation
-		Render::Animation* idle = new Render::Animation("idle", texture, 10, 512, 512, 1000);
+		Render::Animation* idle = new Render::Animation("idle", texture, 10, 512, 512, 100);
 
 		// Create Animator
 		animator = new Render::Animator(sprite, {idle});
+
+		// TODO ADJUST SIZE (it's NOT * 4.f but 2.f)
+		//float scaleX = (radius * 4.f) / 512;
+		//float scaleY = (radius * 4.f) / 512;
+		// Adapt the scale depending of the animation's frame size
+		//sprite.setScale({scaleX, scaleY});
 
 		// Create player's Arms
 		arms[0] = new Arm(50.f, -25.f);
