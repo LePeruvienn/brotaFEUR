@@ -84,10 +84,10 @@ namespace Player {
 		animator = new Render::Animator(sprite, {idle});
 
 		// TODO ADJUST SIZE (it's NOT * 4.f but 2.f)
-		//float scaleX = (radius * 4.f) / 512;
-		//float scaleY = (radius * 4.f) / 512;
+		float scaleX = (radius * 4.f) / 512;
+		float scaleY = (radius * 4.f) / 512;
 		// Adapt the scale depending of the animation's frame size
-		//sprite.setScale({scaleX, scaleY});
+		sprite.setScale({scaleX, scaleY});
 
 		// Create player's Arms
 		arms[0] = new Arm(50.f, -25.f);
