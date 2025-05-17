@@ -1,6 +1,6 @@
+#include <string>
 #include <vector>
-#include "Camera.h"
-#include "../Object.h"
+#include "Object.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -10,10 +10,18 @@ namespace Game {
 	class Scene {
 	public:
 
+		sf::View camera; ///< Scene camera
+
 		/**
 		 * Scene constructor
 		 */
-		Scene();
+		Scene(std::string name);
+
+		/**
+		 * Scene update loop
+		 * @param deltaTime
+		 */
+		 void init(sf::RenderWindow& window);
 
 		/**
 		 * Scene update loop
@@ -40,27 +48,22 @@ namespace Game {
 		void remove(Object* object);
 
 		/**
+		 * Scene name getter
+		 * @return string - scene name
+		 */
+		std::string getName() const;
+
+		/**
 		 * Flush the scene instance
 		 */
 		void flush();
 
-		/**
-		 * Camera setter
-		 */
-		void getCamera();
-	
-		/**
-		 * Set current camera
-		 * @param _camera - new camera to set
-		 */
-		void setCamera(Camera* _camera);
-
 	private:
+
+		std::string name; ///< Scene name
 		
 		std::vector<Object*> objects; ///< Scene currents objects
 
 		std::vector<Object*> cachedObjectsToDelete; ///< Cached array that store all the objects we must delete at the end of the loop
-	
-		Camera* camera = nullptr; ///< Current scene active Camera
 	};
 }
