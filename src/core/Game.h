@@ -2,9 +2,11 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <string>
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "Scene.h"
 #include "Object.h"
 #include "../entities/Entity.h"
 #include "../entities/player/Player.h"
@@ -18,6 +20,9 @@
 namespace Game {
 
 	extern sf::RenderWindow window; ///< Program main window
+
+	extern Scene* currentScene; ///< Current game scene active
+	extern std::unordered_map<std::string, Scene*> scenes; ///< All game available scenes
 
 	extern Player::Player* player1; ///< Main player entitiy pointer
 

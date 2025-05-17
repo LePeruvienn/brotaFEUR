@@ -8,13 +8,12 @@ namespace Game {
 
 	sf::RenderWindow window; ///< Program main window
 
+	Scene* currentScene = nullptr; ///< Current game scene active
+	std::unordered_map<std::string, Scene*> scenes; ///< All game available scenes
+
 	Player::Player* player1 = nullptr; ///< Main player entitiy pointer
 		
 	unsigned int nextId = 0; ///< Next object added ID when added to game objects
-	std::vector<Object*> objects; ///< Game objects list
-
-
-	std::vector<Object*> cachedObjectsToDelete; ///< Cached array that store all the objects we must delete at the end of the loop
 
 	/**
 	 * Declare Game private constructors
@@ -27,6 +26,12 @@ namespace Game {
 		window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
 		// YEEEY game instance initialized B)
 		std::cout << "Game instance initialized !\n";
+
+		// Create a new scene named `default`
+		currentScene = new Scene("default");
+
+		// Init current scene
+		currentScene->init(window);
 	}
 
 	/**
@@ -40,7 +45,7 @@ namespace Game {
 		// Game Loop
 		while (window.isOpen()) {
 
-			// Get  current deltaTime
+			// Get current deltaTime
 			sf::Time deltaTime = clock.restart();
 
 			update(deltaTime);
@@ -52,10 +57,10 @@ namespace Game {
 	 * Add a game object to the objects list
 	 * @param Object*
 	 */
-	void add (Object* gameObject) {
+	void add (Object* object) {
 
 		// Addd gameObject to objects list
-		objects.push_back (gameObject);
+		currentScene->add(object);
 	}
 
 	/**
@@ -74,9 +79,6 @@ namespace Game {
 	 */
 	void update(sf::Time deltaTime) {
 
-		// Reset cachedObjectsToDelete to use it !
-		cachedObjectsToDelete.clear();
-
 		// Convert dt in ms (we convert um so ms to have more precision)
 		float dt = deltaTime.asMicroseconds() / 1000.0f;
 
@@ -86,38 +88,8 @@ namespace Game {
 		// Updates others modules
 		Mob::update(dt);
 		
-		// Update all entities logic
-		for (int i = 0; i < Game::objects.size ();) {
-
-			// Get current object
-			Object* currentObject = Game::objects[i]; 
-	
-			// If object has to be deleted, we dont update it
-			if (currentObject->getToBeDeleted() == true) {
-
-				// Remove current object from the list
-				Game::objects.erase(Game::objects.begin() + i);
-
-				// Delete object from the game logic & memory
-				currentObject->_destroy(); /// CAUTION THIS DELETE THE OBJECT FROM MEMORY
-			
-				// add it to the objects to delete Array
-				cachedObjectsToDelete.push_back(currentObject);
-
-				// Go to next object
-				continue;
-			}
-
-			// Update current object
-			currentObject->update(dt);
-
-			// Increment i before going to the next object
-			i++;
-		}
-
-		// Delete from memory all objects to delete
-		for (int i = 0; i < cachedObjectsToDelete.size(); i++)
-			delete cachedObjectsToDelete[i];
+		// Update current scene objects
+		currentScene->update(dt);
 	}
 
 	/**
@@ -128,10 +100,12 @@ namespace Game {
 		// Draw background
 		window.clear(sf::Color::Black);
 
-		// Render each entity
-		for (auto& object : Game::objects) {
-			object->render(window);
-		}
+		// Target player1
+		// if (player1 != nullptr)
+			// currentScene->camera.setCenter(player1->pos);
+
+		// Render current scenes objects
+		currentScene->render(window);
 
 		// Update display
 		window.display();
@@ -144,11 +118,6 @@ namespace Game {
 
 		// Delete player1
 		delete player1;
-
-		// Delete each game entity
-		for (Entity::Entity* entity : Entity::entities) {
-			delete entity;
-		}
 	}
 }
 
