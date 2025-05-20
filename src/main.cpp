@@ -7,7 +7,7 @@
 
 int main() {
 	
-
+	// Init game module
 	Game::init ();
 
 	Player::Player* player = Player::create(800.f, 800.f);
