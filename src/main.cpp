@@ -17,6 +17,7 @@ int main() {
 	// Add input to main player
 	player->addInput ();
 	Player::setPlayer1(player);
+	Game::setPlayer1(player);
 
 	// Run game
 	Game::run();

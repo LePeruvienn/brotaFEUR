@@ -100,7 +100,9 @@ namespace Game {
 		// Draw background
 		window.clear(sf::Color::Black);
 
-		// Target player1
+		// Make the camera follow player 1
+		// Maybe make the camera adapt to screen size ?
+		// Not used yet cause it's not usefull
 		// if (player1 != nullptr)
 			// currentScene->camera.setCenter(player1->pos);
 
