@@ -1,8 +1,9 @@
 #include <cmath>
 #include "Mob.h"
+#include "../../hud/Bar.h"
 #include "../../core/Game.h"
 #include "../player/Player.h"
-#include "../../hud/Bar.h"
+#include "../../cli/Console.h"
 
 using Entity::Stats; // So we can declare Stats like this : Stats();
 
@@ -19,6 +20,8 @@ namespace Mob {
 
 		// If there is no mob in the map
 		if (entities.size() == 0) {
+
+			Console::log("Respawning Mobs ...");
 
 			// Create a new once
 			create(200.f, 200.f);

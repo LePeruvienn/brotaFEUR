@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Physics.h"
+#include "../cli/Console.h"
 #include "../entities/mob/Mob.h"
 
 /** @module Game */
@@ -25,7 +26,7 @@ namespace Game {
 		// Create game window
 		window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
 		// YEEEY game instance initialized B)
-		std::cout << "Game instance initialized !\n";
+		Console::log("Game instance initialized !\n");
 
 		// Create a new scene named `default`
 		currentScene = new Scene("default");

@@ -1,3 +1,6 @@
+#include <thread>
+#include "cli/CLI.h"
+
 #include "core/Game.h"
 #include "entities/player/Player.h"
 #include "entities/mob/Mob.h"
@@ -5,10 +8,14 @@
 #include "objects/Projectile.h"
 #include "hud/Bar.h"
 
+
 int main() {
+
+	// Run CLI thread
+	std::thread cli(CLI::run);
 	
 	// Init game module
-	Game::init ();
+	Game::init();
 
 	Player::Player* player = Player::create(800.f, 800.f);
 	Mob::Mob* mob = Mob::create(200.f, 200.f);
@@ -21,6 +28,9 @@ int main() {
 
 	// Run game
 	Game::run();
+
+	// End CLI thread on exit
+    cli.join();
 
 	return 0;
 }
