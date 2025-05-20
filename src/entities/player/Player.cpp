@@ -72,7 +72,7 @@ namespace Player {
 		// Use parent's base contructor
 		: Entity::Entity(x, y, radius, color, stats),
 		// Create sprite
-		  sprite(Resources::Texture::get("../art/idleTest.png")) {
+		  sprite(Resources::Texture::get("../assets/art/idleTest.png")) {
 
 		// Get default animation texture
 		sf::Texture texture = sprite.getTexture();
