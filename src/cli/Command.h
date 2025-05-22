@@ -1,4 +1,6 @@
 #include <string>
+#include <functional>
+#include <unordered_map>
 
 /*
  * All the commands we can run defined by types,
@@ -22,6 +24,9 @@ const std::string CommandToString[] = {
 
 /* @module CLI */
 namespace CLI {
+
+	// Where all the commands are stored
+	extern std::unordered_map<std::string, std::function<int(std::istringstream&)>> commands;
 
 	/*
 	 * Run the command in parameter

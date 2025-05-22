@@ -1,4 +1,4 @@
-#include <vector>
+#include <sstream>
 #include "Command.h"
 #include "Console.h"
 
@@ -6,38 +6,48 @@
 namespace CLI {
 
 	/*
-	 * >>> Private namespace functions !!
+	 * >>> Map of all the commands linked to there function
 	 *
 	 * Here we have all the function command we can run with the CLI !
-	 * They are declared in a private namespace to avoid being used without entry
 	 *
-	 * All commands are declared with a string array that are all the user inputs parameters
+	 * All commands are declared with a string buffer that are all the user inputs parameters
 	 *
 	 * - If a function has been run succefully it return 0
 	 * - If not it returns 1
-	 *
-	 * The @param in comments are the ones used in the CLI, not the function !!!
 	 */
-	namespace {
+	std::unordered_map<std::string, std::function<int(std::istringstream&)>> commands = {
 
 		/*
-		 * Exit the current game to desktop
+		 * Function used to exit the game 
+		 * @param : None
 		 */
-		int exit(std::vector<std::string> parameters) {
+		{"exit", [](std::istringstream& parameters) {
 
-			// TODO
+			Console::log("RUN COMMAND EXIT");
 
+			// Command has run succefully, we can return 0
 			return 0;
-		}
-	}
+		}}
+	};
 
 	/*
 	 * Run the command in parameter
 	 */
 	int runCommand(const std::string& command) {
 
-		// TODO
+		// Get current commands as a string buffer list
+		std::istringstream iss(command);
 
-		return 0;
+		// Extract the command name from string buffer
+		std::string commandName;
+		iss >> commandName;
+
+		// We check if the cmd name is in the list
+		if (commands.find(commandName) != commands.end())
+			// If he is in the list we run the command
+			return commands[commandName](iss);
+
+		// Return 1 cause we dont find any linked command
+		return 1;
 	}
 }
