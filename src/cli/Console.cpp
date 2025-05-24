@@ -14,11 +14,11 @@ namespace Console {
 
 	const char* colorName[] = { ///< Name of the colors
  		"Reset",  // Reset
-		"Gray", // Gray
-		"Red", // Red
-		"Blue", // Blue
+		"Gray",   // Gray
+		"Red",    // Red
+		"Blue",   // Blue
 		"Yellow", // Yellow
-		"Green"  // Green
+		"Green"   // Green
 	};
 
 	/*

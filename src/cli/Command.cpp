@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iostream>
 #include "Command.h"
 #include "Console.h"
 
@@ -7,6 +8,8 @@
 
 /* @module CLI */
 namespace CLI {
+
+	const std::string __EMPTY_STRING__ = ""; ///< Empty string const
 
 	/*
 	 * >>> Map of all the commands linked to there function
@@ -37,7 +40,7 @@ namespace CLI {
 			CLI::exit();
 
 			// Command has run succefully, we can return 0
-			return "";
+			return __EMPTY_STRING__;
 		}},
 
 		/*
@@ -59,7 +62,54 @@ namespace CLI {
 			Game::setScene(sceneName);
 
 			// Command has run succefully, we can return 0
-			return "";
+			return __EMPTY_STRING__;
+		}},
+
+		/*
+		 * Switch the game to the current scene
+		 * @params :
+		 * - sceneName - the name of the scene we want to switch
+		 */
+		{"clear", [](std::istringstream& parameters) {
+
+			// Get first argument (nb of line to delete)
+			std::string argument;
+			parameters >> argument;
+
+			// If there is no argument we just want to do a basic clear
+			if (argument.empty()) {
+				// Clear all the scren
+				std::cout << "\033[2J\033[H";
+				// Stop here
+				return __EMPTY_STRING__;
+			}
+
+			// Set error message var
+			std::string errorMessage;
+
+			try {
+				// Parse argument to integer
+				int count = std::stoi(argument);
+
+				// Clear the amount of line in parameter
+				for (int i = 0; i < count + 1; i++)
+					// Move cursor up & Clear entire line
+					std::cout << "\033[A" << "\033[2K";
+
+				// Return to beginning of current line
+				std::cout << "\r";
+				
+			} catch (const std::invalid_argument& error) {
+				// Set error message
+				errorMessage = "Invalid input";
+
+			} catch (const std::out_of_range& error) {
+				// Set error message
+				errorMessage = "Out of range";
+			}
+
+			// Command has run succefully, we can return 0
+			return errorMessage;
 		}}
 	};
 
