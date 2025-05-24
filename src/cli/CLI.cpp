@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "CLI.h"
+#include "Console.h"
 #include "Command.h"
 
 /** @module CLI */
@@ -12,6 +13,10 @@ namespace CLI {
 	* CLI main thread function
 	*/
 	void run() {
+
+		// Run Console::log tests
+		// Console::showAllColors();
+		// Console::showAllStyles();
 
 		// User string input var
 		std::string input;
@@ -26,7 +31,12 @@ namespace CLI {
 			std::getline(std::cin, input);
 
 			// Run CLI input !
-			runCommand(input);
+			std::string commandError = runCommand(input);
+
+			// Check if we have returned an error
+			if (!commandError.empty())	
+				// Show error in this case
+				Console::logError(commandError);
 		}
 	}
 }

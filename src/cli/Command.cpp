@@ -12,10 +12,10 @@ namespace CLI {
 	 *
 	 * All commands are declared with a string buffer that are all the user inputs parameters
 	 *
-	 * - If a function has been run succefully it return 0
-	 * - If not it returns 1
+	 * - If a function has been run succefully it return an empty string : ""
+	 * - If not it returns an error that is describe in a string
 	 */
-	std::unordered_map<std::string, std::function<int(std::istringstream&)>> commands = {
+	std::unordered_map<std::string, std::function<std::string(std::istringstream&)>> commands = {
 
 		/*
 		 * Function used to exit the game 
@@ -26,14 +26,16 @@ namespace CLI {
 			Console::log("RUN COMMAND EXIT");
 
 			// Command has run succefully, we can return 0
-			return 0;
+			return "";
 		}}
 	};
 
 	/*
-	 * Run the command in parameter
+	 * Run the command in parameter, return an error if something as occured
+	 * @param const string& - the command we want to run
+	 * @return string - the error message, or "" if all is OK
 	 */
-	int runCommand(const std::string& command) {
+	std::string runCommand(const std::string& command) {
 
 		// Get current commands as a string buffer list
 		std::istringstream iss(command);
@@ -48,6 +50,6 @@ namespace CLI {
 			return commands[commandName](iss);
 
 		// Return 1 cause we dont find any linked command
-		return 1;
+		return "";
 	}
 }

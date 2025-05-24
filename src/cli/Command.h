@@ -26,12 +26,12 @@ const std::string CommandToString[] = {
 namespace CLI {
 
 	// Where all the commands are stored
-	extern std::unordered_map<std::string, std::function<int(std::istringstream&)>> commands;
+	extern std::unordered_map<std::string, std::function<std::string(std::istringstream&)>> commands;
 
 	/*
-	 * Run the command in parameter
-	 * @param command - User input string that has been entered in the console
-	 * @return integer - 0 if it run good, 1 if not 😢
+	 * Run the command in parameter, return an error if something as occured
+	 * @param const string& - the command we want to run
+	 * @return string - the error message, or "" if all is OK
 	 */
-	int runCommand(const std::string& command);
+	std::string runCommand(const std::string& command);
 }

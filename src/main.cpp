@@ -5,8 +5,6 @@
 #include "entities/player/Player.h"
 #include "entities/mob/Mob.h"
 #include "objects/Bonus.h"
-#include "objects/Projectile.h"
-#include "hud/Bar.h"
 
 
 int main() {
