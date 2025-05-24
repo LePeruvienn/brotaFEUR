@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Physics.h"
+#include "../cli/Console.h"
 #include "../entities/mob/Mob.h"
 
 /** @module Game */
@@ -15,6 +16,12 @@ namespace Game {
 		
 	unsigned int nextId = 0; ///< Next object added ID when added to game objects
 
+	/** Private variables */
+	namespace {
+
+		bool exitGame = false; ///< Must we exit the game ?
+	}
+
 	/**
 	 * Declare Game private constructors
 	 * Only used with the game singleton
@@ -24,8 +31,6 @@ namespace Game {
 
 		// Create game window
 		window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
-		// YEEEY game instance initialized B)
-		std::cout << "Game instance initialized !\n";
 
 		// Create a new scene named `default`
 		currentScene = new Scene("default");
@@ -39,18 +44,34 @@ namespace Game {
 	 */
 	void run() {
 
-		// Get sfml clock
+		// Get SFML clock
 		sf::Clock clock;
 
 		// Game Loop
 		while (window.isOpen()) {
 
+			// if we must qui the game go out of the loop
+			if (exitGame)
+				break;
+
 			// Get current deltaTime
 			sf::Time deltaTime = clock.restart();
 
+			// update Game
 			update(deltaTime);
+
+			// Render Game
 			render();
 		}
+	}
+
+	/**
+	 * Exit the game, stop the game loop & program
+	 */
+	void exit() {
+
+		// Set exitGame to true
+		exitGame = true;
 	}
 
 	/**
@@ -100,7 +121,9 @@ namespace Game {
 		// Draw background
 		window.clear(sf::Color::Black);
 
-		// Target player1
+		// Make the camera follow player 1
+		// Maybe make the camera adapt to screen size ?
+		// Not used yet cause it's not usefull
 		// if (player1 != nullptr)
 			// currentScene->camera.setCenter(player1->pos);
 

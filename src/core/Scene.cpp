@@ -28,7 +28,7 @@ namespace Game {
 		));
 
 		// Zoom into the view
-		camera.zoom(0.8f);
+		camera.zoom(1.f);
 
 		// Set camera view
 		window.setView(camera);

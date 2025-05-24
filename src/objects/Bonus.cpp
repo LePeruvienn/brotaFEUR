@@ -103,7 +103,7 @@ namespace Bonus {
 	 */
 	void Bonus::onDestroy() {
 
-		std::cout << "Bonus : onDestroy()" << std::endl;
+		// std::cout << "Bonus : onDestroy()" << std::endl;
 
 		/*
 		 * OPTIMIZE: We are looping all the entities loop for 1 entity,
