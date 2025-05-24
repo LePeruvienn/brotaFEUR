@@ -2,6 +2,9 @@
 #include "Command.h"
 #include "Console.h"
 
+#include "CLI.h"
+#include "../core/Game.h"
+
 /* @module CLI */
 namespace CLI {
 
@@ -23,7 +26,13 @@ namespace CLI {
 		 */
 		{"exit", [](std::istringstream& parameters) {
 
-			Console::log("RUN COMMAND EXIT");
+			Console::logInfo("Exiting Game ...");
+
+			// Exit game
+			Game::exit();
+
+			// Exit CLI loop
+			CLI::exit();
 
 			// Command has run succefully, we can return 0
 			return "";
@@ -49,7 +58,7 @@ namespace CLI {
 			// If he is in the list we run the command
 			return commands[commandName](iss);
 
-		// Return 1 cause we dont find any linked command
-		return "";
+		// Return ERROR cause we dont found any linked command
+		return "Unknown Command";
 	}
 }

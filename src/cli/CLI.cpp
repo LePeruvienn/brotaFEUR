@@ -9,6 +9,12 @@ namespace CLI {
 
 	std::atomic<bool> running = true; ///< Is the CLI thread running
 
+	/** Private Namespace */
+	namespace {
+
+		bool exitCLI = false; ///< Exit CLI condition
+	}
+
 	/*
 	* CLI main thread function
 	*/
@@ -24,6 +30,10 @@ namespace CLI {
 		// Run the thread until we stop it
 		while (running) {
 
+			// If we must exit CLI loop we break
+			if (exitCLI)
+				break;
+
 			// Show string entry input
 			std::cout << "> ";
 
@@ -38,6 +48,14 @@ namespace CLI {
 				// Show error in this case
 				Console::logError(commandError);
 		}
+	}
+
+	/*
+	 * Exit CLI loop
+	 */
+	void exit() {
+		// Set exitCLI to TRUE
+		exitCLI = true;
 	}
 }
 

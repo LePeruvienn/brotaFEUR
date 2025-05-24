@@ -43,6 +43,11 @@ namespace Game {
 	void run();
 
 	/**
+	 * Quit the game, stop the game loop & program
+	 */
+	void exit();
+
+	/**
 	 * Add a game object to the objects list
 	 * @param Object*
 	 */

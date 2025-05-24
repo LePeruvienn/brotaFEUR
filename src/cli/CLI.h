@@ -10,4 +10,9 @@ namespace CLI {
 	 * CLI main thread function
 	 */
 	void run();
+
+	/*
+	 * Exit CLI loop
+	 */
+	void exit();
 }
