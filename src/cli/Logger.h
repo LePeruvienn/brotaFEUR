@@ -1,4 +1,5 @@
 #include <string>
+#include <sys/types.h>
 
 /*
  * Used to define all the possible log types
@@ -28,15 +29,17 @@ struct LogData {
 /** @module Logger */
 namespace Logger {
 	
-	constexpr int __MAX_MESSAGES__ = 100; ///< Max message on in array
+	// Include __MAX_MESSAGES__ once, old method to be sure to work on older compilers
+	#ifndef LOGGER_MAX_MESSSAGES_H
+	#define LOGGER_MAX_MESSSAGES_H
 
-	LogData messages[__MAX_MESSAGES__] = {}; ///< Log messages buffers
+	constexpr int __MAX_MESSAGES__ = 10; ///< Max message on in array
+
+	#endif // LOGGER_MAX_MESSSAGES_H
 
 	/*
-	 * TODO: FINISH !!!
-	 *
 	 * Add a Log message to the log file
 	 * @param LogData& - reference to the log datas we want to add
 	 */
-	void add(std::string& message /*, TODO: ... */);
+	void add(const std::string& message, LogType type, float time);
 }
