@@ -1,0 +1,8 @@
+# This is a comment
+
+name:"default"
+
+objects:
+- Player(800, 800);
+- Mob(200, 200);
+- Bonus(500, 500, 20);
