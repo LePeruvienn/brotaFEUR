@@ -14,16 +14,16 @@ enum CommandType {
 	Exit
 };
 
-/*
- * All the linked string to the enum CommandType
- * IMPORTANT: All the strings must be in the same index of the enum
- */
-const std::string CommandToString[] = {
-	"exit"
-};
-
 /* @module CLI */
 namespace CLI {
+
+	/*
+	 * All the linked string to the enum CommandType
+	 * IMPORTANT: All the strings must be in the same index of the enum
+	 */
+	const std::string CommandToString[] = {
+		"exit"
+	};
 
 	// Where all the commands are stored
 	extern std::unordered_map<std::string, std::function<std::string(std::istringstream&)>> commands;

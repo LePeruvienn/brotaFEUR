@@ -1,5 +1,6 @@
 #include <thread>
 #include "cli/CLI.h"
+#include "cli/Logger.h"
 
 #include "core/Game.h"
 #include "entities/player/Player.h"
@@ -11,7 +12,10 @@ int main() {
 
 	// Run CLI thread
 	std::thread cli(CLI::run);
-	
+
+	// Init Logger module
+	Logger::init();
+
 	// Init game module
 	Game::init();
 
@@ -29,6 +33,9 @@ int main() {
 
 	// End CLI thread on exit
     cli.join();
+
+	// Flush Logger module
+	Logger::flush();
 
 	return 0;
 }

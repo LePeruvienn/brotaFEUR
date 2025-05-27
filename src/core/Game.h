@@ -47,6 +47,12 @@ namespace Game {
 	 */
 	void exit();
 
+	/*
+	 * Change current game scene
+	 * @param name - target scene name
+	 */
+	void setScene(std::string& name);
+
 	/**
 	 * Add a game object to the objects list
 	 * @param Object*

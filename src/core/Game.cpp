@@ -35,6 +35,12 @@ namespace Game {
 		// Create a new scene named `default`
 		currentScene = new Scene("default");
 
+		// Save the default scene to map
+		scenes[currentScene->getName()] = currentScene;
+
+		// Add others scenes ...
+		scenes["menu"] = new Scene("menu");
+
 		// Init current scene
 		currentScene->init(window);
 	}
@@ -72,6 +78,22 @@ namespace Game {
 
 		// Set exitGame to true
 		exitGame = true;
+	}
+
+	/*
+	 * Change current game scene
+	 * @param name - target scene name
+	 */
+	void setScene(std::string& name) {
+
+		// If we find the current scene
+		if (scenes.find(name) != scenes.end())
+			// Set new scene to scene name
+			currentScene = scenes[name];
+
+		// If we dont find we log an error
+		else 
+			Console::logError("The scene `" + name + "` does not exist");
 	}
 
 	/**
