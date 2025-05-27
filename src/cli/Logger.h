@@ -1,5 +1,4 @@
 #include <string>
-#include <sys/types.h>
 
 /*
  * Used to define all the possible log types
@@ -16,9 +15,14 @@ enum LogType {
  * Struct used to store log datas before writing them into the log file
  */
 struct LogData {
-	LogType type;
 	std::string message;
-	float time;
+	LogType type;
+	std::string date;
+	/* Default Constructor */
+	LogData() : message(""), type(Default), date("") {}
+	/* Constructor */
+	LogData(const std::string& msg, LogType t, const std::string& d)
+		: message(msg), type(t), date(d) {}
 };
 
 // This module is used to manage the logs files of the game,
@@ -38,8 +42,18 @@ namespace Logger {
 	#endif // LOGGER_MAX_MESSSAGES_H
 
 	/*
+	 * Write all the messages in buffer and reset the array
+	 */
+	void init();
+
+	/*
 	 * Add a Log message to the log file
 	 * @param LogData& - reference to the log datas we want to add
 	 */
-	void add(const std::string& message, LogType type, float time);
+	void add(const std::string& message, LogType type);
+
+	/*
+	 * Write all the messages in buffer and reset the array
+	 */
+	void flush();
 }

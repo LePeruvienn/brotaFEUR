@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Console.h"
+#include "Logger.h"
 
 namespace Console {
 
@@ -59,6 +60,9 @@ namespace Console {
 
 		// Print the message in param
 		std::cout << colorCode[color]<< message << colorCode[Reset] << std::endl;
+
+		// Add message to logger
+		Logger::add(message, Default);
 	}
 
 	/*
@@ -68,6 +72,9 @@ namespace Console {
 	void logError (const std::string& message) {
 		// Show message with prefix & style
 		std::cout << colorCode[Red] << logErrorPrefix << message << colorCode[Reset] << std::endl;
+
+		// Add message to logger
+		Logger::add(message, Error);
 	}
 
 	/*
@@ -77,6 +84,9 @@ namespace Console {
 	void logWarning (const std::string& message) {
 		// Show message with prefix & style
 		std::cout << colorCode[Yellow] << logWarningPrefix << message << colorCode[Reset] << std::endl;
+
+		// Add message to logger
+		Logger::add(message, Warning);
 	}
 
 	/*
@@ -86,6 +96,9 @@ namespace Console {
 	void logInfo (const std::string& message) {
 		// Show message with prefix & style
 		std::cout << colorCode[Blue] << logInfoPrefix << message << colorCode[Reset] << std::endl;
+
+		// Add message to logger
+		Logger::add(message, Info);
 	}
 
 	/*
@@ -95,5 +108,8 @@ namespace Console {
 	void logSuccess (const std::string& message) {
 		// Show message with prefix & style
 		std::cout << colorCode[Green] << logSuccessPrefix << message << colorCode[Reset] << std::endl;
+
+		// Add message to logger
+		Logger::add(message, Success);
 	}
 }
