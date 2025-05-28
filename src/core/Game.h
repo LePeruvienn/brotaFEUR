@@ -27,8 +27,6 @@ namespace Game {
 	extern Player::Player* player1; ///< Main player entitiy pointer
 
 	extern unsigned int nextId; ///< Next object added ID when added to game objects
-	extern std::vector<Object*> objects; ///< Game objects list
-
 
 	extern std::vector<Object*> cachedObjectsToDelete; ///< Cached array that store all the objects we must delete at the end of the loop
 
@@ -54,7 +52,7 @@ namespace Game {
 	void setScene(std::string& name);
 
 	/**
-	 * Add a game object to the objects list
+	 * Add a game object to the current scene
 	 * @param Object*
 	 */
 	void add(Object* gameObject);
