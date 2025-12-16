@@ -7,7 +7,7 @@ Brotato like game, made using SFML and CMake to improve my C++ skills. Buildeg w
 
 Art made by me 🤓 !!
 
-<img src="art/proto1.gif" alt="Idle preview" width="300"/>
+<img src="assets/art/proto1.gif" alt="Idle preview" width="300"/>
 
 ---
 
